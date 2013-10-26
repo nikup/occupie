@@ -1,0 +1,28 @@
+﻿@model LinkedFMI_UI.Models.Student
+
+<figure class="main">
+    <figcaption>
+        <img class="alignleft" src="~/img/mono-icons/plug32.png" />
+        <h4 class="heading">Контакти</h4>
+        <div class="display-field">
+            <img title="email" src="~/img/social/email20.png" />
+            @Html.DisplayFor(model => model.Email)
+        </div>
+
+        @if (Model.Blog != null)
+        {
+            <div class="display-field">
+                <img title="blog" src="~/img/social/blogger20.png" />
+                <a href="@Model.Blog" target="_blank">@Model.Blog</a>
+            </div>
+        }
+
+        @if (Model.Phone != null)
+        {
+            <div class="display-field">
+                <img title="phone" src="~/img/mono-icons/phone16.png" />
+                @Html.DisplayFor(model => model.Phone)
+            </div>
+        }
+    </figcaption>
+</figure>

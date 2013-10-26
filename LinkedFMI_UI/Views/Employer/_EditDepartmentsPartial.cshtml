@@ -1,0 +1,9 @@
+﻿@model LinkedFMI_UI.Models.Employer
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.DepartmentsString) (раздели със запетаи)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.DepartmentsString)
+    @Html.ValidationMessageFor(model => model.DepartmentsString)
+</div>

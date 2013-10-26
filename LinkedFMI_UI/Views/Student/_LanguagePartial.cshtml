@@ -1,0 +1,39 @@
+﻿@model LinkedFMI_UI.Models.Student
+
+
+
+
+@if (Model.Languages == null || Model.Languages.Count == 0)
+{
+    <p>You have not added any languages yet!</p>
+}
+else
+{
+    for (int i = 0; i < Model.Languages.Count; i++)
+    {
+    <div id="language@(i)">
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Languages[i].Name)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Languages[i].Name)
+        @Html.ValidationMessageFor(model => model.Languages[i].Name)
+    </div>
+    
+    
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Languages[i].Proficiency)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.Languages[i].Proficiency, new SelectList(LinkedFMI_UI.Utilities.GetProficiencies(), "Value", "Text", Model.Languages[i].Proficiency))
+        @Html.ValidationMessageFor(model => model.Languages[i].Proficiency)
+    </div>
+    
+    <p class="alignright">
+        @Ajax.ActionLink("Delete language", "DeleteLanguage", new { langId = Model.Languages[i].LangId,listId = i }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess = "deleteLang("+i+")" })<br />
+    </p>
+    
+    <div style="clear: both"></div>
+    </div>
+    }
+}

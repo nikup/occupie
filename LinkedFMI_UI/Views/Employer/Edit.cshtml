@@ -1,0 +1,39 @@
+﻿@model LinkedFMI_UI.Models.Employer
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2 style="text-align:center">Редактиране на профила</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <fieldset>
+        <legend>Employer</legend>
+        @Html.HiddenFor(model => model.EmployerProfileId)
+
+        <div class="alignleft">
+            @Html.RenderPartial("_EditMainInfoPartial")
+        </div>
+
+        <div class="alignleft">
+            @Html.RenderPartial("_EditDepartmentsPartial")
+        </div>
+
+        <p>
+            <input id="edit" class="left" type="submit" value="Save" name="submit" />
+            <input type="button" value="Cancel" onclick="window.location.href = '/Student/Profile'" />
+        </p>
+    </fieldset>
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

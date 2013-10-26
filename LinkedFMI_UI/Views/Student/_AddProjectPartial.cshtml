@@ -1,0 +1,59 @@
+﻿@model LinkedFMI_UI.Models.Project
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Ajax.BeginForm("AddProject", new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "target",
+                            OnSuccess = "closeProjectDialog"
+                        }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Работа</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            <br />
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            <br />
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Link)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Link)
+            <br />
+            @Html.ValidationMessageFor(model => model.Link)
+        </div>
+
+        <p>
+            <input id="add" type="submit" value="Add" />
+            <input type="button" id="cancelAdd" value="Cancel" onclick="closeProjectDialog()" />
+        </p>
+    </fieldset>
+    
+    <script>
+        function closeProjectDialog()
+        {
+            $("#projectDialog").dialog("close");
+        }
+    </script>
+}

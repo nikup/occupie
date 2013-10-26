@@ -1,0 +1,23 @@
+﻿@model LinkedFMI_UI.Models.Student
+
+@if (Model.DateOfBirth != null || Model.Town != null)
+{
+    <figure class="personal">
+        <figcaption>
+            <img class="alignleft" src="~/img/mono-icons/home32.png" />
+            <h4 class="heading">Допълнителна информация</h4>
+            @if (Model.DateOfBirth != null)
+            {
+                <h5>Дата на раждане: 
+        @Model.DateOfBirth.Value.ToString("dd.MM.yyyy")</h5>
+            }
+
+            @if (Model.Town != null)
+            {
+                <h5>Town: @Model.Town</h5>
+            }
+        </figcaption>
+    </figure>
+}
+
+

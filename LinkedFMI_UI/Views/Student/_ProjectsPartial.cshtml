@@ -1,0 +1,29 @@
+﻿@model LinkedFMI_UI.Models.Student
+
+@if (Model.Projects != null && Model.Projects.Count > 0)
+{
+    <figure class="experience">
+        <figcaption>
+            <img class="alignleft" src="~/img/mono-icons/slide32.png" />
+            <h4 class="heading">Проекти</h4>
+
+            @foreach (var proj in Model.Projects)
+            {
+                if (proj.Link != null)
+                {
+                <a target="_blank" href="@proj.Link">
+                    <h5>@proj.Name</h5>
+                </a>
+                }
+                else
+                {
+                    <h5>@proj.Name</h5>
+                }
+                
+                <p>@proj.Description</p>                
+                
+                <hr style="border:dashed; border-width:1px; width:70%" />
+            }
+        </figcaption>
+    </figure>
+}

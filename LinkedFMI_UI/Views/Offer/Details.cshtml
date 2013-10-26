@@ -1,0 +1,69 @@
+﻿@model LinkedFMI_UI.Models.Offer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Offer</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ReferenceNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReferenceNumber)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <h5>Необходими технологии</h5>
+    <ul>
+        @foreach (var tech in Model.MainTechnologies)
+        {
+            <li>tech</li>
+        }
+    </ul>
+
+    @if (Model.AdditionalTechnologies != null && Model.AdditionalTechnologies.Count > 0)
+    {
+        <h5>Препоръчителни технологии технологии</h5>
+        <ul>
+            @foreach (var tech in Model.AdditionalTechnologies)
+            {
+                <li>tech</li>
+            }
+        </ul>
+    }
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Salary)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Salary)
+    </div>
+</fieldset>
+
+<p>
+    @{var roles = (SimpleRoleProvider)Roles.Provider;
+      var membership = (SimpleMembershipProvider)Membership.Provider;
+      var name = WebSecurity.CurrentUserName;
+    }
+    @if (roles.IsUserInRole(name, "employer"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.OfferId })
+    }
+</p>

@@ -1,0 +1,86 @@
+﻿@model LinkedFMI_UI.Models.Student
+<figure class="main isotope-item figure-edit-page" style="width:100%;" id="persInfo">
+    <figcaption>
+            <h4 class="heading">Основна информация</h4>
+        <div style="float:left">
+<div class="editor-label">
+    @Html.LabelFor(model => model.FirstName)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.FirstName)
+    @Html.ValidationMessageFor(model => model.FirstName)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.LastName)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.LastName)
+    @Html.ValidationMessageFor(model => model.LastName)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Email)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Email)
+    @Html.ValidationMessageFor(model => model.Email)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Phone)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Phone)
+    @Html.ValidationMessageFor(model => model.Phone)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Blog)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Blog)
+    @Html.ValidationMessageFor(model => model.Blog)
+</div>
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.Facebook)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Facebook)
+    @Html.ValidationMessageFor(model => model.Facebook)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.LinkedIn)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.LinkedIn)
+    @Html.ValidationMessageFor(model => model.LinkedIn)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Twitter)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Twitter)
+    @Html.ValidationMessageFor(model => model.Twitter)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.GooglePlus)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.GooglePlus)
+    @Html.ValidationMessageFor(model => model.GooglePlus)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Github)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Github)
+    @Html.ValidationMessageFor(model => model.Github)
+</div>
+        </figcaption>
+    </figure>

@@ -1,0 +1,66 @@
+﻿@model LinkedFMI_UI.Models.Language
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Ajax.BeginForm("AddLanguage", new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "target",
+                            OnSuccess = "onSuccess"
+                        }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Език</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            <br />
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Proficiency)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Proficiency, new SelectList(LinkedFMI_UI.Utilities.GetProficiencies(), "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.Proficiency)
+        </div>
+
+
+        <p>
+            <input type="submit" value="Add" />
+            <input type="button" id="cancelAdd" value="Cancel" onclick="closeLangDialog()" />
+        </p>
+    </fieldset>
+}
+
+<script>
+    function onSuccess(ok,status,response) {
+        addLanguage(response.responseText);
+        closeLangDialog();
+    }
+
+    function closeLangDialog() {
+        $("#langDialog").dialog("close");
+    }
+
+    function addLanguage(langId) {
+
+        $.ajax({
+            url: '/Student/LanguagesEdit',
+            dataType: 'html',
+            success: function (data) {
+                $("#languagePartial").html(data);
+            }
+        });
+    }
+
+    $("#Proficiency").kendoDropDownList();
+</script>

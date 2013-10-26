@@ -1,0 +1,79 @@
+﻿@model LinkedFMI_UI.Models.Student
+
+<script src="~/js/jquery-ui-1.10.3.custom.js"></script>
+<figure class="figure-edit-page" style="width:100%;" id="personal">
+    <figcaption>
+            <h4 class="heading">Лична информация</h4>
+<div class="editor-label">
+    @Html.LabelFor(model => model.DateOfBirth)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.DateOfBirth)
+    @Html.ValidationMessageFor(model => model.DateOfBirth)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Town)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Town)
+    @Html.ValidationMessageFor(model => model.Town)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.InterestsString) (раздели със запетаи)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.InterestsString)
+    @Html.ValidationMessageFor(model => model.InterestsString)
+</div>
+        <div id="languagePartial" style="height:100%">
+            @Html.Partial("_LanguagePartial")
+        </div>
+
+@Ajax.ActionLink("Добави език", "AddLanguage", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "langDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openLangPopup" })<br />
+
+<div class="dialog" id="langDialog" style="display: none;"></div>
+    </figcaption>
+    </figure>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#langDialog").dialog(
+            {
+                autoOpen: false,
+                width: 300,
+                height: 'auto',
+                modal: true
+            }
+        );
+    });
+    function openLangPopup() {
+        $("#langDialog").dialog("open");
+    }
+
+    function deleteLang(id) {
+        $("#language" + id).remove();
+    }
+</script>
+
+<script>
+    var curYear = '@DateTime.Now.Year';
+    var curMonth = '@DateTime.Now.Month';
+    var curDay = '@DateTime.Now.Day';
+
+
+    $("#DateOfBirth").kendoDatePicker(
+        {
+            format: "dd MMMM yyyy",
+            start: "century",
+            depth: "month",
+            culture: "bg-BG",
+            value: new Date('@Model.GetDateOfBirth()'),
+            max: new Date(curYear, curMonth - 1, curDay)
+        });
+
+        for (var i = 0; i < ('@Model.Languages.Count') ; i++) {
+        $("#Languages_" + i + "__Proficiency").kendoDropDownList();
+    }
+</script>

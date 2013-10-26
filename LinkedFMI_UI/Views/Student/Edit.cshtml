@@ -1,0 +1,73 @@
+﻿@model LinkedFMI_UI.Models.Student
+
+@{
+    ViewBag.Title = "Редактиране";
+}
+
+<h2 style="text-align:center">Редактиране на профила</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <div id="leftNav">
+        <ul style="float:center;" id="nav" class="sf-menu2 sf-js-enabled sf-shadow">
+            <li class="sfHover" style="float:center;">
+                <ul style="display:inline;visibility:visible">
+                    <li><a href="#persInfo">Основна информация</a></li>
+                    <li><a href="#education">Образование</a></li>
+                    <li><a href="#experience">Опит</a></li>
+                    <li><a href="#personal">Лична информация</a></li>
+                    <li><input id="edit" class="left" type="submit" value="Save" name="submit" /></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div id="filter-container" class="cf isotope" style="position:relative;height:516px;">
+        @Html.HiddenFor(model => model.StudentProfileId)
+
+            @Html.Partial("_EditMainInfoPartial")
+
+
+            @Html.Partial("_EditEducationPartial")
+
+
+            @Html.Partial("_EditExperiencePartial")
+
+
+            @Html.Partial("_EditPersonalPartial")
+
+    </div>
+}
+   @*
+    <fieldset>
+        <legend>Студент</legend>
+
+        @Html.HiddenFor(model => model.StudentProfileId)
+        <div class="alignleft">
+            @Html.Partial("_EditMainInfoPartial")
+        </div>
+
+        <div class="alignleft">
+            @Html.Partial("_EditEducationPartial")
+        </div>
+        <div class="alignleft">
+            @Html.Partial("_EditExperiencePartial")
+        </div>
+            <div class="alignright">
+                @Html.Partial("_EditPersonalPartial")
+            </div>
+   *@
+   @*
+    <p>
+            <input id="edit" class="left" type="submit" value="Save" name="submit" />
+            <input type="button" value="Cancel" onclick="window.location.href = '/Student/Profile'" />
+        </p>
+    </fieldset>*@
+    
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,33 @@
+﻿@model LinkedFMI_UI.Models.Student
+
+@if (Model.Jobs != null && Model.Jobs.Count > 0)
+{
+    <figure class="experience">
+        <figcaption>
+            <img class="alignleft" src="~/img/mono-icons/bag32.png" />
+            <h4 class="heading">Опит</h4>
+            @foreach (var job in Model.Jobs)
+            {
+                if (job != null)
+                {
+                <h3>@job.Position</h3>
+                <h4>@job.Company</h4>
+                    if (job.StartYear != null && job.EndYear != null)
+                    {
+                @:(@job.StartMonth @job.StartYear - @if (job.IsCurrent)
+                                    {
+@:Present
+	}
+                                    else
+                                    {
+                    @job.EndMonth @job.EndYear                  
+                                    }
+                                                                }
+                                                
+                <hr style="border:dashed; border-width:1px; width:70%" />
+                }
+            }
+        </figcaption>
+    </figure>
+}
+

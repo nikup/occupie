@@ -1,0 +1,23 @@
+﻿@model LinkedFMI_UI.Models.Employer
+
+<figure class="info">
+    <figcaption>
+        <img class="alignleft" src="~/img/mono-icons/mouse32.png" />
+        <h4 class="heading">Info</h4>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Adress)
+        </div>
+
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Phone)
+        </div>
+
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Description)
+        </div>
+
+        <div class="display-field">
+            @Html.DisplayFor(model => model.NumberOfEmployees)
+        </div>
+    </figcaption>
+</figure>

@@ -1,0 +1,229 @@
+﻿@model LinkedFMI_UI.Models.Student
+
+<script src="~/js/jquery-ui-1.10.3.custom.js"></script>
+<figure class="main isotope-item" style="position:relative;width:100%;height:auto" id="experience">
+    <figcaption>
+            <h4 class="heading">Опит</h4>
+@* Jobs *@
+
+
+<div id="jobPartial">
+    @Html.Partial("_JobPartial")
+</div>
+        
+@Ajax.ActionLink("Добави работно място", "AddJob", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "jobDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openJobPopup" })<br />
+
+<div class="dialog" id="jobDialog" style="display: none;"></div>
+
+@* Jobs *@
+
+
+@* Projects *@
+
+@if (Model.Projects.Count == 0)
+{
+    <p>Все още не си добавил проекти!</p>
+}
+else
+{
+    for (int i = 0; i < Model.Projects.Count; i++)
+    {
+        if (Model.Projects[i] != null)
+        {
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Projects[i].Name)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Projects[i].Name)
+        <br />
+        @Html.ValidationMessageFor(model => model.Projects[i].Name)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Projects[i].Description)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Projects[i].Description)
+        <br />
+        @Html.ValidationMessageFor(model => model.Projects[i].Description)
+    </div>
+    
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Projects[i].Link)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Projects[i].Link)
+        <br />
+        @Html.ValidationMessageFor(model => model.Projects[i].Link)
+    </div>
+    
+    <p class="alignright">
+        @Ajax.ActionLink("Изтрий проект", "DeleteProject", new { projectId = i }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess = "( function() { deleteProject(" + i + "); } )" })<br />
+
+    </p>
+    
+    <div style="clear: both"></div>
+        }
+    }
+}
+
+@Ajax.ActionLink("Добави проект", "AddProject", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "projectDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openProjectPopup" })<br />
+
+<div class="dialog" id="projectDialog" style="display: none;"></div>
+@* Projects *@
+
+
+@* Technologies *@
+@if (Model.Technologies == null || Model.Technologies.Count == 0)
+{
+    <p>Все още нямаш добавени технологии!</p>
+}
+else
+{
+    for (int i = 0; i < Model.Technologies.Count; i++)
+    {
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Technologies[i].Name)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Technologies[i].Name)
+        @Html.ValidationMessageFor(model => model.Technologies[i].Name)
+    </div>    
+    
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Technologies[i].Proficiency)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.Technologies[i].Proficiency, new SelectList(LinkedFMI_UI.Utilities.GetProficiencies(), "Value", "Text", Model.Technologies[i].Proficiency))
+        @Html.ValidationMessageFor(model => model.Technologies[i].Proficiency)
+    </div>
+    
+    <p class="alignright">
+        @Ajax.ActionLink("Изтрий технология", "DeleteTechnology", new { techId = i }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess = "( function() { deleteTech(" + i + "); } )" })<br />
+    </p>
+    
+    <div style="clear: both"></div>
+    }
+}
+
+@Ajax.ActionLink("Добави технология", "AddTechnology", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "techDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openTechPopup" })<br />
+
+<div class="dialog" id="techDialog" style="display: none;"></div>
+
+@* Technologies *@
+
+
+@* Work pref + Work status *@
+<div class="editor-label">
+    @Html.LabelFor(model => model.WorkTimePreference)
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.WorkTimePreference, new SelectList(LinkedFMI_UI.Utilities.GetWorkTimePreferences(), "Value", "Text"))
+    @Html.ValidationMessageFor(model => model.WorkTimePreference)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.WorkStatus)
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.WorkStatus, new SelectList(LinkedFMI_UI.Utilities.GetWorkStatuses(), "Value", "Text"))
+    @Html.ValidationMessageFor(model => model.WorkStatus)
+</div>
+
+@* Work pref + Work status *@
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#jobDialog").dialog(
+            {
+                autoOpen: false,
+                width: 300,
+                height: 'auto',
+                modal: true
+            }
+        );
+    });
+    function openJobPopup() {
+        $("#jobDialog").dialog("open");
+    }
+
+    function deleteJob(id) {
+        $("#job" + id).remove();
+    }
+
+    $(document).ready(function () {
+        $("#projectDialog").dialog(
+            {
+                autoOpen: false,
+                width: 300,
+                height: 'auto',
+                modal: true
+            }
+        );
+    });
+    function openProjectPopup() {
+        $("#projectDialog").dialog("open");
+    }
+
+    function deleteProject(id) {
+        console.log("deleted id: " + id);
+        alert("asd");
+        $("Jobs_" + id + "__Company").remove();
+        $("Jobs_" + id + "__Position").remove();
+    }
+
+    $(document).ready(function () {
+        $("#techDialog").dialog(
+            {
+                autoOpen: false,
+                width: 300,
+                height: 'auto',
+                modal: true
+            }
+        );
+    });
+    function openTechPopup() {
+        $("#techDialog").dialog("open");
+    }
+
+    function deleteTech(id) {
+        console.log("deleted id: " + id);
+        alert("asd");
+        $("Jobs_" + id + "__Company").remove();
+        $("Jobs_" + id + "__Position").remove();
+    }
+</script>
+
+<script>
+    $("#WorkTimePreference").kendoDropDownList();
+    $("#WorkStatus").kendoDropDownList();
+
+    for (var i = 0; i < ('@Model.Technologies.Count') ; i++) {
+        $("#Technologies_" + i + "__Proficiency").kendoDropDownList();
+    }
+
+    for (var i = 0; i < ('@Model.Jobs.Count') ; i++) {
+        $("Jobs_" + i + "__StartMonth").kendoDropDownList();
+        $("Jobs_" + i + "__StartYear").kendoDropDownList();
+        $("Jobs_" + i + "__EndMonth").kendoDropDownList();
+        $("Jobs_" + i + "__EndYear").kendoDropDownList();
+    }
+
+    var curYear = '@DateTime.Now.Year';
+    var curMonth = '@DateTime.Now.Month';
+    var curDay = '@DateTime.Now.Day';
+
+
+    $("#Jobs_0_StartDate").kendoDatePicker(
+        {
+            format: "dd MMMM yyyy",
+            start: "century",
+            depth: "month",
+            culture: "bg-BG",
+            value: new Date('@Model.GetDateOfBirth()'),
+            max: new Date(curYear, curMonth - 1, curDay)
+        });
+
+</script>
+    </figcaption>
+    </figure>

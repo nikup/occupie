@@ -1,0 +1,23 @@
+﻿@model LinkedFMI_UI.Models.Student
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginForm("FileUpload", "Student", FormMethod.Post,
+                            new { enctype = "multipart/form-data" }))
+{  
+    <label for="file">Качи изображение:</label> 
+    <input type="file" name="file" id="file" style="width: 100%;" accept="image/*" /> 
+    <input type="submit" value="Upload" class="submit" />     
+    <input type="button" id="cancelUpload" value="Cancel" onclick="closeUploadDialog()" />
+}
+
+<script>
+    $(document).ready(function () {
+        $("#files").kendoUpload();
+    });
+
+    function closeUploadDialog() {
+        $("#uploadDialog").dialog("close");
+    }
+</script>

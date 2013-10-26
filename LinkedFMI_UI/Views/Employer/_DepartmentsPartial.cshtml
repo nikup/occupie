@@ -1,0 +1,18 @@
+﻿@model LinkedFMI_UI.Models.Employer
+
+<figure class="departments">
+    <figcaption>
+        <img class="alignleft" src="~/img/mono-icons/mouse32.png" />
+        <h4 class="heading">Departments</h4>
+
+        @if(Model.Departments!= null)
+        {
+            foreach(var department in Model.Departments)
+            {
+                <div class="display-field">
+                    @department
+                </div>
+            }
+        }
+    </figcaption>
+</figure>

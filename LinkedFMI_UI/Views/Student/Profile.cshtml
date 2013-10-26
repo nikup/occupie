@@ -1,0 +1,66 @@
+﻿@model LinkedFMI_UI.Models.Student
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<!-- portfolio content-->
+<div id="portfolio-content" class="cf">
+
+    <ul id="filter-buttons">
+        <li><a href="#" data-filter="*" class="selected">всичко</a></li>
+        <li><a href="#" data-filter=".main">основна информация</a></li>
+        <li><a href="#" data-filter=".edu">образование</a></li>
+        <li><a href="#" data-filter=".experience">опит</a></li>
+        <li><a href="#" data-filter=".personal">лична информация</a></li>
+    </ul>
+
+    <!-- Filter container -->
+    <div id="filter-container" class="cf">
+
+        @Html.Partial("_PicturePartial")
+
+        @Html.Partial("_JobsPartial")
+
+        @Html.Partial("_WorkDetailsPartial")
+
+        @Html.Partial("_ProjectsPartial")
+
+        @Html.Partial("_TechnologiesPartial")
+
+        @Html.Partial("_FMIEduPartial")
+
+        @Html.Partial("_ContactPartial")
+
+        @Html.Partial("_HighSchoolEduPartial")
+
+        @Html.Partial("_SocialLinksPartial")
+
+        @Html.Partial("_AdditionalPartial")
+
+        @Html.Partial("_LanguagesPartial")
+
+        @Html.Partial("_InterestsPartial")
+
+    </div>
+    <!-- ENDS Filter container -->
+
+</div>
+<!-- ENDS featured -->
+
+<div>
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+    }
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { profileId = Model.StudentProfileId })
+</p>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,16 @@
+﻿@model LinkedFMI_UI.Models.Student
+
+@if (Model.Interests != null && Model.Interests.Count > 0)
+{
+    <figure class="personal">
+        <figcaption>
+            <img class="alignleft" src="~/img/mono-icons/cardgame32.png" />
+            <h4 class="heading">Интереси</h4>
+
+            @foreach (var interest in Model.Interests)
+            {
+                <h5>@interest</h5>
+            }
+        </figcaption>
+    </figure>
+}

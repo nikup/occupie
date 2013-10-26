@@ -1,0 +1,23 @@
+﻿@model LinkedFMI_UI.Models.Student
+
+<figure class="edu">
+    <figcaption>
+        <img class="alignleft" src="~/img/mono-icons/mouse32.png" />
+        <h4 class="heading">ФМИ Образование</h4>
+        <div class="display-field">
+            @Model.FMIInfo.Bachelor.Specialty.ToString().Replace("_", " ")
+            <br />
+            (@Model.FMIInfo.Bachelor.StartYear -  @Model.FMIInfo.Bachelor.EndYear)
+    <br />
+
+            @foreach (var subject in @Model.FMIInfo.Bachelor.Subjects)
+            {
+                if (subject.IsVisible)
+                {            
+                @subject.Name @:взет с  @subject.Grade
+                <br />
+                }
+            }
+        </div>
+    </figcaption>
+</figure>

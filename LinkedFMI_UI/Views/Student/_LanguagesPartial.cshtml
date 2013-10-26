@@ -1,0 +1,18 @@
+﻿@model LinkedFMI_UI.Models.Student
+
+@if (Model.Languages != null && Model.Languages.Count > 0)
+{
+    <figure class="personal">
+        <figcaption>
+            <img class="alignleft" src="~/img/mono-icons/commentblack32.png" />
+            <h4 class="heading">Езици</h4>
+
+            @foreach (var lang in Model.Languages)
+            {
+                <h5>@lang.Name -
+        @LinkedFMI_UI.Enums.EnumTranslator.Proficiencies[lang.Proficiency]</h5>
+            }
+        </figcaption>
+    </figure>
+}
+
