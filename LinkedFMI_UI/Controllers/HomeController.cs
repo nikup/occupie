@@ -58,7 +58,7 @@ namespace LinkedFMI_UI.Controllers
             {
                 employers.Add(new EmployerAllViewModel
                 {
-                    Id = empl.EmployerProfileId,
+                    Id = empl.UserId,
                     Name = empl.Name,
                     Picture = "data:image;base64," + System.Convert.ToBase64String(empl.Picture)
                 });
