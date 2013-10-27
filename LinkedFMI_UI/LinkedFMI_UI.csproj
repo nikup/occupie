@@ -988,9 +988,6 @@
     <Content Include="Views\Offer\Edit.cshtml" />
     <Content Include="Views\Offer\Delete.cshtml" />
     <Content Include="Views\Offer\AddOffer.cshtml" />
-    <Content Include="Views\Account\Register.cshtml">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="Views\Student\_LanguagePartial.cshtml" />
     <Content Include="Views\Employer\EmployerOffers.cshtml" />
     <Content Include="Views\Employer\_PicturePartial.cshtml" />
