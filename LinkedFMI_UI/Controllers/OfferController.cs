@@ -45,12 +45,16 @@ namespace LinkedFMI_UI.Controllers
 
             foreach (var offer in allOffers)
             {
+                if (offer.Employer == null)
+                    continue;
+
                 string offerTechnologies = string.Join(", ", offer.MainTechnologies.Take(5));
                 string offerLevel = EnumTranslator.Levels[offer.OfferLevel];
                 string offerType = EnumTranslator.Types[offer.OfferType];
                 string offerWorkTime = EnumTranslator.WorkTimes[offer.DailyWorkTime];
 
-                offerViewModels.Add(new OfferAllViewModel
+
+                offerViewModels.Add(new OfferAllViewModel()
                     {
                         Id = offer.OfferId,
                         DailyWorkTime = offerWorkTime,
