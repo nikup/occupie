@@ -275,10 +275,15 @@ namespace LinkedFMI_UI.Controllers
 					points += student.Technologies.Sum(x => Convert.ToInt32(technologies.Contains(x.Name)) * (int)x.Proficiency);
 					points += student.Projects.Count * PointsPerProject;
 					points += student.Languages.Sum(x => Convert.ToInt32(languages.Contains(x.Name)) * (int)x.Proficiency);
+
+                    double courseCount = courses.Count();
+                    if (courseCount != 0)
+                        courseCount = 1;
+
 					points += 
 						GradeMultiplier * 
 						student.FMIInfo.Bachelor.Subjects.Sum(x => Convert.ToInt32(courses.Contains(x.Name)) * (int)(x.Grade)) / 
-						(double)courses.Count();
+						courseCount;
 
 					return points;
 				};

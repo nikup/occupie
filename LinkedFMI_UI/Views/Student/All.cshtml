@@ -21,12 +21,6 @@
         columns.Bound(model => model.FullName).Sortable(true).Title("Име");
         columns.Bound(model => model.Email).Sortable(false).Title("Email");
         columns.Bound(model => model.HasJob).Sortable(true).Title("Работи ли?");
-        columns.Template(@<text>
-                  @Html.ActionLink("Детайли", "Profile",
-                  new { profileId = @item.Id })   
-                   </text>)
-                  .ClientTemplate("<a href='/brunch/statistics/brunchid=#= BrunchCode#'>#=BrunchCode#</a>")
-                  .Title("Детайли");
     })
     .Pageable(page =>
         {
