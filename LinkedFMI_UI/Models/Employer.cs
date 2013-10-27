@@ -48,6 +48,7 @@ namespace LinkedFMI_UI.Models
         [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
 
+        [Display(Name = "Дата на създаване")]
         public int YearFounded { get; set; }
 
         [Display(Name = "Описание")]
@@ -59,6 +60,8 @@ namespace LinkedFMI_UI.Models
 
         [Display(Name = "Отдели")]
         public virtual List<string> Departments { get; set; }
+
+        [Display(Name = "Отдели, разделени със запетая")]
         public string DepartmentsString
         {
             get

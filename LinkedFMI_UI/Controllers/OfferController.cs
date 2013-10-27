@@ -210,12 +210,14 @@ namespace LinkedFMI_UI.Controllers
 				};
 			IEnumerable<Offer> query = db.Offers.ToList();
 
+
+
 			IQueryable<OfferAllViewModel> transformedQuery = query
 				.Where(predicate)
 				.Select(offer => new OfferAllViewModel
 				{
 					Id = offer.OfferId,
-					EmployerTitle = offer.Employer.Name,
+					EmployerTitle = offer.Employer != null ? offer.Employer.Name : "Липсва",
 					Title = offer.Title,
 					Technologies = offer.MainTechString,
 					OfferLevel = EnumTranslator.Levels[offer.OfferLevel],

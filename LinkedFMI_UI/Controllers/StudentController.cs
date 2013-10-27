@@ -38,7 +38,7 @@ namespace LinkedFMI_UI.Controllers
         {
 			var students = db.Students.Select(s => new StudentAllViewModel
 				{
-					Id = s.StudentProfileId,
+					Id = s.UserId,
 					Email = s.Email,
 					FullName = s.FirstName + " " + s.LastName,
 					HasJob = s.Jobs.Any(j => j.IsCurrent) ? "Да" : "Не",
@@ -259,8 +259,9 @@ namespace LinkedFMI_UI.Controllers
 		{
 			int minYear=0;
 			int.TryParse(form["Year"], out minYear);
-			string[] technologies = form["Technologies"].Split(',');
-			string[] languages = form["Languages"].Split(',');
+            char[] delimiter = new char[] { ',' };
+			string[] technologies = form["Technologies"].Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
+            string[] languages = form["Languages"].Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
 			IEnumerable<string> courses = form.AllKeys.Where(x => x != "Year" && x != "Technologies" && x != "Languages");
 
 			// Formula is as follows:
@@ -285,7 +286,7 @@ namespace LinkedFMI_UI.Controllers
 			double maxPoints =
 				(technologies.Length + languages.Length) * ((int)LinkedFMI_UI.Enums.Proficiency.Excellent - 1) +
 				GradeMultiplier * 6 +
-				PointsPerProject * 10;
+				PointsPerProject * 2;
 
 
 			// TODO: TEST IF IT WORKZ!
@@ -313,7 +314,7 @@ namespace LinkedFMI_UI.Controllers
 						FullName = s.FirstName + " " + s.LastName,
 						HasJob = s.Jobs.Any(j => j.IsCurrent) ? "Да" : "Не",
 						Picture = s.Picture,
-						Relevance = (calculateRelevance(s) / maxPoints * 100).ToString("P")
+						Relevance = (calculateRelevance(s) / maxPoints).ToString("P")
 					})
 					.AsQueryable();
 

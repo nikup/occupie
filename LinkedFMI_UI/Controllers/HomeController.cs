@@ -75,7 +75,7 @@ namespace LinkedFMI_UI.Controllers
             {
                 students.Add(new StudentAllViewModel
                 {
-                        Id= empl.StudentProfileId,
+                        Id= empl.UserId,
                         FullName = empl.FirstName + " " + empl.LastName,
                         PictureString = "data:image;base64," + System.Convert.ToBase64String(empl.Picture)
                 });

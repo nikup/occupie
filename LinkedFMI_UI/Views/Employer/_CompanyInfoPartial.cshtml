@@ -1,7 +1,7 @@
 ﻿@model LinkedFMI_UI.Models.Employer
 
-<figure class="info">
-    <figcaption>
+<figure class="info" style="border-top:none">
+    <figcaption style="border:none">
         <img class="alignleft" src="~/img/mono-icons/mouse32.png" />
         <h4 class="heading">Основна информация</h4>
 
@@ -64,11 +64,14 @@
             </div>
         }
 
-        <div class="display-label">
+        @if (@Model.NumberOfEmployees!=0)
+        {
+             <div class="display-label">
             @Html.DisplayNameFor(model => model.NumberOfEmployees)
         </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.NumberOfEmployees)
         </div>
+        }
     </figcaption>
 </figure>
