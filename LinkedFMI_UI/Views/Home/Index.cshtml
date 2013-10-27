@@ -15,9 +15,6 @@
                 -->
         <!-- ENDS project pager -->
 
-        <h2 style="font-family: 'Berlin Sans FB'; text-align: center">The pie is not a lie!</h2>
-        <br />
-        <br />
                 <!-- project box -->
         <div id="project-box" class="cf">
             <!-- slider -->
@@ -27,19 +24,19 @@
                         <li style="background-color: rgb(195,195,195); text-align: center">
                             <h3 style="font-weight: bold; color: #cb5432;">Последни обяви
                             </h3>
-                            <div style="background-color:white">
+                            <div id="filter-container" class="cf" style=" background-color:white; font-size:175% ">
                                 @Html.Partial("_LatestOffersPartial", Model.Offers)
                             </div>
                         </li>
                         <li style="background-color: rgb(195,195,195); text-align: center">
                             <h3 style="font-weight: bold; color: #cb5432;">Последни студенти</h3>
-                            <div>
+                            <div id="filter-container" class="cf">
                                 @Html.Partial("_LatestStudentsPartial", Model.Students)
                             </div>
                         </li>
                         <li style="background-color: rgb(195,195,195); text-align: center">
                             <h3 style="font-weight: bold; color: #cb5432;">Последни работодатели</h3>
-                            <div>
+                            <div id="filter-container" class="cf">
                                 @Html.Partial("_LatestCompaniesPartial", Model.Employers)
                             </div>
                         </li>

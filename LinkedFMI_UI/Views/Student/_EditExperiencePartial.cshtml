@@ -62,7 +62,7 @@
                         </div>
 
                         <p class="alignright">
-                            @Ajax.ActionLink("Изтрий eзик", "DeleteTech", new { langId = Model.Languages[i].LangId, listId = i }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess = "deleteLang(" + i + ")" })<br />
+                            @Ajax.ActionLink("Изтрий технология", "DeleteTech", new { langId = Model.Technologies[i].TechId, listId = i }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess = "deleteTech(" + i + ")" })<br />
                         </p>
                         <hr width="100%" />
                         <div style="clear: both"></div>
