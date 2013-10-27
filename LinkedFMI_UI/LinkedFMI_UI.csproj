@@ -485,7 +485,6 @@
     <Content Include="img\social\email16.png" />
     <Content Include="img\social\email20.png" />
     <Content Include="js\.DS_Store" />
-    <Content Include="js\validateNav.js" />
     <Content Include="js\jquery-ui-1.10.3.custom.js" />
     <Content Include="js\prettyPhoto\images\.DS_Store" />
     <Content Include="js\prettyPhoto\README" />
