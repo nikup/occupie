@@ -14,14 +14,15 @@
                 <h4>@job.Company</h4>
                     if (job.StartYear != null && job.EndYear != null)
                     {
-                @:(@job.StartMonth @job.StartYear - @if (job.IsCurrent)
+                @:(@LinkedFMI_UI.Enums.EnumTranslator.Months[job.StartMonth] @job.StartYear - @if (job.IsCurrent)
                                     {
 @:Present
 	}
                                     else
                                     {
-                    @job.EndMonth @job.EndYear                  
-                                    }
+                    @LinkedFMI_UI.Enums.EnumTranslator.Months[job.EndMonth] @: @(job.EndYear)
+                  
+                                    })
                                                                 }
                                                 
                 <hr style="border:dashed; border-width:1px; width:70%" />

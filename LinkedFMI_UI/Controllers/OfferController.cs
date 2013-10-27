@@ -8,12 +8,15 @@ using System.Web.Mvc;
 using LinkedFMI_UI.Models;
 using LinkedFMI_UI.Enums;
 using LinkedFMI_UI.ViewModels.OfferViewModels;
+using WebMatrix.WebData;
+using LinkedFMI_UI.Managers;
 
 namespace LinkedFMI_UI.Controllers
 {
     public class OfferController : Controller
     {
         private LinkedFMIDb db = new LinkedFMIDb();
+        private EmployerManager empManager = new EmployerManager();
 
         //
         // GET: /Offer/
@@ -51,7 +54,7 @@ namespace LinkedFMI_UI.Controllers
                     {
                         Id = offer.OfferId,
                         DailyWorkTime = offerWorkTime,
-                        EmployerTitle = offer.Title,
+                        EmployerTitle = offer.Employer.Name,
                         OfferLevel = offerLevel,
                         OfferType = offerType,
                         Title = offer.Title,
@@ -110,6 +113,7 @@ namespace LinkedFMI_UI.Controllers
         {
             if (ModelState.IsValid)
             {
+                offer.Employer = db.Employers.FirstOrDefault(x => x.UserId == WebSecurity.CurrentUserId);
                 db.Offers.Add(offer);
                 db.SaveChanges();
                 return RedirectToAction("Profile", "Employer");
@@ -142,7 +146,7 @@ namespace LinkedFMI_UI.Controllers
             {
                 db.Entry(offer).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Offer", new { id = offer.OfferId });
             }
             return View(offer);
         }
@@ -185,28 +189,29 @@ namespace LinkedFMI_UI.Controllers
 			char[] delimiters = new char[] { ',' };
 			string[] technologies = (viewModel.Technologies ?? string.Empty).Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
 			string[] employers = (viewModel.EmployerTitles ?? string.Empty).Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+			bool allWorkTimesAccepted = viewModel.WorkTimes.All(x => !x);
+			bool allLevelsAccepted = viewModel.Levels.All(x => !x);
+			bool allTypesAccepted = viewModel.Types.All(x => !x);
 
 			Func<Offer, bool> predicate = (offer) =>
 				{
 					bool hasRightTech = technologies.Length == 0 || offer.MainTechnologies.Intersect(technologies).FirstOrDefault() != null;
 					bool hasRightEmployer = employers.Length == 0 || Array.IndexOf(employers, offer.Employer) != -1;
 					// If worktimes[0] (not specified) then everything's ok
-					bool workHours = viewModel.WorkTimes[0] || viewModel.WorkTimes[(int)offer.DailyWorkTime];
-					bool level = viewModel.Levels[(int)offer.OfferLevel];
-					bool type = viewModel.Types[(int)offer.OfferType];
+					bool workHours = allWorkTimesAccepted || viewModel.WorkTimes[0] || viewModel.WorkTimes[(int)offer.DailyWorkTime];
+					bool level = allLevelsAccepted || viewModel.Levels[(int)offer.OfferLevel];
+					bool type = allTypesAccepted || viewModel.Types[(int)offer.OfferType];
 
 					return hasRightTech && hasRightEmployer && workHours && level && type;
 				};
-			IEnumerable<Offer> query =
-				from offer in db.Offers
-				select offer;
+			IEnumerable<Offer> query = db.Offers.ToList();
 
 			IQueryable<OfferAllViewModel> transformedQuery = query
 				.Where(predicate)
 				.Select(offer => new OfferAllViewModel
 				{
 					Id = offer.OfferId,
-					//EmployerTitle = offer.Employer.Name,
+					EmployerTitle = offer.Employer.Name,
 					Title = offer.Title,
 					Technologies = offer.MainTechString,
 					OfferLevel = EnumTranslator.Levels[offer.OfferLevel],

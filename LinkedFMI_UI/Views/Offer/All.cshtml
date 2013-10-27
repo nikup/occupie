@@ -23,8 +23,13 @@
         columns.Bound(model => model.OfferLevel).Sortable(true).Title("Ниво");
         columns.Bound(model => model.Technologies).Sortable(true).Title("Технологии");
 
-        columns.Command(command => command.Custom("Details"));
-    })
+        columns.Template(@<text>
+                  @Html.ActionLink("Детайли", "Details",
+                  new { Id = @item.Id })   
+                   </text>)
+                  .ClientTemplate("<a href='/brunch/statistics/brunchid=#= BrunchCode#'>#=BrunchCode#</a>")
+                  .Title("Детайли");  
+	   })
     .Pageable(page =>
         {
             page.PreviousNext(true);

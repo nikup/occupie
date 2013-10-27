@@ -1,34 +1,101 @@
 ﻿@model LinkedFMI_UI.Models.Student
 
 <script src="~/js/jquery-ui-1.10.3.custom.js"></script>
-<figure class="main isotope-item" style="width:100%;margin-top:20px;margin-bottom:20px;" id="experience">
+<figure class="main isotope-item" style="width: 100%; margin-top: 20px; margin-bottom: 20px;" id="experience">
     <figcaption>
-            <h4 class="heading">Опит</h4>
-@* Jobs *@
+        <h4 class="heading">Опит</h4>
+
+        <div class="exp-padding">
+            <div class="alignleft">
+                @* Jobs *@
+
+                <div id="jobPartial">
+                    @Html.Partial("_JobPartial")
+                </div>
+
+                @Ajax.ActionLink("Добави работно място", "AddJob", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "jobDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openJobPopup" })<br />
+
+                <div class="dialog" id="jobDialog" style="display: none;"></div>
+
+                @* Jobs *@
+            </div>
 
 
-<div id="jobPartial">
-    @Html.Partial("_JobPartial")
-</div>
-        
-@Ajax.ActionLink("Добави работно място", "AddJob", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "jobDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openJobPopup" })<br />
+            <div class="alignleft">
+                @* Projects *@
+                <div id="projectsPartial">
+                    @Html.Partial("_ProjectPartial")
+                </div>
 
-<div class="dialog" id="jobDialog" style="display: none;"></div>
+                @Ajax.ActionLink("Добави проект", "AddProject", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "projectDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openProjectPopup" })<br />
 
-@* Jobs *@
+                <div class="dialog" id="projectDialog" style="display: none;"></div>
+                @* Projects *@
+            </div>
+
+            <div id="techPartial">
+
+                @if (Model.Technologies == null || Model.Technologies.Count == 0)
+                {
+                    <p>You have not added any technologies yet!</p>
+                }
+                else
+                {
+                    for (int i = 0; i < Model.Technologies.Count; i++)
+                    {
+                    <div id="language@(i)">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Technologies[i].Name)
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Technologies[i].Name)
+                            @Html.ValidationMessageFor(model => model.Technologies[i].Name)
+                        </div>
 
 
-@* Projects *@
-        <div id="projectsPartial">
-            @Html.Partial("_ProjectPartial")
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Technologies[i].Proficiency)
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownListFor(model => model.Technologies[i].Proficiency, new SelectList(LinkedFMI_UI.Utilities.GetProficiencies(), "Value", "Text", Model.Technologies[i].Proficiency))
+                            @Html.ValidationMessageFor(model => model.Technologies[i].Proficiency)
+                        </div>
+
+                        <p class="alignright">
+                            @Ajax.ActionLink("Изтрий eзик", "DeleteTech", new { langId = Model.Languages[i].LangId, listId = i }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess = "deleteLang(" + i + ")" })<br />
+                        </p>
+                        <hr width="100%" />
+                        <div style="clear: both"></div>
+                    </div>
+                    }
+                }
+
+            </div>
+
+            @Ajax.ActionLink("Добави технология", "AddTechnology", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "techDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openTechPopup" })<br />
+
+            <div class="dialog" id="techDialog" style="display: none;"></div>
+
+            @*Other fields*@
+            <div class="editor-label">
+                @Html.LabelFor(model => model.WorkTimePreference)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.WorkTimePreference, new SelectList(LinkedFMI_UI.Utilities.GetWorkTimePreferences(), "Value", "Text"))
+                @Html.ValidationMessageFor(model => model.WorkTimePreference)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.WorkStatus)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.WorkStatus, new SelectList(LinkedFMI_UI.Utilities.GetWorkStatuses(), "Value", "Text"))
+                @Html.ValidationMessageFor(model => model.WorkStatus)
+            </div>
+            @*Other fields*@
         </div>
-
-
-@Ajax.ActionLink("Добави проект", "AddProject", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "projectDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openProjectPopup" })<br />
-
-<div class="dialog" id="projectDialog" style="display: none;"></div>
-@* Projects *@
-
+    </figcaption>
+</figure>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -115,5 +182,3 @@
         });
 
 </script>
-    </figcaption>
-    </figure>

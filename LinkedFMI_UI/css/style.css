@@ -268,8 +268,20 @@ figure#persInfo, figure#education, figure#experience, figure#personal {
     text-align: center;
 }
 
-div.padding {
+div.info-padding {
     padding-left:240px;
+    padding-right:40px;
+}
+
+div.exp-padding {
+    padding-left:70px;
+    padding-right:40px;
+
+    margin:20px;
+}
+
+div.edu-padding {
+    padding-left:140px;
     padding-right:40px;
 }
 
@@ -345,6 +357,7 @@ div.padding {
     -o-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
     background: #f8f5f2;
+    z-index:10000;
 }
 
     .sub-menu ul.login {

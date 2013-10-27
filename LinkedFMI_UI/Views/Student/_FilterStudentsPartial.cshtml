@@ -8,15 +8,32 @@
 			@using (Html.BeginForm("FilterStudents", "Student", FormMethod.Post, 
                                       new { enctype = "multipart/form-data" }))
 			{
-				<label>Технологии:</label>
-				@Html.TextBoxFor(model => model.Technologies)
-				<br />
-				<label>Езици:</label>
-				@Html.TextBoxFor(model => model.Languages)
-				<br />
-				<label>Курс:</label>
-				@Html.TextBoxFor(model => model.Year)
-				<br />
+                <table style="margin-left: auto; margin-right: auto;">
+                    <tr>
+                        <td style="text-align: right">
+                            Технологии:
+                        </td>
+                        <td style="text-align: left">
+				            @Html.TextBoxFor(model => model.Technologies)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right">
+				            Езици:
+                        </td>
+                        <td style="text-align: left">
+				            @Html.TextBoxFor(model => model.Languages)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right">
+				            Курс:
+                        </td>
+                        <td style="text-align: left">
+				            @Html.TextBoxFor(model => model.Year)
+                        </td>
+                    </tr>
+                </table>
 				@Html.Kendo().PanelBar().Name("courses-panelbar").Items(panelbar => 
 					{
 						foreach (var entry in SusiParser.CourseInfo.PartitionCoursesByCategory())

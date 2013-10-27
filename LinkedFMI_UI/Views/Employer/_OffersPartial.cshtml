@@ -7,7 +7,7 @@
         @foreach (var offer in Model.Offers)
         {
             <div class="display-field">
-                @offer
+                @Html.ActionLink(offer.Title, "Details", "Offer", new { id = offer.OfferId }, null)
             </div>
         }
     </figcaption>

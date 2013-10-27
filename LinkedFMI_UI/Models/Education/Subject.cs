@@ -11,14 +11,18 @@ namespace LinkedFMI_UI.Models
         [Key]
         public int SubjectId { get; set; }
 
+		[Display(Name = "Име")]
         public string Name { get; set; }
 
+		[Display(Name = "Оценка")]
         public double? Grade { get; set; }
 
+		[Display(Name = "Кредити")]
         public double? Credits { get; set; }
 
         public bool IsVisible { get; set; }
 
+		[Display(Name = "Категория")]
 		public string Category { get; set; }
 
         public int? BachelorId { get; set; }

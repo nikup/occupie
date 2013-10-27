@@ -35,8 +35,51 @@
             @Html.LabelFor(model => model.Description)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Description)
+            @(Html.Kendo()
+            .EditorFor(model => model.Description)
+            .HtmlAttributes(new { style = "width: 740px;height:440px" })
+            .Encode(false))
             @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DailyWorkTime)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.DailyWorkTime, new SelectList(LinkedFMI_UI.Utilities.GetWorkTimePreferences(), "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.DailyWorkTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OfferType)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.OfferType, new SelectList(LinkedFMI_UI.Utilities.GetOfferTypes(), "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.OfferType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OfferLevel)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.OfferLevel, new SelectList(LinkedFMI_UI.Utilities.GetOfferLevels(), "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.OfferLevel)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MainTechString)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MainTechString)
+            @Html.ValidationMessageFor(model => model.MainTechString)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AdditionalTechString)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AdditionalTechString)
+            @Html.ValidationMessageFor(model => model.AdditionalTechString)
         </div>
 
         <div class="editor-label">
@@ -47,23 +90,22 @@
             @Html.ValidationMessageFor(model => model.Salary)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.EmployerId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.EmployerId)
-            @Html.ValidationMessageFor(model => model.EmployerId)
-        </div>
-
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Запази" />
         </p>
     </fieldset>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+<script>
+    $("#DailyWorkTime").kendoDropDownList();
+    $("#OfferLevel").kendoDropDownList();
+    $("#OfferType").kendoDropDownList();
+
+    $("#Salary").kendoNumericTextBox({
+        min: 0,
+        step: 50
+    });
+</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

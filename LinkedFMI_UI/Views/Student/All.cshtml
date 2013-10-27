@@ -8,6 +8,7 @@
     <h1>@ViewBag.Title</h1>
 </hgroup>
 
+<br />
 @(Html.Kendo()
     .Grid<LinkedFMI_UI.ViewModels.StudentAllViewModel>()
     .Name("grid-students")
@@ -15,11 +16,11 @@
     .Columns(columns =>
     {
 		if (ViewBag.RelevanceSorted)
-			columns.Bound(model => string.Format("{0}%", model.Relevance * 100)).Sortable(true).Title("Relevance");
+			columns.Bound(model => model.Relevance).Sortable(true).Title("Relevance");
 		
-        columns.Bound(model => model.FullName).Sortable(true).Title("Full Name");
+        columns.Bound(model => model.FullName).Sortable(true).Title("Име");
         columns.Bound(model => model.Email).Sortable(false).Title("Email");
-        columns.Bound(model => model.HasJob).Sortable(true).Title("Has Job");
+        columns.Bound(model => model.HasJob).Sortable(true).Title("Работи ли?");
     })
     .Pageable(page =>
         {
@@ -31,15 +32,7 @@
             sort.AllowUnsort(false);
             sort.SortMode(GridSortMode.SingleColumn);
         })
-    .Groupable()
-    .Filterable()
     .Resizable(resize => resize.Columns(true))
-    .Navigatable()
-    //.Selectable(select => select.Mode(GridSelectionMode.Multiple).Type(GridSelectionType.Cell))
-    //.Events(ev =>
-    //    {
-    //        ev.Change("selectRow");
-    //    })
     .DataSource(data =>
     {
         data.Ajax()
@@ -49,35 +42,3 @@
     }))
 
 @Html.Partial("_FilterStudentsPartial", new StudentAllViewModel());
-
-
-@*@foreach (var student in Model)
-{
-    <div id="filter-container" class="cf">
-    <figure>
-        <figcaption>
-            @if (student.Picture!= null)
-            {
-                <img class="alignleft" src="data:image;base64," + @System.Convert.ToBase64String(student.Picture) />
-            }
-            <h4 class="heading">@student.FirstName @student.LastName</h4>
-            @if (student.Jobs != null && student.Jobs.Count > 0)
-            {
-                foreach (var job in student.Jobs)
-                {
-                    if (job.IsCurrent)
-                    {
-                <h5>@job.Position at @job.Company</h5>
-                        break;
-                    }
-                }
-            }
-
-            <h5>@student.FMIInfo.Bachelor.CurrentCourse курс 
-                @LinkedFMI_UI.Enums.EnumTranslator.Specialities[student.FMIInfo.Bachelor.Specialty]</h5>
-        </figcaption>
-    </figure>
-        </div>
-}
-
-*@

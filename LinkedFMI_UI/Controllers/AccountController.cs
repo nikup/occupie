@@ -12,6 +12,7 @@ using LinkedFMI_UI.Filters;
 using LinkedFMI_UI.Models;
 using LinkedFMI_UI.Managers;
 using SusiParser;
+using System.Diagnostics;
 
 namespace LinkedFMI_UI.Controllers
 {
@@ -53,33 +54,36 @@ namespace LinkedFMI_UI.Controllers
             }
             else if (ModelState.IsValid && !WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                //return RedirectToAction("RegisterAsStudent");
                 try
-                {
+				{
+					// get SUSI info
+					SusiParser.SusiParser parser = new SusiParser.SusiParser();
+					parser.Login(model.UserName, model.Password);
+					StudentInfo info = parser.GetStudentInfo();
+					IEnumerable<CourseInfo> courses = parser.GetCourses();
+
+					// Create user in local data base
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
 
-                    // get SUSI info
-                    SusiParser.SusiParser parser = new SusiParser.SusiParser();
-                    parser.Login(model.UserName, model.Password);
-                    StudentInfo info = parser.GetStudentInfo();
-                    IEnumerable<CourseInfo> courses = parser.GetCourses();
-
+					// Fill info
                     int userId = int.Parse(Membership.GetUser(model.UserName).ProviderUserKey.ToString());
-                    studentManager.AddStudent(userId, info, courses);
+                    studentManager.AddStudent(userId, info, courses, model.UserName);
 
                     var roles = (SimpleRoleProvider)Roles.Provider;
                     roles.AddUsersToRoles(new[] { model.UserName }, new[] { "student" });
 
-                    return RedirectToAction("Profile", "Student");
+                    return RedirectToAction("Profile", "Student", new { profileId = userId });
                 }
                 catch (MembershipCreateUserException e)
                 {
-                    ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+					ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+					Debug.WriteLine(e.Message);
                 }
                 catch (System.Net.WebException e)
                 {
-                    ModelState.AddModelError("", e.Message);
+					ModelState.AddModelError("", e.Message);
+					Debug.WriteLine(e.Message);
                 }
             }
 
@@ -127,46 +131,46 @@ namespace LinkedFMI_UI.Controllers
         //
         // POST: /Account/RegisterAsStudent
 
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult RegisterAsStudent(RegisterModelStudent model)
-        {
-            if (ModelState.IsValid)
-            {
-                // Attempt to register the student
-				try
-				{
-					WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-					WebSecurity.Login(model.UserName, model.Password);
+		//[HttpPost]
+		//[AllowAnonymous]
+		//[ValidateAntiForgeryToken]
+		//public ActionResult RegisterAsStudent(RegisterModelStudent model)
+		//{
+		//	if (ModelState.IsValid)
+		//	{
+		//		// Attempt to register the student
+		//		try
+		//		{
+		//			WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+		//			WebSecurity.Login(model.UserName, model.Password);
 
-					// get SUSI info
-					SusiParser.SusiParser parser = new SusiParser.SusiParser();
-					parser.Login(model.UserName, model.Password);
-					StudentInfo info = parser.GetStudentInfo();
-					IEnumerable<CourseInfo> courses = parser.GetCourses();
+		//			// get SUSI info
+		//			SusiParser.SusiParser parser = new SusiParser.SusiParser();
+		//			parser.Login(model.UserName, model.Password);
+		//			StudentInfo info = parser.GetStudentInfo();
+		//			IEnumerable<CourseInfo> courses = parser.GetCourses();
 
-					int userId = int.Parse(Membership.GetUser(model.UserName).ProviderUserKey.ToString());
-					studentManager.AddStudent(userId, info, courses);
+		//			int userId = int.Parse(Membership.GetUser(model.UserName).ProviderUserKey.ToString());
+		//			studentManager.AddStudent(userId, info, courses);
 
-					var roles = (SimpleRoleProvider)Roles.Provider;
-					roles.AddUsersToRoles(new[] { model.UserName }, new[] { "student" });
+		//			var roles = (SimpleRoleProvider)Roles.Provider;
+		//			roles.AddUsersToRoles(new[] { model.UserName }, new[] { "student" });
 
-					return RedirectToAction("Profile", "Student");
-				}
-				catch (MembershipCreateUserException e)
-				{
-					ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
-				}
-				catch (System.Net.WebException e)
-				{
-					ModelState.AddModelError("", e.Message);
-				}
-            }
+		//			return RedirectToAction("Profile", "Student");
+		//		}
+		//		catch (MembershipCreateUserException e)
+		//		{
+		//			ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+		//		}
+		//		catch (System.Net.WebException e)
+		//		{
+		//			ModelState.AddModelError("", e.Message);
+		//		}
+		//	}
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
+		//	// If we got this far, something failed, redisplay form
+		//	return View(model);
+		//}
 
         //
         // GET: /Account/RegisterAsEmployer
@@ -199,11 +203,12 @@ namespace LinkedFMI_UI.Controllers
                     var roles = (SimpleRoleProvider)Roles.Provider;
                     roles.AddUsersToRoles(new[] { model.CompanyName }, new[] { "employer" });
 
-                    return RedirectToAction("Profile", "Employer");
+                    return RedirectToAction("Profile", "Employer", new { profileId = userId });
                 }
                 catch (MembershipCreateUserException e)
                 {
                     ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+					Debug.WriteLine(e.Message);
                 }
             }
 
@@ -275,9 +280,10 @@ namespace LinkedFMI_UI.Controllers
                     {
                         changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
-                        changePasswordSucceeded = false;
+						changePasswordSucceeded = false;
+						Debug.WriteLine(e.Message);
                     }
 
                     if (changePasswordSucceeded)
@@ -307,10 +313,12 @@ namespace LinkedFMI_UI.Controllers
                         WebSecurity.CreateAccount(User.Identity.Name, model.NewPassword);
                         return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
                         ModelState.AddModelError("", String.Format("Unable to create local account. An account with the name \"{0}\" may already exist.", User.Identity.Name));
-                    }
+
+						Debug.WriteLine(e.Message);
+					}
                 }
             }
 

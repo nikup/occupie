@@ -1,52 +1,80 @@
 ﻿@model LinkedFMI_UI.Models.Student
-<figure class="main isotope-item figure-edit-page" style="width:100%" id="education">
+<figure class="main isotope-item figure-edit-page" style="width: 100%" id="education">
     <figcaption>
-            <h4 class="heading">Образование</h4>
-        <div style="float:left">
-<div class="editor-label">
-    @Html.LabelFor(model => model.HighSchoolInfo.SchoolName)
-</div>
-<div class="editor-field">
-    @Html.EditorFor(model => model.HighSchoolInfo.SchoolName)
-    @Html.ValidationMessageFor(model => model.HighSchoolInfo.SchoolName)
-</div>
+        <h4 class="heading">Образование</h4>
 
-<div class="editor-label">
-    @Html.LabelFor(model => model.HighSchoolInfo.StartYear)
-</div>
-<div class="editor-field">
-    @Html.DropDownListFor(model => model.HighSchoolInfo.StartYear, new SelectList(LinkedFMI_UI.Utilities.GetHighSchoolYears().OrderBy(x => int.Parse(x.Value)), "Value", "Text"))
-    @Html.ValidationMessageFor(model => model.HighSchoolInfo.StartYear)
-</div>
+        <div class="edu-padding">
+            <div class="alignleft">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.HighSchoolInfo.SchoolName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.HighSchoolInfo.SchoolName)
+                    @Html.ValidationMessageFor(model => model.HighSchoolInfo.SchoolName)
+                </div>
 
-<div class="editor-label">
-    @Html.LabelFor(model => model.HighSchoolInfo.EndYear)
-</div>
-<div class="editor-field">
-    @Html.DropDownListFor(model => model.HighSchoolInfo.EndYear, new SelectList(LinkedFMI_UI.Utilities.GetHighSchoolYears().OrderBy(x => int.Parse(x.Value)), "Value", "Text"))
-    @Html.ValidationMessageFor(model => model.HighSchoolInfo.EndYear)
-</div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.HighSchoolInfo.StartYear)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.HighSchoolInfo.StartYear, new SelectList(LinkedFMI_UI.Utilities.GetHighSchoolYears().OrderBy(x => int.Parse(x.Value)), "Value", "Text"))
+                    @Html.ValidationMessageFor(model => model.HighSchoolInfo.StartYear)
+                </div>
 
-<div class="editor-label">
-    @Html.LabelFor(model => model.HighSchoolInfo.Grade)
-</div>
-<div class="editor-field">
-    @Html.EditorFor(model => model.HighSchoolInfo.Grade)
-    @Html.ValidationMessageFor(model => model.HighSchoolInfo.Grade)
-</div>
-</div>
-@for (int i = 0; i < Model.FMIInfo.Bachelor.Subjects.Count; i++)
-{
-   @* <div class="squaredFour">
-        <input type="checkbox" value="None" id="squaredFour" name="check" />
-        <label for="squaredFour"></label>
-    </div>*@
-    
-    @Html.CheckBoxFor(x => x.FMIInfo.Bachelor.Subjects[i].IsVisible);
-    <label for="FMIInfo_Bachelor_Subjects_@(i)__IsVisible">@Model.FMIInfo.Bachelor.Subjects[i].Name - @Model.FMIInfo.Bachelor.Subjects[i].Grade - @Model.FMIInfo.Bachelor.Subjects[i].Credits</label><br />    
-}
-        </figcaption>
-    </figure>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.HighSchoolInfo.EndYear)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.HighSchoolInfo.EndYear, new SelectList(LinkedFMI_UI.Utilities.GetHighSchoolYears().OrderBy(x => int.Parse(x.Value)), "Value", "Text"))
+                    @Html.ValidationMessageFor(model => model.HighSchoolInfo.EndYear)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.HighSchoolInfo.Grade)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.HighSchoolInfo.Grade)
+                    @Html.ValidationMessageFor(model => model.HighSchoolInfo.Grade)
+                </div>
+            </div>
+
+            <table style="position: relative; left: 8em">
+                <tr style="background-color: #cb5432; color: white">
+                    <th style="padding-left: 5px">
+
+                    </th>
+                    <th style="padding-left: 5px">
+                        Предмет
+                    </th>
+                    <th style="padding-left: 5px">
+                        Оценка
+                    </th>
+                    <th style="padding-left: 5px; padding-right: 5px">
+                        Кредити
+                    </th>
+                </tr>
+                @for (int i = 0; i < Model.FMIInfo.Bachelor.Subjects.Count; i++)
+                {    
+                    <tr style="background-color: #ebe3db">
+                        <td>
+                            @Html.CheckBoxFor(x => x.FMIInfo.Bachelor.Subjects[i].IsVisible)
+                        </td>
+                        <td>
+                            <label>@Model.FMIInfo.Bachelor.Subjects[i].Name</label>
+                        </td>
+                        <td>
+                            <label>@Model.FMIInfo.Bachelor.Subjects[i].Grade</label>
+                        </td>
+                        <td>
+                            <label>@Model.FMIInfo.Bachelor.Subjects[i].Credits</label>
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+    </figcaption>
+</figure>
 
 <script>
     $("#HighSchoolInfo_StartYear").kendoDropDownList();

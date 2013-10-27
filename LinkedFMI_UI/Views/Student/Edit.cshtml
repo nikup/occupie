@@ -4,7 +4,7 @@
     ViewBag.Title = "Редактиране";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Student", new { profileId = Model.StudentProfileId}))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -26,6 +26,8 @@
 
     <div id="filter-container" class="cf isotope" style="position:relative;height:100%">
         @Html.HiddenFor(model => model.StudentProfileId)
+
+        @Html.HiddenFor(model => model.UserId)
 
             @Html.Partial("_EditMainInfoPartial")
 

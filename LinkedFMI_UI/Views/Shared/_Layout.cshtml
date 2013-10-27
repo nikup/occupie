@@ -88,6 +88,7 @@
     <!-- flexslider -->
     <link rel="stylesheet" href="~/css/flexslider.css">
     <script src="~/js/jquery.flexslider.js"></script>
+    <link rel="stylesheet" href="~/css/list-view.css" />
 
     @*Template Stuff*@
 
@@ -98,7 +99,14 @@
 
             <div id="logo">
                 <a href="~/">
-                    <img src="~/img/logo.png" alt="Simpler"></a>
+                    <img src="~/img/logo.png" alt="Simpler"></a><br />
+                <div style="float: right; font-family: 'Berlin Sans FB'">
+                    <h3>
+                        <span style="color: rgb(220,210,190);">The </span>
+                        <span style="color: rgb(203,84,50);">pie </span>
+                        <span style="color: rgb(220,210,190);">is not a lie!</span>
+                    </h3>
+                </div>
             </div>
 
             <!-- nav -->
@@ -129,12 +137,18 @@
                     }
                     else if (roles.IsUserInRole(name, "employer"))
                     {
-                        <li class="sub-menu">
+                    <li class="sub-menu">
                         <a>@name</a>
                         @{
                         var managerE = new LinkedFMI_UI.Managers.EmployerManager();
                         }
-                        @Html.Partial("_StudentPartial", managerE.GetProfileIdByUserId(WebSecurity.CurrentUserId))
+                        @Html.Partial("_EmployerPartial", managerE.GetProfileIdByUserId(WebSecurity.CurrentUserId))
+                    </li>
+                    }
+                    else
+                    {
+                    <li class="sub-menu">
+                        <a>@String.Join(",", roles.GetRolesForUser(WebSecurity.CurrentUserName))</a>
                     </li>
                     }
                 }
@@ -210,27 +224,11 @@
 
                     <div class="widget-block">
                         <h4>НАЙ-ТЪРСЕНИ ТЕХНОЛОГИИ</h4>
-                        <div class="recent-post cf">
-                            <a href="#" class="thumb">
-                                <img src="img/dummies/54x54.gif" alt="Post" /></a>
-                            <div class="post-head">
-                                <a href="#">Pellentesque habitant morbi senectus</a><span> March 12, 2011</span>
-                            </div>
-                        </div>
-                        <div class="recent-post cf">
-                            <a href="#" class="thumb">
-                                <img src="img/dummies/54x54.gif" alt="Post" /></a>
-                            <div class="post-head">
-                                <a href="#">Pellentesque habitant morbi senectus</a><span> March 12, 2011</span>
-                            </div>
-                        </div>
-                        <div class="recent-post cf">
-                            <a href="#" class="thumb">
-                                <img src="img/dummies/54x54.gif" alt="Post" /></a>
-                            <div class="post-head">
-                                <a href="#">Pellentesque habitant morbi senectus</a><span> March 12, 2011</span>
-                            </div>
-                        </div>
+                        <ul>
+                            <li class="cat-item">.NET</li>
+                            <li class="cat-item">Android</li>
+                            <li class="cat-item">iOS</li>
+                        </ul>
                     </div>
                 </li>
 
@@ -238,8 +236,8 @@
 
                     <div class="widget-block">
                         <h4>ЗА НАС</h4>
-                        <p>Folder it's completely free this means you don't have to pay anything <a href="http://luiszuno.com/blog/license" tar>read license</a>.</p>
-                        <p>Visit <a href="http://templatecreme.com/">Template Creme</a> and find the most beautiful free templates up to date.</p>
+                        <p><a href="http://occupie.apphb.com/">Occupie</a> е система за връзка между работодателите и студентите от Факултета по математика и информатика на Софийския университет. Разработена е за състезанието HackFMI Октомври 2013.</p>
+                        <p><a href="http://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Pi_pie2.jpg/220px-Pi_pie2.jpg">The pie is not a lie!</a></p>
                     </div>
 
                 </li>
@@ -249,8 +247,8 @@
                     <div class="widget-block">
                         <div id="tweets" class="footer-col tweet">
                             <h4>TWITTER</h4>
-                            <a class="twitter-timeline"  href="https://twitter.com/search?q=%23hackfmi"  data-widget-id="394382715547422721">Tweets about "#hackfmi"</a>
-<script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+                            <a class="twitter-timeline" href="https://twitter.com/search?q=%23hackfmi" data-widget-id="394382715547422721">Tweets about "#hackfmi"</a>
+                            <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
 
 
                         </div>

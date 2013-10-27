@@ -9,33 +9,75 @@
 			@using (Html.BeginForm("FilterOffers", "Offer", FormMethod.Post, 
                                       new { enctype = "multipart/form-data" }))
 			{
-				<label>Работодатели:</label>
-				@Html.TextBoxFor(model => model.EmployerTitles)
-				<br />
-				<label>Технологии:</label>
-				@Html.TextBoxFor(model => model.Technologies)
-				<br />
-				<label>Работно време:</label>
-				for (int i = 0; i < Model.WorkTimes.Count; i++)
-				{
-					@Html.CheckBoxFor(model => model.WorkTimes[i]);
-					<label for="WorkTimes_@(i)_">@EnumTranslator.WorkTimes[(WorkTime) (i)]</label>
-				}
-				<br />
-				<label>Ниво:</label>
-				for (int i = 0; i < Model.Levels.Count; i++)
-				{
-					@Html.CheckBoxFor(model => model.Levels[i]);
-					<label for="Levels_@(i)_">@EnumTranslator.Levels[(Level)i]</label>
-				}
-				<br />
-				<label>Тип:</label>
-				for (int i = 0; i < Model.Types.Count; i++)
-				{
-					@Html.CheckBoxFor(model => model.Types[i]);
-					<label for="Types_@(i)_">@EnumTranslator.Types[(LinkedFMI_UI.Enums.Type)i]</label>
-				}
-				<br />
+                <table style="margin-right: auto; margin-left: auto">
+                    <tr>
+                        <td style="text-align: right">
+				            <label>Работодатели:</label>
+                        </td>
+                        <td style="text-align: left">
+				            @Html.TextBoxFor(model => model.EmployerTitles)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right">
+				            <label>Технологии:</label>
+                        </td>
+                        <td style="text-align: left">
+				            @Html.TextBoxFor(model => model.Technologies)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; vertical-align: middle">
+				            <label>Работно време:</label>
+                        </td>
+                        <td style="text-align: left">
+				            @for (int i = 0; i < Model.WorkTimes.Count; i++)
+				            {
+                                if (i != 0 && i % 3 == 0)
+                                {
+                                    <br />
+                                }	
+					            @Html.CheckBoxFor(model => model.WorkTimes[i]);
+					            <label for="WorkTimes_@(i)_">@EnumTranslator.WorkTimes[(WorkTime) (i)]</label>
+				            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; vertical-align: middle">
+				            <label>Ниво:</label>
+                        </td>
+                        <td style="text-align: left">
+				            @for (int i = 0; i < Model.Levels.Count; i++)
+				            {
+                                if (i != 0 && i % 3 == 0)
+                                {
+                                    <br />
+                                }
+                    
+					            @Html.CheckBoxFor(model => model.Levels[i]);
+					            <label for="Levels_@(i)_">@EnumTranslator.Levels[(Level)i]</label>
+				            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; vertical-align: middle">
+				            <label>Тип:</label>
+                        </td>
+                        <td style="text-align: left">
+				            @for (int i = 0; i < Model.Types.Count; i++)
+				            {
+
+                                if (i != 0 && i % 3 == 0)
+                                {
+                                    <br />
+                                }
+                    
+					            @Html.CheckBoxFor(model => model.Types[i]);
+					            <label for="Types_@(i)_">@EnumTranslator.Types[(LinkedFMI_UI.Enums.Type)i]</label>
+				            }
+                        </td>
+				    </tr>
+                </table>
 				<input type="submit" value="Изпрати ме" />
 			}
 			

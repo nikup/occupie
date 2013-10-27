@@ -25,9 +25,9 @@ namespace LinkedFMI_UI.Controllers
         //
         // GET: /Student/Profile
 
-        public ActionResult Profile()
+        public ActionResult Profile(int profileId)
         {
-            var student = manager.GetStudentByUserId(WebSecurity.CurrentUserId);
+            var student = manager.GetStudentByUserId(profileId);
             return View(student);
         }
 
@@ -41,7 +41,7 @@ namespace LinkedFMI_UI.Controllers
 					Id = s.StudentProfileId,
 					Email = s.Email,
 					FullName = s.FirstName + " " + s.LastName,
-					HasJob = s.Jobs.Any(j => j.IsCurrent),
+					HasJob = s.Jobs.Any(j => j.IsCurrent) ? "Да" : "Не",
 					Picture = s.Picture
 				});
 
@@ -76,7 +76,7 @@ namespace LinkedFMI_UI.Controllers
             {
                 manager.SaveStudent(student);
 
-                return RedirectToAction("Profile");
+                return RedirectToAction("Profile", new { profileId = student.UserId });
             }
             else
             {
@@ -246,7 +246,7 @@ namespace LinkedFMI_UI.Controllers
                     db.Students.FirstOrDefault(x=>x.UserId == WebSecurity.CurrentUserId).Picture = img.GetBytes();
                     db.SaveChanges();
             }
-            return RedirectToAction("Profile");
+            return RedirectToAction("Profile", new { profileId = WebSecurity.CurrentUserId });
         }
 
 
@@ -257,7 +257,8 @@ namespace LinkedFMI_UI.Controllers
 		[HttpPost]
 		public ActionResult FilterStudents(FormCollection form)
 		{
-			int minYear = int.Parse(form["Year"]);
+			int minYear=0;
+			int.TryParse(form["Year"], out minYear);
 			string[] technologies = form["Technologies"].Split(',');
 			string[] languages = form["Languages"].Split(',');
 			IEnumerable<string> courses = form.AllKeys.Where(x => x != "Year" && x != "Technologies" && x != "Languages");
@@ -301,9 +302,7 @@ namespace LinkedFMI_UI.Controllers
 			//	.AsQueryable();
 				
 			// TODO: With a big table this can hurt a lot
-			IEnumerable<Student> query =
-				from student in db.Students
-				select student;
+			IEnumerable<Student> query = db.Students.ToList();
 
 			IQueryable<StudentAllViewModel> sortedQuery = query.
 				OrderByDescending(student => calculateRelevance(student))
@@ -312,9 +311,9 @@ namespace LinkedFMI_UI.Controllers
 						Id = s.StudentProfileId,
 						Email = s.Email,
 						FullName = s.FirstName + " " + s.LastName,
-						HasJob = s.Jobs.Any(j => j.IsCurrent),
+						HasJob = s.Jobs.Any(j => j.IsCurrent) ? "Да" : "Не",
 						Picture = s.Picture,
-						Relevance = calculateRelevance(s) / maxPoints
+						Relevance = (calculateRelevance(s) / maxPoints * 100).ToString("P")
 					})
 					.AsQueryable();
 

@@ -11,11 +11,13 @@ namespace LinkedFMI_UI.ViewModels
 
         public byte[] Picture { get; set; }
 
+        public string PictureString { get; set; }
+
         public string FullName { get; set; }
 
         public string Email { get; set; }
 
-        public bool HasJob { get; set; }
+        public string HasJob { get; set; }
 
 		public string Technologies { get; set; }
 
@@ -25,6 +27,7 @@ namespace LinkedFMI_UI.ViewModels
 
 		public string Languages { get; set; }
 
-		public double Relevance { get; set; }
+		// Must be a number but is actually a string to print percentage signs
+		public string Relevance { get; set; }
 	}
 }

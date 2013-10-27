@@ -13,6 +13,7 @@ namespace LinkedFMI_UI.Enums
         public static Dictionary<Specialty, string> Specialities { get; private set; }
         public static Dictionary<WorkStatus, string> WorkStatuses { get; private set; }
         public static Dictionary<WorkTime, string> WorkTimes { get; private set; }
+        public static Dictionary<int?, string> Months { get; private set; }
         static EnumTranslator()
         {
             Types = new Dictionary<Type, string>();
@@ -57,6 +58,20 @@ namespace LinkedFMI_UI.Enums
             WorkTimes.Add(WorkTime.four_hours, "4 часов работен ден");
             WorkTimes.Add(WorkTime.from_home, "От дома");
             WorkTimes.Add(WorkTime.not_specified, "Не е посочено");
+
+            Months = new Dictionary<int?, string>();
+            Months.Add(1, "Януари");
+            Months.Add(2, "Февруари");
+            Months.Add(3, "Март");
+            Months.Add(4, "Април");
+            Months.Add(5, "Май");
+            Months.Add(6, "Юни");
+            Months.Add(7, "Юли");
+            Months.Add(8, "Август");
+            Months.Add(9, "Септември");
+            Months.Add(10, "Октомври");
+            Months.Add(11, "Ноември");
+            Months.Add(12, "Декември");
         }
     }
 }

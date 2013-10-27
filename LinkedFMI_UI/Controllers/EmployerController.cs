@@ -17,23 +17,25 @@ namespace LinkedFMI_UI.Controllers
     {
         private EmployerManager manager = new EmployerManager();
         private LinkedFMIDb db = new LinkedFMIDb();
-        
+
         //
         // GET: /Employer/Profile
 
-        public ActionResult Profile()
+        public ActionResult Profile(int id = 0)
         {
-            var employer = manager.GetEmployerByUserId(WebSecurity.CurrentUserId);
+            Employer employer;
+            if (id == 0)
+            {
+                employer = manager.GetEmployerByUserId(WebSecurity.CurrentUserId);
+            }
+            else
+            {
+                employer = manager.GetEmployerByUserId(id);
+            }
+
             return View(employer);
         }
 
-        //
-        // GET: /Employer/All
-
-        public ActionResult All()
-        {
-            return View();
-        }
 
         //
         // GET: /Employer/Edit?profileId=2
@@ -61,7 +63,7 @@ namespace LinkedFMI_UI.Controllers
             if (ModelState.IsValid)
             {
                 manager.SaveEmployer(employer);
-                return RedirectToAction("Profile");
+                return RedirectToAction("Profile", new { profileId = employer.UserId });
             }
             else
             {
@@ -69,17 +71,17 @@ namespace LinkedFMI_UI.Controllers
             }
         }
 
-        public ActionResult Index()
+        public ActionResult All()
         {
-            return View(GetProducts());
+            return View(GetEmployers());
         }
 
         public ActionResult ReadEmployers([DataSourceRequest] DataSourceRequest request)
         {
-            return Json(GetProducts().ToDataSourceResult(request));
+            return Json(GetEmployers().ToDataSourceResult(request));
         }
 
-        private List<EmployerAllViewModel> GetProducts()
+        private List<EmployerAllViewModel> GetEmployers()
         {
             var employers = new List<EmployerAllViewModel>();
 

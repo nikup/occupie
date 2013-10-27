@@ -242,6 +242,7 @@
     <Compile Include="ViewModels\EmployerProfile.cs" />
     <Compile Include="ViewModels\EmployerAllViewModel.cs" />
     <Compile Include="ViewModels\ExperienceViewModel.cs" />
+    <Compile Include="ViewModels\IndexViewModel.cs" />
     <Compile Include="ViewModels\OfferViewModels\OfferAllViewModel.cs" />
     <Compile Include="ViewModels\OfferViewModels\OfferFilterViewModel.cs" />
     <Compile Include="ViewModels\OfferViewModels\OfferQueryViewModel.cs" />
@@ -454,6 +455,7 @@
     <Content Include="css\flexslider.css" />
     <Content Include="css\jquery.tweet.css" />
     <Content Include="css\lessframework.css" />
+    <Content Include="css\list-view.css" />
     <Content Include="css\lof-slider.css" />
     <Content Include="css\palette.css" />
     <Content Include="css\reset.css" />
@@ -1009,6 +1011,14 @@
     <Content Include="Views\Employer\_UploadPartial.cshtml" />
     <Content Include="Views\Shared\_StudentPartial.cshtml" />
     <Content Include="Views\Shared\_EmployerPartial.cshtml" />
+    <Content Include="Views\Offer\_FilterOffersPartial.cshtml" />
+    <Content Include="Views\Home\_LatestOffersPartial.cshtml" />
+    <Content Include="Views\Home\_LatestStudentsPartial.cshtml" />
+    <Content Include="Views\Home\_LatestCompaniesPartial.cshtml" />
+    <Content Include="Scripts\jquery.validate.min.js.map">
+      <DependentUpon>jquery.validate.js</DependentUpon>
+    </Content>
+    <Content Include="Views\Home\_StudentNamePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Employer\Profile.cshtml" />

@@ -1,20 +1,13 @@
 ﻿@model LinkedFMI_UI.Models.Offer
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Детайли";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.Title)</h2>
 
 <fieldset>
     <legend>Offer</legend>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Title)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Title)
-    </div>
 
     <div class="display-label">
         @Html.DisplayNameFor(model => model.ReferenceNumber)
@@ -30,21 +23,21 @@
         @Html.DisplayFor(model => model.Description)
     </div>
 
-    <h5>Необходими технологии</h5>
+    <div class="display-label">Необходими технологии</div>
     <ul>
         @foreach (var tech in Model.MainTechnologies)
         {
-            <li>tech</li>
+            <li class="display-field">tech</li>
         }
     </ul>
 
     @if (Model.AdditionalTechnologies != null && Model.AdditionalTechnologies.Count > 0)
     {
-        <h5>Препоръчителни технологии технологии</h5>
+        <div class="display-label">Препоръчителни технологии</div>
         <ul>
             @foreach (var tech in Model.AdditionalTechnologies)
             {
-                <li>tech</li>
+                <li class="display-field">tech</li>
             }
         </ul>
     }

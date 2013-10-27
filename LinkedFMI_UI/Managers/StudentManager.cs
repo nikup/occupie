@@ -6,6 +6,7 @@ using System.Web;
 using LinkedFMI_UI.Enums;
 using System.IO;
 using SusiParser;
+using WebMatrix.WebData;
 
 namespace LinkedFMI_UI.Managers
 {
@@ -22,10 +23,11 @@ namespace LinkedFMI_UI.Managers
 
 		};
 
-        public void AddStudent(int userId, StudentInfo studentInfo, IEnumerable<CourseInfo> courseInfo)
+        public void AddStudent(int userId, StudentInfo studentInfo, IEnumerable<CourseInfo> courseInfo, string userName)
         {
             Student student = new Student();
             student.UserId = userId;
+            student.Email = userName + "@uni-sofia.com";
 
             string imageFile = Path.Combine(HttpContext.Current.Server.MapPath("~/Images/default-avatar.jpg"));
             byte[] buffer = File.ReadAllBytes(imageFile);
@@ -35,8 +37,14 @@ namespace LinkedFMI_UI.Managers
             this.FillInSusiInfo(student, studentInfo, courseInfo);
 
             db.Students.Add(student);
-
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {                
+                throw;
+            }
         }
 
         public void SaveStudent(Student student)
@@ -164,8 +172,6 @@ namespace LinkedFMI_UI.Managers
             };
 
             student.FMIInfo = fmiEdu;
-
-            db.SaveChanges();
         }
     }
 }

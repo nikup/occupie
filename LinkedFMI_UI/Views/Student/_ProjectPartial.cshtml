@@ -38,10 +38,10 @@ else
             @Html.ValidationMessageFor(model => model.Projects[i].Link)
         </div>
 
-        <p class="alignright">
+        <div class="alignright">
             @Ajax.ActionLink("Изтрий проект", "DeleteProject", new { projectId = Model.Projects[i].ProjectId }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess = "deleteProject(" + i + ")" })<br />
 
-        </p>
+        </div>
     </div>
     if (i % 2 != 0)
         {

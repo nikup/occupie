@@ -198,9 +198,18 @@ namespace SusiParser
 
 				HtmlNodeCollection otherInfo = node.SelectNodes("strong/span");
 				info.FacultyNumber = otherInfo[0].InnerText.Trim();
-				info.Programme = otherInfo[1].InnerText.Trim();
-				info.Year = Int32.Parse(otherInfo[2].InnerText.Replace("Курс", "").Trim());
-				info.Group = Int32.Parse(otherInfo[3].InnerText.Replace("Група", "").Trim());
+				info.Programme = otherInfo[1].InnerText.Trim(); 
+				// In case the student has dropped (the base)
+				if (string.IsNullOrWhiteSpace(otherInfo[2].InnerHtml))
+				{
+					info.Year = 0;
+					info.Group = 0;
+				}
+				else
+				{
+					info.Year = Int32.Parse(otherInfo[2].InnerText.Replace("Курс", "").Trim());
+					info.Group = Int32.Parse(otherInfo[3].InnerText.Replace("Група", "").Trim());
+				}
 				// Don't ask
 				string studentType = node.SelectNodes("span").Last().InnerText.Split(',')[1].Trim().ToUpperInvariant();
 				StudentType type;
