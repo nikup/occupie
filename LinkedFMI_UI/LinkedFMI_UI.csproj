@@ -1018,7 +1018,6 @@
     <Content Include="Scripts\jquery.validate.min.js.map">
       <DependentUpon>jquery.validate.js</DependentUpon>
     </Content>
-    <Content Include="Views\Home\_StudentNamePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Employer\Profile.cshtml" />
