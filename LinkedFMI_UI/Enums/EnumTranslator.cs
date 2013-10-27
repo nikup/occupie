@@ -29,10 +29,10 @@ namespace LinkedFMI_UI.Enums
             Levels.Add(Level.ProjectManager, "Ръководител на проект");
 
             Proficiencies = new Dictionary<Proficiency, string>();
-            Proficiencies.Add(Proficiency.basic, "Основно");
-            Proficiencies.Add(Proficiency.advanced, "Напреднал");
-            Proficiencies.Add(Proficiency.excellent, "Отлично");
-            Proficiencies.Add(Proficiency.intermediate, "Междинно");
+            Proficiencies.Add(Proficiency.Basic, "Основно");
+            Proficiencies.Add(Proficiency.Advanced, "Напреднало");
+            Proficiencies.Add(Proficiency.Excellent, "Отлично");
+            Proficiencies.Add(Proficiency.Intermediate, "Междинно");
 
             Specialities = new Dictionary<Specialty, string>();
             Specialities.Add(Specialty.Applied_Mathematics, "Приложна математика");

@@ -14,6 +14,9 @@
     .BindTo(Model)
     .Columns(columns =>
     {
+		if (ViewBag.RelevanceSorted)
+			columns.Bound(model => string.Format("{0}%", model.Relevance * 100)).Sortable(true).Title("Relevance");
+		
         columns.Bound(model => model.FullName).Sortable(true).Title("Full Name");
         columns.Bound(model => model.Email).Sortable(false).Title("Email");
         columns.Bound(model => model.HasJob).Sortable(true).Title("Has Job");
@@ -44,6 +47,8 @@
             .PageSize(10)
             .ServerOperation(true);
     }))
+
+@Html.Partial("_FilterStudentsPartial", new StudentAllViewModel());
 
 
 @*@foreach (var student in Model)

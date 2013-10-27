@@ -70,7 +70,7 @@ jQuery(document).ready(function($) {
     $('.project-slider').flexslider({
     	animation: "fade",
     	controlNav: true,
-    	directionNav: false,
+    	directionNav: true,
     	keyboardNav: true
     });
     

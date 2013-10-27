@@ -30,9 +30,9 @@ else
     </div>
     
     <p class="alignright">
-        @Ajax.ActionLink("Delete language", "DeleteLanguage", new { langId = Model.Languages[i].LangId,listId = i }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess = "deleteLang("+i+")" })<br />
+        @Ajax.ActionLink("Изтрий език", "DeleteLanguage", new { langId = Model.Languages[i].LangId,listId = i }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess = "deleteLang("+i+")" })<br />
     </p>
-    
+    <hr width="100%"/>
     <div style="clear: both"></div>
     </div>
     }

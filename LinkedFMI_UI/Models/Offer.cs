@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using LinkedFMI_UI.ViewModels;
+using System.Web.Mvc;
 
 namespace LinkedFMI_UI.Models
 {
@@ -29,7 +30,8 @@ namespace LinkedFMI_UI.Models
 
         [Required]
         [Display(Name = "Описание")]
-        [DataType(DataType.MultilineText)]
+        [DataType(DataType.Html)]
+        [AllowHtml]
         public string Description { get; set; }
 
         [Required]
@@ -44,6 +46,8 @@ namespace LinkedFMI_UI.Models
         [Required]
         [Display(Name = "Основни технологии")]
         public virtual List<string> MainTechnologies { get; set; }
+
+        [Display(Name = "Основни технологии, разделени със запетая")]
         public String MainTechString
         {
             get
@@ -72,7 +76,10 @@ namespace LinkedFMI_UI.Models
             }
         }
 
+        [Display(Name = "Допълнителни технологии")]
         public virtual List<string> AdditionalTechnologies { get; set; }
+
+        [Display(Name = "Допълнителни технологии, разделени със запетая")]
         public String AdditionalTechString
         {
             get
@@ -101,6 +108,7 @@ namespace LinkedFMI_UI.Models
             }
         }
 
+        [Display(Name = "Заплата")]
         public int? Salary { get; set; }
 
         public string EmployerId { get; set; }

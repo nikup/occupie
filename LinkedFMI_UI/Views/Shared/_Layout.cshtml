@@ -119,11 +119,23 @@
                 {
                     if (roles.IsUserInRole(name, "student"))
                     {
-                    <li>@Html.ActionLink(User.Identity.Name, "Profile", "Student", routeValues: null, htmlAttributes: new { @class = "username" })</li> 
+                    <li class="sub-menu">
+                        <a>@name</a>
+                        @{
+                        var manager = new LinkedFMI_UI.Managers.StudentManager();
+                        }
+                        @Html.Partial("_StudentPartial", manager.GetProfileIdByUserId(WebSecurity.CurrentUserId))
+                    </li>
                     }
                     else if (roles.IsUserInRole(name, "employer"))
                     {
-                    <li>@Html.ActionLink(User.Identity.Name, "Profile", "Employer", routeValues: null, htmlAttributes: new { @class = "username" })</li> 
+                        <li class="sub-menu">
+                        <a>@name</a>
+                        @{
+                        var managerE = new LinkedFMI_UI.Managers.EmployerManager();
+                        }
+                        @Html.Partial("_StudentPartial", managerE.GetProfileIdByUserId(WebSecurity.CurrentUserId))
+                    </li>
                     }
                 }
                 else
@@ -197,7 +209,7 @@
                 <li class="first-col">
 
                     <div class="widget-block">
-                        <h4>RECENT POSTS</h4>
+                        <h4>НАЙ-ТЪРСЕНИ ТЕХНОЛОГИИ</h4>
                         <div class="recent-post cf">
                             <a href="#" class="thumb">
                                 <img src="img/dummies/54x54.gif" alt="Post" /></a>
@@ -225,7 +237,7 @@
                 <li class="second-col">
 
                     <div class="widget-block">
-                        <h4>ABOUT</h4>
+                        <h4>ЗА НАС</h4>
                         <p>Folder it's completely free this means you don't have to pay anything <a href="http://luiszuno.com/blog/license" tar>read license</a>.</p>
                         <p>Visit <a href="http://templatecreme.com/">Template Creme</a> and find the most beautiful free templates up to date.</p>
                     </div>
@@ -236,9 +248,9 @@
 
                     <div class="widget-block">
                         <div id="tweets" class="footer-col tweet">
-                            <h4>TWITTER WIDGET</h4>
-                            <a class="twitter-timeline" href="https://twitter.com/search?q=%23hackfmi" data-widget-id="394046672709238784">Tweets about "#hackfmi"</a>
-                            <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+                            <h4>TWITTER</h4>
+                            <a class="twitter-timeline"  href="https://twitter.com/search?q=%23hackfmi"  data-widget-id="394382715547422721">Tweets about "#hackfmi"</a>
+<script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
 
 
                         </div>
@@ -249,14 +261,31 @@
                 <li class="fourth-col">
 
                     <div class="widget-block">
-                        <h4>CATEGORIES</h4>
+                        <h4>НАВИГАЦИЯ</h4>
                         <ul>
-                            <li class="cat-item"><a href="#">Design</a></li>
-                            <li class="cat-item"><a href="#">Photo</a></li>
-                            <li class="cat-item"><a href="#">Art</a></li>
-                            <li class="cat-item"><a href="#">Game</a></li>
-                            <li class="cat-item"><a href="#">Film</a></li>
-                            <li class="cat-item"><a href="#">TV</a></li>
+                            <li class="cat-item">@Html.ActionLink("Начало", "Index", "Home")</li>
+                            <li class="cat-item">@Html.ActionLink("Студенти", "All", "Student")</li>
+                            <li class="cat-item">@Html.ActionLink("Работодатели", "All", "Employer")</li>
+                            <li class="cat-item">@Html.ActionLink("Обяви", "All", "Offer")</li>
+                            @{roles = (SimpleRoleProvider)Roles.Provider;
+                              membership = (SimpleMembershipProvider)Membership.Provider;
+                              name = WebSecurity.CurrentUserName;
+                            }
+                            @if (roles.IsUserInRole(name, "employer"))
+                            {
+                                <li class="cat-item">@Html.ActionLink("Добави обява", "AddOffer", "Offer")</li>
+                            }
+                            @if (Request.IsAuthenticated)
+                            {
+                                if (roles.IsUserInRole(name, "student"))
+                                {
+                                <li class="cat-item">@Html.ActionLink(User.Identity.Name, "Profile", "Student", routeValues: null, htmlAttributes: new { @class = "username" })</li> 
+                                }
+                                else if (roles.IsUserInRole(name, "employer"))
+                                {
+                                <li class="cat-item">@Html.ActionLink(User.Identity.Name, "Profile", "Employer", routeValues: null, htmlAttributes: new { @class = "username" })</li> 
+                                }
+                            }
                         </ul>
                     </div>
 
@@ -267,12 +296,7 @@
 
             <!-- bottom -->
             <div class="footer-bottom">
-                <div class="left">&copy; @DateTime.Now.Year LinkedFMI</div>
-                <ul id="social-bar" class="cf sb">
-                    <li><a href="http://www.facebook.com" title="Become a fan" class="facebook">Facebbok</a></li>
-                    <li><a href="http://www.twitter.com" title="Follow my tweets" class="twitter"></a></li>
-                    <li><a href="http://plus.google.com" title="Enter my circles" class="plus"></a></li>
-                </ul>
+                <div class="left">&copy; @DateTime.Now.Year Occupie</div>
             </div>
             <!-- ENDS bottom -->
 

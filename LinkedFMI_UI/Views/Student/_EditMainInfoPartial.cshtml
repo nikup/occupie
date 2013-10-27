@@ -1,8 +1,10 @@
 ﻿@model LinkedFMI_UI.Models.Student
-<figure class="main isotope-item figure-edit-page" style="width:100%;" id="persInfo">
+<figure class="main isotope-item figure-edit-page" style="width: 100%;" id="persInfo">
     <figcaption>
             <h4 class="heading">Основна информация</h4>
-        <div style="float:left">
+
+        <div class="padding">
+            <div class="alignleft">
 <div class="editor-label">
     @Html.LabelFor(model => model.FirstName)
 </div>
@@ -41,7 +43,6 @@
 <div class="editor-field">
     @Html.EditorFor(model => model.Blog)
     @Html.ValidationMessageFor(model => model.Blog)
-</div>
 </div>
 <div class="editor-label">
     @Html.LabelFor(model => model.Facebook)
@@ -82,5 +83,7 @@
     @Html.EditorFor(model => model.Github)
     @Html.ValidationMessageFor(model => model.Github)
 </div>
+            
+        </div>
         </figcaption>
     </figure>

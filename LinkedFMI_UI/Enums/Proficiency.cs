@@ -7,9 +7,9 @@ namespace LinkedFMI_UI.Enums
 {
     public enum Proficiency
     {
-        excellent, 
-        advanced,
-        intermediate,
-        basic
+        Basic,
+		Intermediate,
+		Advanced,
+        Excellent, 
     }
 }

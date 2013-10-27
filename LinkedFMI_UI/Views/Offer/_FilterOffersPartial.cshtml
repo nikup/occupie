@@ -1,0 +1,44 @@
+﻿@model LinkedFMI_UI.ViewModels.OfferViewModels.OfferFilterViewModel
+@using LinkedFMI_UI.Enums;
+
+<script src="~/js/jquery-ui-1.10.3.custom.js"></script>
+<figure class="main isotope-item" style="width:100%" id="experience">
+    <figcaption>
+		<h4 class="heading">Филтър</h4>
+		<div class="editor-field">
+			@using (Html.BeginForm("FilterOffers", "Offer", FormMethod.Post, 
+                                      new { enctype = "multipart/form-data" }))
+			{
+				<label>Работодатели:</label>
+				@Html.TextBoxFor(model => model.EmployerTitles)
+				<br />
+				<label>Технологии:</label>
+				@Html.TextBoxFor(model => model.Technologies)
+				<br />
+				<label>Работно време:</label>
+				for (int i = 0; i < Model.WorkTimes.Count; i++)
+				{
+					@Html.CheckBoxFor(model => model.WorkTimes[i]);
+					<label for="WorkTimes_@(i)_">@EnumTranslator.WorkTimes[(WorkTime) (i)]</label>
+				}
+				<br />
+				<label>Ниво:</label>
+				for (int i = 0; i < Model.Levels.Count; i++)
+				{
+					@Html.CheckBoxFor(model => model.Levels[i]);
+					<label for="Levels_@(i)_">@EnumTranslator.Levels[(Level)i]</label>
+				}
+				<br />
+				<label>Тип:</label>
+				for (int i = 0; i < Model.Types.Count; i++)
+				{
+					@Html.CheckBoxFor(model => model.Types[i]);
+					<label for="Types_@(i)_">@EnumTranslator.Types[(LinkedFMI_UI.Enums.Type)i]</label>
+				}
+				<br />
+				<input type="submit" value="Изпрати ме" />
+			}
+			
+		</div>
+    </figcaption>
+</figure>

@@ -18,7 +18,7 @@ namespace LinkedFMI_UI.Managers
             Employer employer = new Employer();
             employer.UserId = userId;
 
-            string imageFile = Path.Combine(HttpContext.Current.Server.MapPath("~/Images/default-avatar.jpg"));
+            string imageFile = Path.Combine(HttpContext.Current.Server.MapPath("~/Images/company-avatar.png"));
             byte[] buffer = File.ReadAllBytes(imageFile);
 
             employer.Picture = buffer;
@@ -55,10 +55,7 @@ namespace LinkedFMI_UI.Managers
                 dbEntry.Description = employer.Description;
                 dbEntry.NumberOfEmployees = employer.NumberOfEmployees;
 
-                foreach (string d in employer.Departments)
-                {
-                    dbEntry.Departments.Add(d);
-                }
+                dbEntry.DepartmentsString = employer.DepartmentsString;
 
                 //TODO Add offers
             }

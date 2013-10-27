@@ -3,10 +3,12 @@
 @model IEnumerable<OfferAllViewModel>
 
 @{
-    ViewBag.Title = "All Offers";
+    ViewBag.Title = "Всички обяви";
 }
 
 <h2>@ViewBag.Title</h2>
+
+@Html.Partial("_FilterOffersPartial", new OfferFilterViewModel())
 
 @(Html.Kendo()
     .Grid<OfferAllViewModel>()

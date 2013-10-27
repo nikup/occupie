@@ -6,7 +6,9 @@ using System.Web.Mvc;
 using LinkedFMI_UI.Models;
 using LinkedFMI_UI.Managers;
 using WebMatrix.WebData;
-using System.IO;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using LinkedFMI_UI.ViewModels;
 using System.Web.Helpers;
 
 namespace LinkedFMI_UI.Controllers
@@ -65,6 +67,60 @@ namespace LinkedFMI_UI.Controllers
             {
                 return View(employer);
             }
+        }
+
+        public ActionResult Index()
+        {
+            return View(GetProducts());
+        }
+
+        public ActionResult ReadEmployers([DataSourceRequest] DataSourceRequest request)
+        {
+            return Json(GetProducts().ToDataSourceResult(request));
+        }
+
+        private List<EmployerAllViewModel> GetProducts()
+        {
+            var employers = new List<EmployerAllViewModel>();
+
+            foreach (var empl in db.Employers)
+            {
+                employers.Add(new EmployerAllViewModel
+                    {
+                        Id = empl.EmployerProfileId,
+                        Name = empl.Name,
+                        Picture = "data:image;base64," + System.Convert.ToBase64String(empl.Picture)
+                    });
+            }
+
+            return employers;
+        }
+
+        [HttpGet]
+        public ActionResult UploadImage()
+        {
+            return PartialView("_UploadPartial");
+        }
+
+        public ActionResult FileUpload(HttpPostedFileBase file)
+        {
+            if (file != null && file.ContentType.StartsWith("image/"))
+            {
+                WebImage img = new WebImage(file.InputStream);
+                if (img.Width > 178)
+                {
+                    img.Resize(178, img.Height);
+                }
+
+                if (img.Height > 178)
+                {
+                    img.Resize(img.Width, 178);
+                }
+
+                db.Employers.FirstOrDefault(x => x.UserId == WebSecurity.CurrentUserId).Picture = img.GetBytes();
+                db.SaveChanges();
+            }
+            return RedirectToAction("Profile");
         }
     }
 }

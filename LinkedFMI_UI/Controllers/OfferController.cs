@@ -112,7 +112,7 @@ namespace LinkedFMI_UI.Controllers
             {
                 db.Offers.Add(offer);
                 db.SaveChanges();
-                return RedirectToAction("EmployerOffers", "Employer");
+                return RedirectToAction("Profile", "Employer");
             }
 
             return View(offer);
@@ -179,23 +179,43 @@ namespace LinkedFMI_UI.Controllers
             base.Dispose(disposing);
         }
 
-        //public List<Offer> SearchOffers(List<string> technologies,
-        //    List<WorkTime> workTimes,
-        //    List<Level> levels,
-        //    List<LinkedFMI_UI.Enums.Type> types)
-        //{
-        //    Func<Offer, bool> predicate = (offer) =>
-        //        {
-        //            bool hasTech = offer.MainTechnologies.Intersect(technologies).FirstOrDefault() != null;
-        //            bool workHours = workTimes.Contains(offer.DailyWorkTime);
-        //            bool level = levels.Contains(offer.OfferLevel);
-        //            bool type = types.Contains(offer.OfferType);
+		[HttpPost]
+		public ActionResult FilterOffers(OfferFilterViewModel viewModel)
+		{
+			char[] delimiters = new char[] { ',' };
+			string[] technologies = (viewModel.Technologies ?? string.Empty).Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+			string[] employers = (viewModel.EmployerTitles ?? string.Empty).Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
 
-        //            return hasTech && workHours && level && type;
-        //        };
+			Func<Offer, bool> predicate = (offer) =>
+				{
+					bool hasRightTech = technologies.Length == 0 || offer.MainTechnologies.Intersect(technologies).FirstOrDefault() != null;
+					bool hasRightEmployer = employers.Length == 0 || Array.IndexOf(employers, offer.Employer) != -1;
+					// If worktimes[0] (not specified) then everything's ok
+					bool workHours = viewModel.WorkTimes[0] || viewModel.WorkTimes[(int)offer.DailyWorkTime];
+					bool level = viewModel.Levels[(int)offer.OfferLevel];
+					bool type = viewModel.Types[(int)offer.OfferType];
 
-        //    List<Offer> result = db.Offers.Where(predicate).ToList();
-        //    return result;
-        //}
+					return hasRightTech && hasRightEmployer && workHours && level && type;
+				};
+			IEnumerable<Offer> query =
+				from offer in db.Offers
+				select offer;
+
+			IQueryable<OfferAllViewModel> transformedQuery = query
+				.Where(predicate)
+				.Select(offer => new OfferAllViewModel
+				{
+					Id = offer.OfferId,
+					//EmployerTitle = offer.Employer.Name,
+					Title = offer.Title,
+					Technologies = offer.MainTechString,
+					OfferLevel = EnumTranslator.Levels[offer.OfferLevel],
+					DailyWorkTime = EnumTranslator.WorkTimes[offer.DailyWorkTime],
+					OfferType = EnumTranslator.Types[offer.OfferType],
+				})
+				.AsQueryable();
+
+			return View("All", transformedQuery);
+		}
     }
 }

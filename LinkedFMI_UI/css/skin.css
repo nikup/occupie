@@ -63,6 +63,22 @@ body {
   background: rgba(0, 0, 0, 0.8);
   color: #cb5432;
 }
+
+#nav .sfHover2 ul {
+  background: #f8f5f2;
+}
+#nav .sfHover2 ul li a {
+  color: #444444;
+}
+
+#nav .sfHover2 ul li:hover {
+  background: rgba(0, 0, 0, 0.8);  
+  color: #cb5432;
+}
+
+#nav .sfHover2 ul li a:hover {
+  color: #cb5432;
+}
 /* MAIN ------------------------------------------------------------*/
 .multiplebgs #main {
   background-image: url(../img/main-bg.png), url(../img/main-bg.png);

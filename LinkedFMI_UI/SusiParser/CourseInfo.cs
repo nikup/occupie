@@ -1,9 +1,10 @@
 ﻿using LinkedFMI_UI.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
 namespace SusiParser
 {
@@ -12,14 +13,48 @@ namespace SusiParser
 	/// </summary>
     public struct CourseInfo
 	{
-		public string CourseName;
+		public struct JsonStructuredCourse
+		{
+			[JsonProperty("group")]
+			public string Group;
+			[JsonProperty("name")]
+			public string Name;
+		}
+
+		public static string CoursesDescription;// = HttpContext.Current.Server.MapPath("~/App_Data/courses.json");
+		public static Func<JsonStructuredCourse, string> keySelector,// = (x) => x.Name,
+			valueSelector;// = (y) => y.Group;
+		public static Dictionary<string, string> CourseToCategory;// =
+			//JsonConvert.DeserializeObject<JsonStructuredCourse[]>(File.ReadAllText(CoursesDescription)).ToDictionary(keySelector, valueSelector);
+
+		private string courseName;
+
+		static CourseInfo()
+		{
+			CoursesDescription = HttpContext.Current.Server.MapPath("~/App_Data/courses.json");
+			keySelector = (x) => x.Name;
+			valueSelector = (y) => y.Group;
+			CourseToCategory =
+				JsonConvert.DeserializeObject<JsonStructuredCourse[]>(File.ReadAllText(CoursesDescription)).ToDictionary(keySelector, valueSelector);
+
+		}
+
+		public string CourseName
+		{
+			get { return this.courseName; }
+			set
+			{
+				this.courseName = value;
+				this.Category = CourseToCategory.ContainsKey(value) ? CourseToCategory[value] : string.Empty;
+			}
+		}
 		public string Teacher;
 		public double Grade;
 		public bool IsTaken;
 		public bool IsElective;
 		public double Credits;
 
-		public string Category;
+		public string Category { get; private set; }
 
 		public override string ToString()
 		{
@@ -33,8 +68,29 @@ namespace SusiParser
 			subject.Name = this.CourseName;
 			subject.Grade = this.Grade;
 			subject.Credits = this.Credits;
+			subject.Category = this.Category;
 
 			return subject;
+		}
+
+		public static List<string> GetCoursesFromCategory(string category)
+		{
+			return CourseToCategory.Keys.Where(x => CourseToCategory[x] == category).ToList();
+		}
+
+		public static Dictionary<string, List<string>> PartitionCoursesByCategory()
+		{
+			var partition = new Dictionary<string, List<string>>();
+			foreach (var entry in CourseToCategory)
+			{
+				if (!partition.ContainsKey(entry.Value))
+				{
+					partition.Add(entry.Value, new List<string>());
+				}
+				partition[entry.Value].Add(entry.Key);
+			}
+
+			return partition;
 		}
 	}
 }

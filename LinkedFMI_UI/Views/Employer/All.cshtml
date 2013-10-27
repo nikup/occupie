@@ -1,7 +1,93 @@
-﻿@{
+﻿@model List<LinkedFMI_UI.ViewModels.EmployerAllViewModel>
+
+@{
     ViewBag.Title = "Работодатели";
 }
 
 <hgroup class="title">
     <h1>@ViewBag.Title.</h1>
 </hgroup>
+
+<script type="text/x-kendo-tmpl" id="template">
+    <div class="employer">
+        <img src="#:Picture#" alt="#:Name#" />
+        <h3>#:Name#</h3>
+    </div>
+</script>
+
+<div class="demo-section">
+@(Html.Kendo().ListView<LinkedFMI_UI.ViewModels.EmployerAllViewModel>(Model)
+    .Name("listView")
+    .TagName("div")
+    .ClientTemplateId("template")
+    .DataSource(dataSource => {
+        dataSource.Read(read => read.Action("ReadEmployers", "Employer"));
+        dataSource.PageSize(15);
+    })
+    .Pageable()
+)
+</div>
+
+<style scoped>
+    .demo-section {
+        padding: 30px;
+        width: 90%;
+    }
+    #listView {
+        padding: 10px;
+        margin-bottom: -1px;
+        min-width: 555px;
+        min-height: 510px;
+    }
+    .employer {
+        float: left;
+        position: relative;
+        width: 111px;
+        height: 170px;
+        margin: 0;
+        padding: 0;
+    }
+    .employer img {
+        width: 110px;
+        height: 110px;
+    }
+    .employer h3 {
+        margin: 0;
+        padding: 3px 5px 0 0;
+	    max-width: 96px;
+	    overflow: hidden;
+        line-height: 1.1em;
+        font-size: .9em;
+        font-weight: normal;
+        text-transform: uppercase;
+        color: #999;
+    }
+    .employer p {
+        visibility: hidden;
+    }
+    .employer:hover p {
+        visibility: visible;
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        top: 0;
+        margin: 0;
+        padding: 0;
+        line-height: 110px;
+        vertical-align: middle;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0,0,0,0.75);
+        transition: background .2s linear, color .2s linear;
+        -moz-transition: background .2s linear, color .2s linear;
+        -webkit-transition: background .2s linear, color .2s linear;
+        -o-transition: background .2s linear, color .2s linear;
+    }
+    .k-listview:after, .employer dl:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+</style>

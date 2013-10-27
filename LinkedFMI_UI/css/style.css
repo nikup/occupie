@@ -27,6 +27,25 @@
     zoom: 1;
 }
 
+.leftNav {
+    position: fixed;
+    left: 40px;
+    top: 180px;
+    width: 140px;
+    height: 210px;
+    text-align: center;
+    border-top: 3px solid #cb5432;
+    background-color: #f8f5f2;
+}
+
+.leftNav li{
+    margin:5px;
+}
+
+div.display-label {
+    font-weight: bold;
+}
+
 .wrapper {
     margin: 0 auto;
     width: 940px;
@@ -65,24 +84,24 @@ footer {
     line-height: 1.5em;
 }
 
-div #result{
+div #result {
      /*position: absolute;*/
      left: 0px;
      top: 0px;
-     width:100%;
-     height:100%;
-     text-align:center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
      z-index: 0;
 }
 
-.dialog{
-    width:300px;
+.dialog {
+    width: 300px;
      /*margin: 100px auto;*/
      background-color: #fff;
-     border:1px solid #000;
-     padding:15px;
-     text-align:center;
-     position:relative;
+    border: 1px solid #000;
+    padding: 15px;
+    text-align: center;
+    position: relative;
      /*z-index: -1;*/
 }
 
@@ -131,6 +150,19 @@ span.strong {
     font-weight: bold;
 }
 
+div.textright {
+    float: right;
+}
+
+div.fifty {
+    width: 40%;
+    display: inline;
+}
+
+div.aligncenter {
+    text-align: center;
+}
+
 fieldset {
     border: none;
     margin: 0;
@@ -152,69 +184,94 @@ fieldset {
 
         /* HUKO */
         .sf-menu2, .sf-menu2 * {
-	margin:			0;
-	padding:		0;
-	list-style:		none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
-.sf-menu2 {
 	
+.sf-menu2 {
 }
+
 .sf-menu2 ul {
-	position:		absolute;
-	top:			-999em;
-	width:			8em; /* left offset of submenus need to match (see below) */
+        position: absolute;
+        top: -999em;
+        width: 8em; /* left offset of submenus need to match (see below) */
 }
+
 .sf-menu2 ul li {
-	width:			100%;
+            width: 100%;
 }
+
 .sf-menu2 li:hover {
-	visibility:		inherit; /* fixes IE7 'sticky bug' */
+        visibility: inherit; /* fixes IE7 'sticky bug' */
 }
+
 .sf-menu2 li {
-	float:			left;
-	position:		relative;
+        float: left;
+        position: relative;
 }
+
 .sf-menu2 a {
-	display:		block;
-	position:		relative;
-    text-transform:uppercase;
+        display: block;
+        position: relative;
+        text-transform: uppercase;
 }
+
 .sf-menu2 li:hover ul,
 .sf-menu2 li.sfHover ul {
-	left:			0;
-	top:			2.5em; /* match top ul list item height */
+        left: 0;
+        top: 2.5em; /* match top ul list item height */
 	/*z-index:		99;*/
 }
+
 ul.sf-menu2 li:hover li ul,
 ul.sf-menu2 li.sfHover li ul {
-	top:			-999em;
+    top: -999em;
 }
+
 ul.sf-menu2 li li:hover ul,
 ul.sf-menu2 li li.sfHover ul {
-	left:			10em; /* match ul width */
-	top:			0;
+    left: 10em; /* match ul width */
+    top: 0;
 }
+
 ul.sf-menu2 li li:hover li ul,
 ul.sf-menu2 li li.sfHover li ul {
-	top:			-999em;
+    top: -999em;
 }
+
 ul.sf-menu2 li li li:hover ul,
 ul.sf-menu2 li li li.sfHover ul {
-	left:			10em; /* match ul width */
-	top:			0;
+    left: 10em; /* match ul width */
+    top: 0;
 }
 
 
 div#leftNav {
-    position:fixed;
-    left:40px;
-    top:150px;
-    width:150px;
-    height:250px;
-    background-color:white;
-    text-align:center;
+    position: fixed;
+    left: 40px;
+    top: 180px;
+    width: 140px;
+    height: 280px;
+    text-align: center;
+    border-top: 3px solid #cb5432;
 }
 
+    div#leftNav ul li {
+        margin: 5px;
+    }
+
+
+
+figure#persInfo, figure#education, figure#experience, figure#personal {
+    border-top: 3px solid #cb5432;
+    text-align: center;
+}
+
+div.padding {
+    padding-left:240px;
+    padding-right:40px;
+}
 
 .alignleft {
     float: left;
@@ -414,8 +471,8 @@ body.home #main {
 }
 
 body #filter-container figure.figure-edit-page {
-    position:relative;
-    margin-bottom:40px;
+    position: relative;
+    margin-bottom: 40px;
 }
 
     #filter-container figure {

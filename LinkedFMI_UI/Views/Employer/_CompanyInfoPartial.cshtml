@@ -3,19 +3,53 @@
 <figure class="info">
     <figcaption>
         <img class="alignleft" src="~/img/mono-icons/mouse32.png" />
-        <h4 class="heading">Info</h4>
+        <h4 class="heading">Основна информация</h4>
+
+        <div class="display-label">
+         @Html.DisplayNameFor(model => model.Adress)
+    </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.Adress)
         </div>
 
+        <div class="display-label">
+         @Html.DisplayNameFor(model => model.Website)
+    </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Website)
+        </div>
+
+        <div class="display-label">
+         @Html.DisplayNameFor(model => model.LinkedIn)
+    </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.LinkedIn)
+        </div>
+
+        <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Email)
+        </div>
+
+        <div class="display-label">
+         @Html.DisplayNameFor(model => model.Phone)
+    </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.Phone)
         </div>
 
+        <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.Description)
         </div>
 
+        <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumberOfEmployees)
+    </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.NumberOfEmployees)
         </div>

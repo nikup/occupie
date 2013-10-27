@@ -11,67 +11,78 @@ else
     {
         if (Model.Jobs[i] != null)
         {
-            <div id="job@(i)">
-@*Job info (to be fixed!) *@
-    <div class="editor-label">
-        @Html.LabelFor(model => model.Jobs[i].Company)
-    </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.Jobs[i].Company)
-        <br />
-        @Html.ValidationMessageFor(model => model.Jobs[i].Company)
-    </div>
-
-    <div class="editor-label">
-        @Html.LabelFor(model => model.Jobs[i].Position)
-    </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.Jobs[i].Position)
-        <br />
-        @Html.ValidationMessageFor(model => model.Jobs[i].Position)
-    </div>
-    
-    <div class="editor-label">
-    @Html.LabelFor(model => model.Jobs[i].StartMonth)
-</div>
-<div class="editor-field">
-    @Html.DropDownListFor(model => model.Jobs[i].StartMonth, new SelectList(LinkedFMI_UI.Utilities.GetMonths().OrderBy(x => int.Parse(x.Value)), "Value", "Text"))
-    @Html.ValidationMessageFor(model => model.Jobs[i].StartMonth)
-</div>
-
-<div class="editor-label">
-    @Html.LabelFor(model => model.Jobs[i].StartYear)
-</div>
-<div class="editor-field">
-    @Html.DropDownListFor(model => model.Jobs[i].StartYear, new SelectList(LinkedFMI_UI.Utilities.GetHighSchoolYears().OrderBy(x => int.Parse(x.Value)), "Value", "Text"))
-    @Html.ValidationMessageFor(model => model.Jobs[i].StartYear)
-</div>
-    
+    <div id="job@(i)" style="float:left;margin-right:60px;">
+        @*Job info (to be fixed!) *@
         <div class="editor-label">
-    @Html.LabelFor(model => model.Jobs[i].EndMonth)
-</div>
-<div class="editor-field">
-    @Html.DropDownListFor(model => model.Jobs[i].EndMonth, new SelectList(LinkedFMI_UI.Utilities.GetMonths().OrderBy(x => int.Parse(x.Value)), "Value", "Text"))
-    @Html.ValidationMessageFor(model => model.Jobs[i].EndMonth)
-</div>
+            @Html.LabelFor(model => model.Jobs[i].Company)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Jobs[i].Company)
+            <br />
+            @Html.ValidationMessageFor(model => model.Jobs[i].Company)
+        </div>
 
-<div class="editor-label">
-    @Html.LabelFor(model => model.Jobs[i].EndMonth)
-</div>
-<div class="editor-field">
-    @Html.DropDownListFor(model => model.Jobs[i].EndMonth, new SelectList(LinkedFMI_UI.Utilities.GetHighSchoolYears().OrderBy(x => int.Parse(x.Value)), "Value", "Text"))
-    @Html.ValidationMessageFor(model => model.Jobs[i].EndMonth)
-</div>
-    
-    <p class="alignright">
-        @Ajax.ActionLink("Изтрии работно място", "DeleteJob", new { jobId = Model.Jobs[i].JobId }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess = "deleteJob("+i+")" })<br />
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Jobs[i].Position)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Jobs[i].Position)
+            <br />
+            @Html.ValidationMessageFor(model => model.Jobs[i].Position)
+        </div>
 
-        @* TODO: 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Jobs[i].StartMonth)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Jobs[i].StartMonth, new SelectList(LinkedFMI_UI.Utilities.GetMonths().OrderBy(x => int.Parse(x.Value)), "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.Jobs[i].StartMonth)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Jobs[i].StartYear)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Jobs[i].StartYear, new SelectList(LinkedFMI_UI.Utilities.GetHighSchoolYears().OrderBy(x => int.Parse(x.Value)), "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.Jobs[i].StartYear)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Jobs[i].EndMonth)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Jobs[i].EndMonth, new SelectList(LinkedFMI_UI.Utilities.GetMonths().OrderBy(x => int.Parse(x.Value)), "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.Jobs[i].EndMonth)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Jobs[i].EndYear)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Jobs[i].EndYear, new SelectList(LinkedFMI_UI.Utilities.GetHighSchoolYears().OrderBy(x => int.Parse(x.Value)), "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.Jobs[i].EndYear)
+        </div>
+
+        <p class="alignright">
+            @Ajax.ActionLink("Изтрии работно място", "DeleteJob", new { jobId = Model.Jobs[i].JobId }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess = "deleteJob(" + i + ")" })<br />
+
+            @* TODO: 
         Confirm = "Изтрии работно място?",*@
-    </p>
-    
-    <div style="clear: both"></div>
+        </p>
     </div>
+    if ((i+1) % 3 == 0)
+        {
+            <hr width="100%" />
+            <div style="clear: both"></div>
+        }
         }
     }
+    <script>
+            for (var i = 0; i < ('@Model.Jobs.Count') ; i++) {
+                $("#Jobs_" + i + "__StartMonth").kendoDropDownList();
+                $("#Jobs_" + i + "__StartYear").kendoDropDownList();
+                $("#Jobs_" + i + "__EndMonth").kendoDropDownList();
+                $("#Jobs_" + i + "__EndYear").kendoDropDownList();
+            }
+    </script>
 }

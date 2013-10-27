@@ -10,7 +10,7 @@
             @foreach (var tech in Model.Technologies)
             {
                 <h5>@tech.Name -
-        @tech.Proficiency</h5>
+        @LinkedFMI_UI.Enums.EnumTranslator.Proficiencies[tech.Proficiency] ниво</h5>
             }
         </figcaption>
     </figure>

@@ -48,17 +48,17 @@
 </div>
 <!-- ENDS featured -->
 
-<div>
+@*<div>
     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
         @Html.AntiForgeryToken()
-        <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+        <a href="javascript:document.getElementById('logoutForm').submit()">Излез</a>
     }
 </div>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { profileId = Model.StudentProfileId })
-</p>
+    @Html.ActionLink("Промени", "Edit", new { profileId = Model.StudentProfileId })
+</p>*@
 
 
 @section Scripts {

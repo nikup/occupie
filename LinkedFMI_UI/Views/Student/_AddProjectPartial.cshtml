@@ -8,7 +8,7 @@
                             HttpMethod = "POST",
                             InsertionMode = InsertionMode.Replace,
                             UpdateTargetId = "target",
-                            OnSuccess = "closeProjectDialog"
+                            OnSuccess = "onSuccessProject"
                         }))
 {
     @Html.AntiForgeryToken()
@@ -51,6 +51,22 @@
     </fieldset>
     
     <script>
+
+        function onSuccessProject(ok, status, response) {
+            addProject();
+            closeProjectDialog();
+        }
+
+        function addProject() {
+            $.ajax({
+                url: '/Student/ProjectsEdit',
+                dataType: 'html',
+                success: function (data) {
+                    $("#projectsPartial").html(data);
+                }
+            });
+        }
+
         function closeProjectDialog()
         {
             $("#projectDialog").dialog("close");

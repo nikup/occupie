@@ -16,5 +16,15 @@ namespace LinkedFMI_UI.ViewModels
         public string Email { get; set; }
 
         public bool HasJob { get; set; }
-    }
+
+		public string Technologies { get; set; }
+
+		public int Year { get; set; }
+
+		public string Programme { get; set; }
+
+		public string Languages { get; set; }
+
+		public double Relevance { get; set; }
+	}
 }

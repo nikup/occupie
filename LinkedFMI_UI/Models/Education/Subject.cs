@@ -19,6 +19,8 @@ namespace LinkedFMI_UI.Models
 
         public bool IsVisible { get; set; }
 
+		public string Category { get; set; }
+
         public int? BachelorId { get; set; }
         public virtual Bachelor Bachelor { get; set; }
 

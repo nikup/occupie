@@ -1,10 +1,10 @@
 ﻿@model LinkedFMI_UI.Models.Offer
 
 @{
-    ViewBag.Title = "AddOffer";
+    ViewBag.Title = "Добави обява";
 }
 
-<h2>AddOffer</h2>
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("AddOffer", "Offer"))
 {
@@ -34,7 +34,10 @@
             @Html.LabelFor(model => model.Description)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Description)
+            @(Html.Kendo()
+            .EditorFor(model => model.Description)
+            .HtmlAttributes(new { style = "width: 740px;height:440px" })
+            .Encode(false))
             @Html.ValidationMessageFor(model => model.Description)
         </div>
 
@@ -63,7 +66,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.MainTechString) (разделени със запетая)
+            @Html.LabelFor(model => model.MainTechString)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.MainTechString)
@@ -71,7 +74,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.AdditionalTechString) (разделени със запетая)
+            @Html.LabelFor(model => model.AdditionalTechString)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.AdditionalTechString)
@@ -87,7 +90,7 @@
         </div>
 
         <p>
-            <input type="submit" value="Add" />
+            <input type="submit" value="Добави" />
         </p>
     </fieldset>
 }

@@ -8,13 +8,13 @@
             <h4 class="heading">Допълнителна информация</h4>
             @if (Model.DateOfBirth != null)
             {
-                <h5>Дата на раждане: 
+                <h5><span class="strong">Дата на раждане: </span>
         @Model.DateOfBirth.Value.ToString("dd.MM.yyyy")</h5>
             }
 
             @if (Model.Town != null)
             {
-                <h5>Town: @Model.Town</h5>
+                <h5><span class="strong">Град: </span>@Model.Town</h5>
             }
         </figcaption>
     </figure>

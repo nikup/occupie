@@ -1,0 +1,9 @@
+﻿<ul>
+    <li>@Html.ActionLink("ПРОФИЛ", "Profile", "Student", routeValues: null, htmlAttributes: new { @class = "username" })</li>
+    <li>@Html.ActionLink("ПРОМЕНИ", "Edit", "Student", new { profileId = Model }, null)</li>
+    <li>@using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+        @Html.AntiForgeryToken()
+        <a href="javascript:document.getElementById('logoutForm').submit()">ИЗЛЕЗ</a>
+        }</li>
+</ul>

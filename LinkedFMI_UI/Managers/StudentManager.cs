@@ -145,17 +145,15 @@ namespace LinkedFMI_UI.Managers
 
         public void FillInSusiInfo(Student student, StudentInfo studentInfo, IEnumerable<CourseInfo> courseInfo)
         {
-            // TODO: edit when SUSI API is available
-
             student.FirstName = studentInfo.FirstName;
             student.LastName = studentInfo.LastName;
-            student.Email = "didi.zlatkova93@gmail.com";
 
 			Tuple<int, int> startEndYears = studentInfo.GetStartEndYear();
             Bachelor bachelor = new Bachelor
             {
                 StartYear = startEndYears.Item1,
-                EndYear = startEndYears.Item2,
+				EndYear = startEndYears.Item2,
+				CurrentCourse = studentInfo.Year,
                 Specialty = StudentManager.programmeMapping[studentInfo.Programme],
                 Subjects = courseInfo.Select(x => x.ToSubject()).ToList(),
             };
