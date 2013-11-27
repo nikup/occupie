@@ -1,0 +1,60 @@
+﻿@model Occupie.Models.Offer
+
+@{
+    ViewBag.Title = "Детайли";
+}
+
+<h2>@Html.ActionLink(Model.Employer.Name, "Profile", "Employer", new { id = Model.Employer.UserId}, null)</h2>
+
+<fieldset>
+    <legend>Offer</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ReferenceNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReferenceNumber)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">Необходими технологии</div>
+    <ul>
+        @foreach (var tech in Model.MainTechnologies)
+        {
+            <li class="display-field">@tech</li>
+        }
+    </ul>
+
+    @if (Model.AdditionalTechnologies != null && Model.AdditionalTechnologies.Count > 0)
+    {
+        <div class="display-label">Препоръчителни технологии</div>
+        <ul>
+            @foreach (var tech in Model.AdditionalTechnologies)
+            {
+                <li class="display-field">@tech</li>
+            }
+        </ul>
+    }
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Salary)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Salary)
+    </div>
+</fieldset>
+
+<p>
+    @{
+    }
+    @if (ViewBag.IsEditable)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.OfferId })
+    }
+</p>

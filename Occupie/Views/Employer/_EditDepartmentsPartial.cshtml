@@ -1,0 +1,14 @@
+﻿@model Occupie.Models.Employer
+
+<figure class="main isotope-item" style="width: 100%; border:none">
+    <figcaption>
+        <h4 class="heading">Отдели</h4>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DepartmentsString)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DepartmentsString)
+            @Html.ValidationMessageFor(model => model.DepartmentsString)
+        </div>
+    </figcaption>
+</figure>

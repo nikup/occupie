@@ -1,0 +1,36 @@
+﻿@model Int32[]
+
+
+@using (Ajax.BeginForm("DeleteJob", new { jobId = Model[0] }, new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "target",
+                            OnSuccess = "deleteJob(" + Model[1] + ")"
+                        }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Работа</legend>
+        <h5>Сигурни ли сте, че искате да изтриете тази работа?</h5>
+
+        <p>
+            <input type="submit" value="Да" />
+            <input type="button" id="cancelDelJob" value="Не" onclick="closeDelJobDialog()" />
+        </p>
+    </fieldset>
+}
+
+
+<script>
+    function deleteJob(id) {
+        $("#job" + id).remove();
+        closeDelJobDialog();
+    }
+
+    function closeDelJobDialog() {
+        $(".ui-dialog:visible").find(".dialog").dialog("close");
+    }
+</script>

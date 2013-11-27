@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Occupie.ViewModels.StudentAllViewModel>
+
+@{
+    ViewBag.Title = "Студенти";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+
+@Html.Partial("_FilterStudentsPartial", new StudentAllViewModel())
+
+
+<br />
+@*@(Html.Kendo()
+    .Grid<Occupie.ViewModels.StudentAllViewModel>()
+    .Name("grid-students")
+    .BindTo(Model)
+    .Columns(columns =>
+    {
+		if (ViewBag.RelevanceSorted)
+			columns.Bound(model => model.Relevance).Sortable(true).Title("Relevance");
+		
+        columns.Bound(model => model.FullName).Sortable(true).Title("Име");
+        columns.Bound(model => model.Email).Sortable(false).Title("Email");
+        columns.Bound(model => model.HasJob).Sortable(true).Title("Работи ли?");
+    })
+    .Pageable(page =>
+        {
+            page.PreviousNext(true);
+            page.Numeric(true);
+        })
+    .Sortable(sort =>
+        {
+            sort.AllowUnsort(false);
+            sort.SortMode(GridSortMode.SingleColumn);
+        })
+    .Resizable(resize => resize.Columns(true))
+    .DataSource(data =>
+    {
+        data.Ajax()
+            .Model(m => m.Id(b => b.Id))
+            .PageSize(10)
+            .ServerOperation(true);
+    }))*@
+
+
+
+
+
+<script type="text/x-kendo-tmpl" id="template2">
+
+    <a href="/Student/Profile/?profileId=#:Id#" class="student">
+        <div id="student-container">
+            <figure>
+            <figcaption>
+       <table>
+    <tr>
+        <td>
+            <img src="#:PictureString#" alt="#:FullName#" /> 
+        </td>
+        <td class="info">
+    <div>
+            <p>#:CurrentJob#</p>
+            <p>#:Year# курс #:Programme#</p>
+    # for (var i = 0; i < Technologies.length; i++) { #
+              <div class="list-item">${ Technologies[i] }</div>
+         # } #
+    </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+             <h3 class="name">#:FullName#</h3> 
+        </td>
+    </tr>
+</table>  
+                    </figcaption>
+        </figure>
+        </div>                
+    </a>
+
+</script>
+
+
+    <div class="demo-section-students">
+                @(Html.Kendo().ListView<Occupie.ViewModels.StudentAllViewModel>(Model)
+    .Name("listView2")
+    .TagName("div")
+    .ClientTemplateId("template2")
+    .DataSource(dataSource =>
+    {
+        dataSource.Read(read => read.Action("ReadStudents", "Home"));
+        dataSource.PageSize(10);
+    })
+    .Pageable()
+)
+
+
+</div>

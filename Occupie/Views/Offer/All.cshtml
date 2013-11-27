@@ -1,0 +1,68 @@
+﻿@using Occupie.ViewModels.OfferViewModels
+
+@model IEnumerable<OfferAllViewModel>
+
+@{
+    ViewBag.Title = "Всички обяви";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.Partial("_FilterOffersPartial", new OfferFilterViewModel())
+
+@(Html.Kendo()
+    .Grid<OfferAllViewModel>()
+    .Name("grid-offers")
+    .BindTo(Model)
+    .Columns(columns =>
+    {
+        columns.Bound(model => model.OfferType).Sortable(true).Title("Тип");
+        columns.Bound(model => model.Title).Sortable(true).Title("Име");
+        columns.Bound(model => model.EmployerTitle).Sortable(true).Title("Работодател");
+        columns.Bound(model => model.DailyWorkTime).Sortable(true).Title("Работно време");
+        columns.Bound(model => model.OfferLevel).Sortable(true).Title("Ниво");
+        columns.Bound(model => model.Technologies).Sortable(true).Title("Технологии");
+        columns.Bound(model => model.Id).ClientTemplate(@Html.ActionLink("Детайли", "Details", new { Id = "#=Id#" }).ToHtmlString()).Title("Детайли");
+     //   columns.Template(c => @Html.ActionLink("Details", "Details", new { Id = c.Id }))
+            
+            //columns.Template( item =>
+            //      @Html.ActionLink("Детайли", "Details",
+            //      new { Id = @item.Id })   
+            //       ).Title("Детайли"); 
+	   })    
+        
+    .Pageable(
+    //page =>
+    //    {
+    //        page.PreviousNext(true);
+    //        page.Numeric(true);
+    //    }
+        )
+    .Sortable(
+    sort =>
+        {
+            sort.Enabled(true);
+            sort.AllowUnsort(true);
+            sort.SortMode(GridSortMode.SingleColumn);
+        })
+    .Resizable(resize => resize.Columns(false))
+    .Navigatable()
+    .DataSource(data =>
+    {
+        data.Ajax().Read(read => read.Action("ReadOffers", "Offer"));
+            //.Model(m => m.Id(b => b.Id))
+            //.PageSize(10)
+            //.ServerOperation(true);
+    }))
+
+<script type="text/javascript">
+    //function showDetails(e) {
+    //    e.preventDefault();
+
+    //    var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+    //    var wnd = $("#Details").data("kendoWindow");
+
+    //    wnd.content(detailsTemplate(dataItem));
+    //    wnd.center().open();
+    //}
+</script>

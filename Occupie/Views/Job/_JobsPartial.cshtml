@@ -1,0 +1,33 @@
+﻿@model Occupie.Models.Student
+
+@if (Model.Jobs != null && Model.Jobs.Count > 0)
+{
+    <figure class="experience">
+        <figcaption>
+            <img class="alignleft" src="~/img/mono-icons/bag32.png" />
+            <h4 class="heading">Опит</h4>
+            @foreach (var job in Occupie.Utilities.OrderJobs(Model.Jobs))
+            {
+                if (job != null)
+                {
+                <h3>@job.Position@Occupie.Utilities.GetCorrectPrepositionV(job.Company)@job.Company</h3>
+                    if (job.StartYear != null && job.EndYear != null)
+                    {
+                @:(@Occupie.Enums.EnumTranslator.Months[job.StartMonth] @job.StartYear - @if (job.IsCurrent)
+                                    {
+@:Сега
+	}
+                                    else
+                                    {
+                    @Occupie.Enums.EnumTranslator.Months[job.EndMonth] @: @(job.EndYear)
+                  
+                                    })
+                                                                }
+                                                
+                <hr style="border:dashed; border-width:1px; width:70%" />
+                }
+            }
+        </figcaption>
+    </figure>
+}
+

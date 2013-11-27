@@ -1,0 +1,11 @@
+﻿<ul>
+    <li>@Html.ActionLink("Профил", "Profile", "Employer", routeValues: null, htmlAttributes: new { @class = "username" })</li>
+    <li>@Html.ActionLink("Промени", "Edit", "Employer")</li>
+    <li>@Html.ActionLink("Настройки", "ManageEmployer", "Account")</li>
+    <li>
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+        @Html.AntiForgeryToken()
+        <a href="javascript:document.getElementById('logoutForm').submit()">Излез</a>
+        }</li>
+</ul>

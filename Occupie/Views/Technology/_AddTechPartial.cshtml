@@ -1,0 +1,66 @@
+﻿@model Occupie.Models.Technology
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Ajax.BeginForm("AddTechnology", new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "target",
+                            OnSuccess = "onSuccess"
+                        }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Технология</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            <br />
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Proficiency)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Proficiency, new SelectList(Occupie.Utilities.GetProficiencies(), "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.Proficiency)
+        </div>
+
+
+        <p>
+            <input type="submit" value="Add" />
+            <input type="button" id="cancelAdd" value="Cancel" onclick="closeTechDialog()" />
+        </p>
+    </fieldset>
+}
+
+<script>
+    function onSuccess(ok, status, response) {
+        addTechnology(response.responseText);
+        closeTechDialog();
+    }
+
+    function addTechnology(techId) {
+        $.ajax({
+            url: '/Technology/RefreshTechnologies',
+            dataType: 'html',
+            success: function (data) {
+                $("#techPartial").html(data);
+            }
+        });
+    }
+
+    function closeTechDialog() {
+        $("#techDialog").dialog("close");
+    }
+
+    $("#Proficiency").kendoDropDownList();
+</script>

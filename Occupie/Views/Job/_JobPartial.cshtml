@@ -1,0 +1,154 @@
+﻿@model Occupie.Models.Student
+
+
+@if (Model.Jobs.Count == 0)
+{
+    <p>Все още не си добавил работни места!</p>
+}
+else
+{
+    for (int i = 0; i < Model.Jobs.Count; i++)
+    {
+        if (Model.Jobs[i] != null)
+        {       
+    <div id="job@(i)" style="float:left;margin-right:60px;">
+        @*Job info *@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Jobs[i].IsCurrent)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Jobs[i].IsCurrent)
+            <br />
+            @Html.ValidationMessageFor(model => model.Jobs[i].IsCurrent)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Jobs[i].Company)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Jobs[i].Company)
+            <br />
+            @Html.ValidationMessageFor(model => model.Jobs[i].Company)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Jobs[i].Position)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Jobs[i].Position)
+            <br />
+            @Html.ValidationMessageFor(model => model.Jobs[i].Position)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Jobs[i].StartMonth)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Jobs[i].StartMonth, new SelectList(Occupie.Utilities.GetMonths().OrderBy(x => int.Parse(x.Value)), "Value", "Text", Model.Jobs[i].StartMonth))
+            @Html.ValidationMessageFor(model => model.Jobs[i].StartMonth)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Jobs[i].StartYear)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Jobs[i].StartYear, new SelectList(Occupie.Utilities.GetJobYears().OrderBy(x => int.Parse(x.Value)), "Value", "Text", Model.Jobs[i].StartYear))
+            @Html.ValidationMessageFor(model => model.Jobs[i].StartYear)
+        </div>
+
+        <div id="endFields@(i)" 
+        @if (Model.Jobs[i].IsCurrent)
+        {
+            @:style="display:none"
+            }>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Jobs[i].EndMonth)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Jobs[i].EndMonth, new SelectList(Occupie.Utilities.GetMonths().OrderBy(x => int.Parse(x.Value)), "Value", "Text", Model.Jobs[i].EndMonth))
+                @Html.ValidationMessageFor(model => model.Jobs[i].EndMonth)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Jobs[i].EndYear)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Jobs[i].EndYear, new SelectList(Occupie.Utilities.GetJobYears().OrderBy(x => int.Parse(x.Value)), "Value", "Text", Model.Jobs[i].EndYear))
+                @Html.ValidationMessageFor(model => model.Jobs[i].EndYear)
+            </div>
+        </div>
+
+        <div class="dialog" id="delJobDialog" style="display: none;"></div>
+
+        <p class="alignright">
+            @Ajax.ActionLink("Изтрий работно място", "DeleteJob", "Job", new { jobId = Model.Jobs[i].JobId, listId = i }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "delJobDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openDelJobPopup()" })<br />
+        </p>
+    </div>
+        if ((i + 1) % 3 == 0)
+        {
+    <hr width="100%" />
+    <div style="clear: both"></div>
+        }
+        }
+    }
+}
+
+<script>
+    $(document).ready(function () {
+      var jobDialog = $("#delJobDialog").dialog(
+            {
+                autoOpen: false,
+                width: 300,
+                height: 'auto',
+                modal: false,
+            }
+        );
+    });
+    function openDelJobPopup() {
+        $("#delJobDialog").dialog().dialog('open');
+    }
+</script>
+
+
+
+
+
+
+
+
+
+<script src="~/Scripts/Job.js"></script>
+<script>
+    for (var i = 0; i < ('@Model.Jobs.Count') ; i++) {
+        $("#Jobs_" + i + "__StartMonth").kendoDropDownList();
+        $("#Jobs_" + i + "__StartYear").kendoDropDownList();
+        $("#Jobs_" + i + "__EndMonth").kendoDropDownList();
+        $("#Jobs_" + i + "__EndYear").kendoDropDownList();
+    }
+</script>
+
+<script>
+    for (var i = 0; i < ('@Model.Jobs.Count') ; i++) {
+        manageEndFields(i);
+
+        //if (Model.Jobs[i].IsCurrent == false) {
+        //    $("#endFields" + i).hide();
+        //}
+    }
+
+    $(function () {
+        for (var job in '@Model.Jobs') {
+            if (job.IsCurrent) {
+                hideEndField(0);
+            }
+        }
+
+        @*   for (var i = 0; i < ('@Model.Jobs.Count') ; i++) {              
+
+                if (('@Model.Jobs[i].IsCurrent')) {
+                    hideEndField(i);
+                }
+            }*@
+    });
+</script>

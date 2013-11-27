@@ -1,0 +1,25 @@
+﻿@model Occupie.Models.Employer
+@using Occupie.Helpers
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<div id="portfolio-content">
+    <div id="filter-container" class="cf">
+        @Html.Partial("_PicturePartial")
+
+        @Html.Partial("_CompanyInfoPartial")
+        
+        @Html.Partial("_OffersPartial")
+
+        @Html.Partial("_DepartmentsPartial")
+    </div>
+</div>
+
+<div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

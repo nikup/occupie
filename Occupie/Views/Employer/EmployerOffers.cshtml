@@ -1,0 +1,62 @@
+﻿@model List<Occupie.Models.Offer>
+
+<figure class="offers">
+    <figcaption>
+        <img class="alignleft" src="~/img/mono-icons/mouse32.png" />
+        <h4 class="heading">Обяви</h4>
+        @foreach (var offer in Model)
+        {
+           
+        <fieldset>
+            <legend>Offer</legend>
+        
+            <div class="display-label">
+                @Html.DisplayNameFor(model => offer.Title)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => offer.Title)
+            </div>
+        
+            <div class="display-label">
+                @Html.DisplayNameFor(model => offer.ReferenceNumber)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => offer.ReferenceNumber)
+            </div>
+        
+            <div class="display-label">
+                @Html.DisplayNameFor(model => offer.Description)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => offer.Description)
+            </div>
+        
+            <h5>Необходими технологии</h5>
+            <ul>
+                @foreach (var tech in offer.MainTechnologies)
+                {
+                    <li>tech</li>
+                }
+            </ul>
+        
+            @if (offer.AdditionalTechnologies != null && offer.AdditionalTechnologies.Count > 0)
+            {
+                <h5>Препоръчителни технологии технологии</h5>
+                <ul>
+                    @foreach (var tech in offer.AdditionalTechnologies)
+                    {
+                        <li>tech</li>
+                    }
+                </ul>
+            }
+        
+            <div class="display-label">
+                @Html.DisplayNameFor(model => offer.Salary)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => offer.Salary)
+            </div>
+        </fieldset>
+        }
+    </figcaption>
+</figure>

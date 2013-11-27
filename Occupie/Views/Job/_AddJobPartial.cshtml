@@ -1,0 +1,125 @@
+﻿@model Occupie.Models.Job
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Ajax.BeginForm("AddJob", new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "target",
+                            OnSuccess = "onSuccessJob"
+                        }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Работа</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsCurrent)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsCurrent)
+            <br />
+            @Html.ValidationMessageFor(model => model.IsCurrent)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Position)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Position)
+            <br />
+            @Html.ValidationMessageFor(model => model.Position)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Company)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Company)
+            <br />
+            @Html.ValidationMessageFor(model => model.Company)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartMonth)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.StartMonth, new SelectList(Occupie.Utilities.GetMonths().OrderBy(x => int.Parse(x.Value)), "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.StartMonth)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartYear)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.StartYear, new SelectList(Occupie.Utilities.GetJobYears().OrderBy(x => int.Parse(x.Value)), "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.StartYear)
+        </div>
+
+        <div id="endFields">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.EndMonth)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.EndMonth, new SelectList(Occupie.Utilities.GetMonths().OrderBy(x => int.Parse(x.Value)), "Value", "Text"))
+                @Html.ValidationMessageFor(model => model.EndMonth)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.EndYear)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.EndYear, new SelectList(Occupie.Utilities.GetJobYears().OrderBy(x => int.Parse(x.Value)), "Value", "Text"))
+                @Html.ValidationMessageFor(model => model.EndYear)
+            </div>
+        </div>
+
+        <p>
+            <input id="add" type="submit" value="Добави" />
+            <input type="button" id="cancelAdd" value="Отказ" onclick="closeJobDialog()" />
+        </p>
+    </fieldset>
+    
+    <script>
+        function onSuccessJob(ok, status, response) {
+            addJob();
+            closeJobDialog();
+        }
+
+        function addJob() {
+            $.ajax({
+                url: '/Job/RefreshJobs',
+                dataType: 'html',
+                success: function (data) {
+                    $("#jobPartial").html(data);
+                }
+            });
+        }
+
+        function closeJobDialog() {
+            $("#jobDialog").dialog("close");
+        }
+    </script>
+    
+    <script>
+        $("#StartMonth").kendoDropDownList();
+        $("#StartYear").kendoDropDownList();
+        $("#EndMonth").kendoDropDownList();
+        $("#EndYear").kendoDropDownList();
+    </script>
+    
+    <script>
+        $("#IsCurrent").live("click", function () {
+            var id = parseInt($(this).val(), 10);
+            if ($(this).is(":checked")) {
+                $("#endFields").fadeOut();
+            } else {
+                $("#endFields").fadeIn();
+            }
+        });
+    </script>
+}

@@ -1,0 +1,63 @@
+﻿@model Occupie.Models.Student
+
+<div class="exp-padding">
+                <div class="alignleft">
+                    @* Jobs *@
+
+                    <div id="jobPartial">
+                        @Html.Partial("../Job/_JobPartial")
+                    </div>
+
+                    @Ajax.ActionLink("Добави работно място", "AddJob", "Job", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "jobDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openJobPopup" })<br />
+
+                    <div class="dialog" id="jobDialog" style="display: none;"></div>
+
+                    @* Jobs *@
+                </div>
+
+
+                <div class="alignleft">
+                    @* Projects *@
+                    <div id="projectsPartial">
+                        @Html.Partial("../Project/_ProjectPartial")
+                    </div>
+
+                    @Ajax.ActionLink("Добави проект", "AddProject", "Project", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "projectDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openProjectPopup" })<br />
+
+                    <div class="dialog" id="projectDialog" style="display: none;"></div>
+                    @* Projects *@
+                </div>
+
+                <div class="alignleft">
+                    @* Technologies *@
+                    <div id="techPartial">
+                        @Html.Partial("../Technology/_TechnologyPartial")
+                    </div>
+
+                    @Ajax.ActionLink("Добави технология", "AddTechnology", "Technology", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "techDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openTechPopup" })<br />
+
+                    @* Technologies *@
+                </div>
+
+
+
+                <div class="dialog" id="techDialog" style="display: none;"></div>
+
+                @*Other fields*@
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.WorkTimePreference)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.WorkTimePreference, new SelectList(Occupie.Utilities.GetWorkTimePreferences(), "Value", "Text"))
+                    @Html.ValidationMessageFor(model => model.WorkTimePreference)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.WorkStatus)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.WorkStatus, new SelectList(Occupie.Utilities.GetWorkStatuses(), "Value", "Text"))
+                    @Html.ValidationMessageFor(model => model.WorkStatus)
+                </div>
+                @*Other fields*@
+            </div>

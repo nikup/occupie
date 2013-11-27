@@ -1,0 +1,14 @@
+﻿@model Occupie.Models.Employer
+
+<figure class="offers">
+    <figcaption>
+        <img class="alignleft" src="~/img/mono-icons/mouse32.png" />
+        <h4 class="heading">Обяви</h4>
+        @foreach (var offer in Model.Offers)
+        {
+            <div class="display-field">
+                @Html.ActionLink(offer.Title, "Details", "Offer", new { id = offer.OfferId }, null)
+            </div>
+        }
+    </figcaption>
+</figure>

@@ -1,0 +1,17 @@
+﻿@model Occupie.Models.Student
+
+@if (Model.Technologies != null && Model.Technologies.Count > 0)
+{
+    <figure class="experience">
+        <figcaption>
+            <img class="alignleft" src="~/img/mono-icons/spanner32.png" />
+            <h4 class="heading">Технологии</h4>
+
+            @foreach (var tech in Model.Technologies)
+            {
+                <h5>@tech.Name -
+        @Occupie.Enums.EnumTranslator.Proficiencies[tech.Proficiency] ниво</h5>
+            }
+        </figcaption>
+    </figure>
+}

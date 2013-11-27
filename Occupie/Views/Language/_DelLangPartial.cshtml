@@ -1,0 +1,36 @@
+﻿@model Int32[]
+
+
+@using (Ajax.BeginForm("DeleteLanguage", new { langId = Model[0] }, new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "target",
+                            OnSuccess = "deleteLang(" + Model[1] + ")"
+                        }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Език</legend>
+        <h5>Сигурни ли сте, че искате да изтриете този език?</h5>
+
+        <p>
+            <input type="submit" value="Да" />
+            <input type="button" id="cancelDelLang" value="Не" onclick="closeDelLangDialog()" />
+        </p>
+    </fieldset>
+}
+
+
+<script>
+    function deleteLang(id) {
+        $("#language" + id).remove();
+        closeDelLangDialog();
+    }
+
+    function closeDelLangDialog() {
+        $(".ui-dialog:visible").find(".dialog").dialog("close");
+    }
+</script>

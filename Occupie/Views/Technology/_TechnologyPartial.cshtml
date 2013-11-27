@@ -1,0 +1,54 @@
+﻿@model Occupie.Models.Student
+
+@if (Model.Technologies == null || Model.Technologies.Count == 0)
+{
+    <p>You have not added any technologies yet!</p>
+}
+else
+{
+    for (int i = 0; i < Model.Technologies.Count; i++)
+    {
+    <div id="tech@(i)">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Technologies[i].Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Technologies[i].Name)
+            @Html.ValidationMessageFor(model => model.Technologies[i].Name)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Technologies[i].Proficiency)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Technologies[i].Proficiency, new SelectList(Occupie.Utilities.GetProficiencies(), "Value", "Text", Model.Technologies[i].Proficiency))
+            @Html.ValidationMessageFor(model => model.Technologies[i].Proficiency)
+        </div>
+
+        <div class="dialog" id="delTechDialog" style="display: none;"></div>
+
+        <p class="alignright">
+            @Ajax.ActionLink("Изтрий технология", "DeleteTechnology", "Technology", new { techId = Model.Technologies[i].TechId, listId = i }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "delTechDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openDelTechPopup()" })<br />
+        </p>
+        <hr width="100%" />
+        <div style="clear: both"></div>
+    </div>
+    }
+}
+
+<script>
+    $(document).ready(function () {
+        $("#delTechDialog").dialog(
+            {
+                autoOpen: false,
+                width: 300,
+                height: 'auto',
+                modal: true,
+            }
+        );
+    });
+    function openDelTechPopup() {
+        $("#delTechDialog").dialog().dialog("open");
+    }
+</script>

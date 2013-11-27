@@ -1,0 +1,107 @@
+﻿@model Occupie.Models.Offer
+
+@{
+    ViewBag.Title = "Добави обява";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("AddOffer", "Offer"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Offer</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ReferenceNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ReferenceNumber)
+            @Html.ValidationMessageFor(model => model.ReferenceNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @(Html.Kendo()
+            .EditorFor(model => model.Description)
+            .HtmlAttributes(new { style = "width: 740px;height:440px" })
+            .Encode(false))
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DailyWorkTime)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.DailyWorkTime, new SelectList(Occupie.Utilities.GetWorkTimePreferences(), "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.DailyWorkTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OfferType)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.OfferType, new SelectList(Occupie.Utilities.GetOfferTypes(), "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.OfferType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OfferLevel)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.OfferLevel, new SelectList(Occupie.Utilities.GetOfferLevels(), "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.OfferLevel)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MainTechString)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MainTechString)
+            @Html.ValidationMessageFor(model => model.MainTechString)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AdditionalTechString)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AdditionalTechString)
+            @Html.ValidationMessageFor(model => model.AdditionalTechString)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Salary)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Salary)
+            @Html.ValidationMessageFor(model => model.Salary)
+        </div>
+
+        <p>
+            <input type="submit" value="Добави" />
+        </p>
+    </fieldset>
+}
+
+<script>
+    $("#DailyWorkTime").kendoDropDownList();
+    $("#OfferLevel").kendoDropDownList();
+    $("#OfferType").kendoDropDownList();
+
+    $("#Salary").kendoNumericTextBox({
+        min: 0,
+        step: 50
+    });
+</script>

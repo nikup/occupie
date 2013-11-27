@@ -1,0 +1,169 @@
+﻿.demo-section-employers {
+    padding: 30px;
+    width: 88%;
+    height: auto;
+}
+
+#listView {
+    padding: 10px;
+    margin-bottom: -1px;
+    min-width: 555px;
+    min-height: 510px;
+}
+
+#listView1 {
+    /*padding: 10px;*/
+    margin-bottom: -1px;
+    min-width: 555px;
+    min-height: 510px;
+}
+
+#listView2 {
+    padding: 5px;
+    margin-bottom: -1px;
+    min-width: 555px;
+    min-height: 510px;
+}
+
+.employer {
+    float: left;
+    position: relative;
+    /*width: 390px;*/
+    min-height: 160px;
+    margin: 5px;
+    padding: 0;
+}
+
+    .employer img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .employer td.info {
+        vertical-align: top;
+    }
+
+    .employer h3 {
+        margin-top: 3px;
+        overflow: visible;
+        max-width: 125px;
+        line-height: 1.1em;
+        font-size: 16px;
+        font-weight: normal;
+        text-transform: uppercase;
+        color: #cb5432;
+    }
+
+    .employer h4 {
+        color: #656360;
+        font-size: 16px;
+    }
+
+    .employer p {
+        visibility: hidden;
+    }
+
+    .employer:hover p {
+        visibility: visible;
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        top: 0;
+        margin: 0;
+        padding: 0;
+        line-height: 110px;
+        vertical-align: middle;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0,0,0,0.75);
+        transition: background .2s linear, color .2s linear;
+        -moz-transition: background .2s linear, color .2s linear;
+        -webkit-transition: background .2s linear, color .2s linear;
+        -o-transition: background .2s linear, color .2s linear;
+    }
+
+    .k-listview:after, .employer dl:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+
+
+.demo-section-students {
+    padding: 30px;
+    width: 100%;
+    height: auto;
+}
+
+.student {
+    float: left;
+    position: relative;
+    /*width: 400px;*/
+    /*min-height: 160px;*/
+    margin: 5px;
+}
+
+    .student img {
+        width: 100px;
+        height: 110px;
+    }
+
+    .student td.info {
+        vertical-align: top;
+        padding-left: 5px;
+    }
+
+    .student td.info div {
+        
+        max-height:115px;
+        overflow:hidden;
+    }
+
+    .student h3.name {
+        margin-top: 3px;
+        overflow: visible;
+        max-width: 300px;
+        line-height: 1.1em;
+        font-size: 16px;
+        font-weight: normal;
+        text-transform: uppercase;
+        color: #cb5432;
+    }
+
+    .student div.list-item {
+        border: 1px solid #cb5432;
+        border-radius: 10px;
+        padding: 2px 5px;
+        width: auto;
+        display: inline-block;
+        margin-bottom: 2px;
+    }
+
+    .student p {
+        color: #656360;
+        font-size: 16px;
+        margin:5px;
+    }
+
+#student-container figure {
+    background: #f8f5f2;
+    width: 100%;
+    float: left;
+    height: 160px;
+    -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    -o-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+
+    #student-container figure figcaption {
+        padding: 10px;
+        height: 130px;
+    }
+
+#student-container {
+    width: 454px;
+    height: 160px;
+}

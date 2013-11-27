@@ -1,0 +1,41 @@
+﻿@model Occupie.Models.Student
+
+<figure class="edu">
+    <figcaption>
+        <img class="alignleft" src="~/img/mono-icons/mouse32.png" />
+        <h4 class="heading">ФМИ Образование</h4>
+        <div class="display-field">
+            @Occupie.Enums.EnumTranslator.Specialities[Model.FMIInfo.Bachelor.Specialty]
+            <br />
+            (@Model.FMIInfo.Bachelor.StartYear -  @Model.FMIInfo.Bachelor.EndYear)
+            <br />
+            @if (Model.FMIInfo.Bachelor.Subjects.Any(s => s.IsVisible))
+            {
+            <table style="border: 1px solid #cb5432">
+                <tr style="background-color: #cb5432; color: white">
+                    <th style="padding-left: 5px">
+                        Предмет
+                    </th>
+                    <th style="padding-right: 5px">
+                        Оценка
+                    </th>
+                </tr>
+                @foreach (var subject in @Model.FMIInfo.Bachelor.Subjects)
+                {
+                    if (subject.IsVisible)
+                    {            
+                    <tr>
+                        <td>
+                            @subject.Name
+                        </td>
+                        <td style="vertical-align: middle">
+                            @subject.Grade
+                        </td>
+                    </tr>
+                    }
+                }
+            </table>
+            }
+        </div>
+    </figcaption>
+</figure>

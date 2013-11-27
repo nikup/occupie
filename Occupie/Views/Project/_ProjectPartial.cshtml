@@ -1,0 +1,71 @@
+﻿@model Occupie.Models.Student
+
+@if (Model.Projects.Count == 0)
+{
+    <p>Все още не си добавил проекти!</p>
+}
+else
+{
+    for (int i = 0; i < Model.Projects.Count; i++)
+    {
+        if (Model.Projects[i] != null)
+        {
+    <div id="project@(i)" style="float:left;margin-right:60px;">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Projects[i].Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Projects[i].Name)
+            <br />
+            @Html.ValidationMessageFor(model => model.Projects[i].Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Projects[i].Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Projects[i].Description)
+            <br />
+            @Html.ValidationMessageFor(model => model.Projects[i].Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Projects[i].Link)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Projects[i].Link)
+            <br />
+            @Html.ValidationMessageFor(model => model.Projects[i].Link)
+        </div>
+
+        <div class="dialog" id="delProjDialog" style="display: none;"></div>
+
+        <div class="alignright">
+            @Ajax.ActionLink("Изтрий проект", "DeleteProject", "Project", new { projId = Model.Projects[i].ProjectId, listId = i }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "delProjDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openDelProjectPopup()" })<br />
+
+        </div>
+    </div>
+    if (i % 2 != 0)
+        {
+            <hr width="100%" />
+            <div style="clear: both"></div>
+        }
+        }
+    }
+}
+
+<script>
+    $(document).ready(function () {
+        $("#delProjDialog").dialog(
+            {
+                autoOpen: false,
+                width: 300,
+                height: 'auto',
+                modal: true,
+            }
+        );
+    });
+    function openDelProjectPopup() {
+        $("#delProjDialog").dialog().dialog("open");
+    }
+</script>

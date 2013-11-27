@@ -1,0 +1,44 @@
+﻿@model Occupie.Models.Student
+
+@if (Model.HighSchoolInfo != null && (Model.HighSchoolInfo.EndYear != 0 || Model.HighSchoolInfo.StartYear != 0 || Model.HighSchoolInfo.SchoolName != null))
+{
+    <figure class="edu">
+        <figcaption>
+            <img class="alignleft" src="~/img/mono-icons/linedpaperpencil32.png" />
+            <h4 class="heading">Гимназиално образование</h4>
+            @if (Model.HighSchoolInfo.SchoolName != null)
+            {            
+                @Model.HighSchoolInfo.SchoolName
+                <br />
+            }
+            @if (Model.HighSchoolInfo.StartYear != 0 || Model.HighSchoolInfo.EndYear != 0)
+            {            
+                @:(@if (Model.HighSchoolInfo.StartYear != 0)
+                   {
+@Model.HighSchoolInfo.StartYear
+                   }
+                   else
+                   {
+@:?        
+	}
+                @: -  
+                    if (@Model.HighSchoolInfo.EndYear != 0)
+                    {
+                @Model.HighSchoolInfo.EndYear
+                    }
+                    else
+                    {
+                @: ?
+	}@:)
+                <br />
+            }
+            @if (Model.HighSchoolInfo.Grade != null)
+            {
+                @:Завършил с @Model.HighSchoolInfo.Grade
+                <br />
+            }
+        </figcaption>
+    </figure>
+}
+
+

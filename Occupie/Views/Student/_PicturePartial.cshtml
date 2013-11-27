@@ -1,0 +1,35 @@
+﻿@model Occupie.Models.Student
+@using Occupie.Helpers
+
+<script src="~/js/jquery-ui-1.10.3.custom.js"></script>
+
+<figure class="main">
+    <figcaption>
+        @if (Model.Picture != null)
+        {
+            @Ajax.ActionImageLink("data:image;base64," + @System.Convert.ToBase64String(Model.Picture), null, null, "", "UploadImage", "Student", new { }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "uploadDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openUploadPopup" })<br />
+        }
+
+        <div class="dialog" id="uploadDialog" style="display: none;"></div>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#uploadDialog").dialog(
+                    {
+                        autoOpen: false,
+                        width: 300,
+                        height: 'auto',
+                        modal: true
+                    }
+                );
+            });
+            function openUploadPopup() {
+                $("#uploadDialog").dialog("open");
+            }
+        </script>
+
+        <h2>@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h2>
+    </figcaption>
+</figure>
+
+
