@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 namespace Occupie.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class StudentController : Controller
     {
         private StudentManager manager = new StudentManager();

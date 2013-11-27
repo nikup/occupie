@@ -27,6 +27,11 @@ namespace Occupie.Models
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "ЕИК")]
+        [StringLength(9)]
+        public string EIK { get; set; }
+
+        [Required]
         [Display(Name = "Адрес")]
         //[StringLength(256)]
         public string Adress { get; set; }
@@ -40,9 +45,15 @@ namespace Occupie.Models
         [DataType(DataType.Url)]
         public string LinkedIn { get; set; }
 
+
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Email за връзка с администраторите на сайта")]
+        [DataType(DataType.EmailAddress)]
+        public string AdminEmail { get; set; }
 
         [Display(Name = "Телефон")]
         [DataType(DataType.PhoneNumber)]
