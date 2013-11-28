@@ -1,0 +1,7 @@
+Issues and things to decide:
+
+- student phone visible to everybody/just employers
+- button to refresh fmi info on settings/edit profile
+- get gender from SUSI
+- upload CV?
+- export CV?

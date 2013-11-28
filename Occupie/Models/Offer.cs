@@ -18,10 +18,12 @@ namespace Occupie.Models
 
         [Required]
         [Display(Name = "Име")]
+        [StringLength(50)]
         public string Title { get; set; }
 
         [Required]
         [Display(Name = "Референтен номер")]
+        [StringLength(10)]
         public string ReferenceNumber { get; set; }
 
         [Required]
@@ -36,8 +38,7 @@ namespace Occupie.Models
 
         [Required]
         [Display(Name = "Тип на офертата")]
-
-        public Occupie.Enums.Type OfferType { get; set; }
+        public OfferType OfferType { get; set; }
 
         [Required]
         [Display(Name = "Ниво на офертата")]
@@ -48,6 +49,7 @@ namespace Occupie.Models
         public virtual List<string> MainTechnologies { get; set; }
 
         [Display(Name = "Основни технологии, разделени със запетая")]
+        // TODO: add custom validation - every word < 20 chars
         public String MainTechString
         {
             get
@@ -80,6 +82,7 @@ namespace Occupie.Models
         public virtual List<string> AdditionalTechnologies { get; set; }
 
         [Display(Name = "Допълнителни технологии, разделени със запетая")]
+        // TODO: add custom validation - every word < 20 chars
         public String AdditionalTechString
         {
             get
@@ -113,9 +116,5 @@ namespace Occupie.Models
 
         public string EmployerId { get; set; }
         public virtual Employer Employer { get; set; }
-
-        public Offer()
-        {
-        }
     }
 }

@@ -33,7 +33,7 @@ namespace Occupie.Models
 
         [Required]
         [Display(Name = "Адрес")]
-        //[StringLength(256)]
+        [StringLength(100)]
         public string Adress { get; set; }
 
         [Required]
@@ -64,15 +64,17 @@ namespace Occupie.Models
 
         [Display(Name = "Описание")]
         [DataType(DataType.MultilineText)]
+        [StringLength(600)]
         public string Description { get; set; }
 
-        [Display(Name = "Брой на работниците")]
+        [Display(Name = "Брой на служителите")]
         public int NumberOfEmployees { get; set; }
 
         [Display(Name = "Отдели")]
         public virtual List<string> Departments { get; set; }
 
         [Display(Name = "Отдели, разделени със запетая")]
+        // TODO: add custom validation - every word < 20 chars
         public string DepartmentsString
         {
             get

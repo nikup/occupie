@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Occupie.Enums
 {
-    public enum Type
+    public enum OfferType
     {
         Dev,
         QA,

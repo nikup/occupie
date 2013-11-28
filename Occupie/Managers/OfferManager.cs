@@ -22,7 +22,7 @@ namespace Occupie.Managers
             offer.ReferenceNumber = "";
             offer.DailyWorkTime = new WorkTime();
             offer.Description = "";
-            offer.OfferType = new Occupie.Enums.Type();
+            offer.OfferType = new Occupie.Enums.OfferType();
             offer.OfferLevel = new Level();
             offer.MainTechnologies = new List<string>();
 

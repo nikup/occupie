@@ -94,8 +94,8 @@ namespace Occupie
         public static List<SelectListItem> GetOfferTypes()
         {
             List<SelectListItem> types = new List<SelectListItem>();
-            types = Enum.GetValues(typeof(Occupie.Enums.Type))
-                                 .Cast<Occupie.Enums.Type>()
+            types = Enum.GetValues(typeof(Occupie.Enums.OfferType))
+                                 .Cast<Occupie.Enums.OfferType>()
                                  .Select(x => new SelectListItem { Value = x.ToString(), Text = EnumTranslator.Types[x] })
                                  .ToList();
             return types;

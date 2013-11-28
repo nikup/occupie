@@ -7,20 +7,21 @@ namespace Occupie.Enums
 {
     public static class EnumTranslator
     {
-        public static Dictionary<Type, string> Types { get; private set; }
+        public static Dictionary<OfferType, string> Types { get; private set; }
         public static Dictionary<Level, string> Levels { get; private set; }
         public static Dictionary<Proficiency, string> Proficiencies { get; private set; }
         public static Dictionary<Specialty, string> Specialities { get; private set; }
         public static Dictionary<WorkStatus, string> WorkStatuses { get; private set; }
         public static Dictionary<WorkTime, string> WorkTimes { get; private set; }
         public static Dictionary<int?, string> Months { get; private set; }
+
         static EnumTranslator()
         {
-            Types = new Dictionary<Type, string>();
-            Types.Add(Type.Dev, "Разработчик");
-            Types.Add(Type.QA, "QA инженер");
-            Types.Add(Type.Support, "Поддръжка");
-            Types.Add(Type.SysAdmin, "Системен администратор");
+            Types = new Dictionary<OfferType, string>();
+            Types.Add(OfferType.Dev, "Разработчик");
+            Types.Add(OfferType.QA, "QA инженер");
+            Types.Add(OfferType.Support, "Поддръжка");
+            Types.Add(OfferType.SysAdmin, "Системен администратор");
 
             Levels = new Dictionary<Level, string>();
             Levels.Add(Level.Intern, "Стажант");
@@ -48,15 +49,16 @@ namespace Occupie.Enums
             WorkStatuses = new Dictionary<WorkStatus, string>();
             WorkStatuses.Add(WorkStatus.looking_for_a_job, "Търси си работа");
             WorkStatuses.Add(WorkStatus.looking_for_an_internship, "Търси си стаж");
+            WorkStatuses.Add(WorkStatus.looking_for_a_job_or_internship, "Търси си работа/стаж");
             WorkStatuses.Add(WorkStatus.not_looking, "Не си търси работа/стаж");
             WorkStatuses.Add(WorkStatus.not_specified, "Не е посочено");
 
 
             WorkTimes = new Dictionary<WorkTime, string>();
-            WorkTimes.Add(WorkTime.eight_hours, "8 часов работен ден");
-            WorkTimes.Add(WorkTime.six_hours, "6 часов работен ден");
-            WorkTimes.Add(WorkTime.four_hours, "4 часов работен ден");
-            WorkTimes.Add(WorkTime.from_home, "От дома");
+            WorkTimes.Add(WorkTime.eight_hours, "8-часов работен ден");
+            WorkTimes.Add(WorkTime.six_hours, "6-часов работен ден");
+            WorkTimes.Add(WorkTime.four_hours, "4-часов работен ден");
+            WorkTimes.Add(WorkTime.from_home, "От вкъщи");
             WorkTimes.Add(WorkTime.not_specified, "Не е посочено");
 
             Months = new Dictionary<int?, string>();

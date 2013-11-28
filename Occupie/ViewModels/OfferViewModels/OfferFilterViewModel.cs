@@ -22,7 +22,7 @@ namespace Occupie.ViewModels.OfferViewModels
 		{
 			this.WorkTimes = new List<bool>(new bool[Enum.GetValues(typeof(WorkTime)).Length]);
 			this.Levels = new List<bool>(new bool[Enum.GetValues(typeof(Level)).Length]);
-			this.Types = new List<bool>(new bool[Enum.GetValues(typeof(Occupie.Enums.Type)).Length]);
+			this.Types = new List<bool>(new bool[Enum.GetValues(typeof(Occupie.Enums.OfferType)).Length]);
 		}
 	}
 }

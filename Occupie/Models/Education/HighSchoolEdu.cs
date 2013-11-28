@@ -14,6 +14,7 @@ namespace Occupie.Models
         public int HighSchoolId { get; set; }
 
         [Display(Name = "Име на училището")]
+        [StringLength(20)]
         public string SchoolName { get; set; }
 
         [Display(Name = "Година на започване")]

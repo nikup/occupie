@@ -118,6 +118,7 @@ namespace Occupie.Models
             }
         }
         [Display(Name = "Град")]
+        [StringLength(20)]
         public string Town { get; set; }
 
         public virtual List<Language> Languages { get; set; }
@@ -127,6 +128,7 @@ namespace Occupie.Models
         public virtual List<string> Interests { get; set; }
 
         [Display(Name = "Интереси")]
+        // TODO: add custom validation - every word < 20 chars
         public String InterestsString
         {
             get
@@ -156,10 +158,6 @@ namespace Occupie.Models
         }
 
         #endregion
-
-        public Student()
-        {
-        }
 
         public StudentProfileViewModel ToViewModel()
         {

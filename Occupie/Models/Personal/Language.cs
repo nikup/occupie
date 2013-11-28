@@ -14,13 +14,14 @@ namespace Occupie.Models
 
         [Required]
         [Display(Name = "Език")]
+        [StringLength(20)]
         public string Name { get; set; }
 
         [Required]
         [Display(Name = "Равнище")]
         public Proficiency Proficiency { get; set; }
 
-        public string StudentId { get; set; }
-        public virtual Student Student { get; set; }
+        //public string StudentId { get; set; }
+        //public virtual Student Student { get; set; }
     }
 }

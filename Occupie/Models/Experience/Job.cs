@@ -16,10 +16,12 @@ namespace Occupie.Models
         public bool IsCurrent { get; set; }
 
         [Required]
+        [StringLength(30)]
 		[Display(Name = "Позиция")]
         public string Position { get; set; }
 
         [Required]
+        [StringLength(20)]
 		[Display(Name = "Компания")]
         public string Company { get; set; }
 

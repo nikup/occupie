@@ -13,6 +13,7 @@ namespace Occupie.Models
 
         [Required]
 		[Display(Name = "Име")]
+        [StringLength(20)]
         public string Name { get; set; }
 
         [DataType(DataType.Url)]
@@ -21,9 +22,10 @@ namespace Occupie.Models
         [Required]
 		[Display(Name = "Описание")]
         [DataType(DataType.MultilineText)]
+        [StringLength(300)]
         public string Description { get; set; }
 
-        public string StudentId { get; set; }
-        public virtual Student Student { get; set; }
+        //public string StudentId { get; set; }
+        //public virtual Student Student { get; set; }
     }
 }
