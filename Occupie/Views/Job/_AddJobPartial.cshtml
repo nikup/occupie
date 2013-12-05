@@ -14,8 +14,6 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Работа</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.IsCurrent)
@@ -82,7 +80,6 @@
             <input id="add" type="submit" value="Добави" />
             <input type="button" id="cancelAdd" value="Отказ" onclick="closeJobDialog()" />
         </p>
-    </fieldset>
     
     <script>
         function onSuccessJob(ok, status, response) {

@@ -12,7 +12,7 @@ else
     using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
     {
     @Html.AntiForgeryToken()
-    <fieldset id="socialLoginList">
+    <fieldset class="no-border" id="socialLoginList">
         <legend>Log in using another service</legend>
         <p>
         @foreach (AuthenticationClientData p in Model)

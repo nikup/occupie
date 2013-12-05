@@ -14,5 +14,8 @@ namespace Occupie.ViewModels
 
         public IEnumerable<EmployerAllViewModel> Employers { get; set; }
 
+        public Student Student { get; set; }
+
+        public bool ShowEmailWarning { get; set; }
     }
 }

@@ -7,8 +7,6 @@
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>Offer</legend>
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Title)
@@ -44,7 +42,6 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.EmployerId)
     </div>
-</fieldset>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <p>

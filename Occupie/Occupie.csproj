@@ -1035,6 +1035,7 @@
     <Content Include="Views\Job\_DelJobPartial.cshtml" />
     <Content Include="Views\Student\_EditExp.cshtml" />
     <Content Include="Views\Mailer\_LayoutEmail.cshtml" />
+    <Content Include="Views\Home\ChangeEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Employer\Profile.cshtml" />

@@ -140,7 +140,6 @@ namespace Occupie.Managers
         public Student GetStudentByUserId(int id)
         {
             Student student = db.Students.FirstOrDefault(x => x.UserId == id);
-
             return student;
         }
 

@@ -1,16 +1,30 @@
 ﻿@model Occupie.Models.Student
 
+@using Occupie.Enums;
+
 @if (Model.Technologies != null && Model.Technologies.Count > 0)
 {
     <figure class="experience">
         <figcaption>
             <img class="alignleft" src="~/img/mono-icons/spanner32.png" />
             <h4 class="heading">Технологии</h4>
-
-            @foreach (var tech in Model.Technologies)
+            
+            
+            @foreach (var prof in EnumTranslator.Proficiencies)
             {
-                <h5>@tech.Name -
-        @Occupie.Enums.EnumTranslator.Proficiencies[tech.Proficiency] ниво</h5>
+                if (Model.Technologies.Any(x => x.Proficiency == prof.Key))
+                {
+                    <fieldset>
+                        <legend>@prof.Value ниво</legend>
+                @foreach (var tech in Model.Technologies)
+                {
+                    if (tech.Proficiency == prof.Key)
+                    {
+<h5>@tech.Name</h5>
+                    }
+                }
+                        </fieldset>
+                }
             }
         </figcaption>
     </figure>

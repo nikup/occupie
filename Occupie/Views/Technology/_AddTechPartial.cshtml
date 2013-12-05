@@ -14,8 +14,6 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Технология</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)
@@ -39,7 +37,6 @@
             <input type="submit" value="Add" />
             <input type="button" id="cancelAdd" value="Cancel" onclick="closeTechDialog()" />
         </p>
-    </fieldset>
 }
 
 <script>

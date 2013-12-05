@@ -31,10 +31,10 @@ namespace Occupie.Enums
             Levels.Add(Level.ProjectManager, "Ръководител на проект");
 
             Proficiencies = new Dictionary<Proficiency, string>();
-            Proficiencies.Add(Proficiency.Basic, "Основно");
-            Proficiencies.Add(Proficiency.Advanced, "Напреднало");
             Proficiencies.Add(Proficiency.Excellent, "Отлично");
+            Proficiencies.Add(Proficiency.Advanced, "Напреднало");
             Proficiencies.Add(Proficiency.Intermediate, "Междинно");
+            Proficiencies.Add(Proficiency.Basic, "Основно");
 
             Specialities = new Dictionary<Specialty, string>();
             Specialities.Add(Specialty.Applied_Mathematics, "приложна математика");

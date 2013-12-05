@@ -11,8 +11,6 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Offer</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Title)
@@ -92,7 +90,6 @@
         <p>
             <input type="submit" value="Добави" />
         </p>
-    </fieldset>
 }
 
 <script>

@@ -12,15 +12,12 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Проект</legend>
         <h5>Сигурни ли сте, че искате да изтриете този проект?</h5>
 
         <p>
             <input type="submit" value="Да" />
             <input type="button" id="cancelDelProj" value="Не" onclick="closeDelProjectDialog()" />
         </p>
-    </fieldset>
 }
 
 

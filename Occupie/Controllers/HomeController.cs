@@ -11,6 +11,8 @@ using Kendo.Mvc.Extensions;
 using System.Web.Helpers;
 using Occupie.Models;
 using Occupie.Managers;
+using WebMatrix.WebData;
+using System.Web.Security;
 
 namespace Occupie.Controllers
 {
@@ -53,6 +55,16 @@ namespace Occupie.Controllers
                 viewModel.Employers = empManager.GetEmployers().OrderBy(x => x.Id).Skip(db.Employers.Count() - NumberOfItemsToShow);
             }
 
+            var roles = (SimpleRoleProvider)Roles.Provider;
+            var membership = (SimpleMembershipProvider)Membership.Provider;
+            var name = WebSecurity.CurrentUserName;
+
+            if (Request.IsAuthenticated && roles.IsUserInRole(name, "student"))
+            {
+                viewModel.ShowEmailWarning = studentManager.GetStudentByUserId(WebSecurity.CurrentUserId).Email.EndsWith("@uni-sofia.com");
+                viewModel.Student = studentManager.GetStudentByUserId(WebSecurity.CurrentUserId);
+            }           
+
             return View(viewModel);
         }
 
@@ -70,6 +82,28 @@ namespace Occupie.Controllers
         public PartialViewResult LatestOffers()
         {
             return PartialView("_LatestOffersPartial");
+        }
+        
+        //[HttpGet]
+        //public ActionResult ChangeEmail()
+        //{
+        //    return View(studentManager.GetStudentByUserId(WebSecurity.CurrentUserId));
+        //}
+
+        [HttpPost]
+        public ActionResult ChangeEmail(Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Students.FirstOrDefault(s => s.UserId == WebSecurity.CurrentUserId).Email = student.Email;
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(student);
+            }
         }
     }
 }

@@ -12,15 +12,12 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Език</legend>
         <h5>Сигурни ли сте, че искате да изтриете този език?</h5>
 
         <p>
             <input type="submit" value="Да" />
             <input type="button" id="cancelDelLang" value="Не" onclick="closeDelLangDialog()" />
         </p>
-    </fieldset>
 }
 
 

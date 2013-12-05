@@ -1,0 +1,35 @@
+﻿@model Occupie.Models.Student
+
+<div class="email-warning">
+    Текущият ви email е <span class="strong">@Model.Email</span>. Ако използвате друг, моля променете го!
+
+            @using (Ajax.BeginForm("ChangeEmail", new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "target",
+                            OnSuccess = ""
+                        }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                @Html.HiddenFor(model => model.UserId)
+                @Html.HiddenFor(model => model.FirstName)            
+                @Html.HiddenFor(model => model.LastName)                
+                
+       
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Email) <br />
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>                
+
+                <p>
+                    <input type="submit" value="Промени" />
+                </p>
+            }
+</div>
+
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/js/jquery-ui-1.10.3.custom.js"></script>

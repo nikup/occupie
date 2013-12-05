@@ -11,8 +11,6 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     
-    <fieldset>
-        <legend>Employer</legend>
         @Html.HiddenFor(model => model.EmployerProfileId)
 
         <div class="alignleft">
@@ -22,9 +20,6 @@
         <div class="alignleft">
             @Html.Partial("_EditDepartmentsPartial")
         </div>
-
-
-    </fieldset>
     
     <div style="clear: both;"></div>
     <p style="margin-left: 20px">

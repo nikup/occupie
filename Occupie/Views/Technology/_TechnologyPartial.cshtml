@@ -31,7 +31,7 @@ else
         <p class="alignright">
             @Ajax.ActionLink("Изтрий технология", "DeleteTechnology", "Technology", new { techId = Model.Technologies[i].TechId, listId = i }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "delTechDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openDelTechPopup()" })<br />
         </p>
-        <hr width="100%" />
+        <hr />
         <div style="clear: both"></div>
     </div>
     }

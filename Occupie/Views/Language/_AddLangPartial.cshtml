@@ -13,9 +13,6 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Език</legend>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)
         </div>
@@ -38,7 +35,6 @@
             <input type="submit" value="Add" />
             <input type="button" id="cancelAdd" value="Cancel" onclick="closeLangDialog()" />
         </p>
-    </fieldset>
 }
 
 <script>

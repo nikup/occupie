@@ -6,8 +6,6 @@
 
 <h2>@Html.ActionLink(Model.Employer.Name, "Profile", "Employer", new { id = Model.Employer.UserId}, null)</h2>
 
-<fieldset>
-    <legend>Offer</legend>
 
     <div class="display-label">
         @Html.DisplayNameFor(model => model.ReferenceNumber)
@@ -48,7 +46,6 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Salary)
     </div>
-</fieldset>
 
 <p>
     @{

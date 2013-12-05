@@ -252,6 +252,7 @@ section.feature {
     padding: 10px;
 }
 
+
 /* ordered list */
 ol.round {
     list-style-type: none;
@@ -399,22 +400,22 @@ aside {
 }
 
 /* forms */
-fieldset {
+fieldset.no-border {
     border: none;
     margin: 0;
     padding: 0;
 }
 
-    fieldset legend {
+    fieldset.no-border legend {
         display: none;
     }
 
-    fieldset ol {
+    fieldset.no-border ol {
         padding: 0;
         list-style: none;
     }
 
-        fieldset ol li {
+        fieldset.no-border ol li {
             padding-bottom: 5px;
         }
 

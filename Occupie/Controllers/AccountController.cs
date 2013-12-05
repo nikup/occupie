@@ -75,7 +75,7 @@ namespace Occupie.Controllers
 					StudentInfo info = parser.GetStudentInfo();
 					IEnumerable<CourseInfo> courses = parser.GetCourses();
 
-					// Create user in local data base
+					// Create user in local database
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
 

@@ -29,28 +29,50 @@
 
         @Html.HiddenFor(model => model.UserId)
 
-        @Html.Partial("_EditMainInfoPartial")
-
-        @Html.Partial("_EditEducationPartial")
-
-
-
-        <figure class="main isotope-item" style="width: 100%; margin-top: 20px; margin-bottom: 20px;" id="experience">
-            <figcaption>
-                <h4 class="heading">Опит</h4>
-                <div id="editExperience">
-                    @Html.Partial("_EditExperiencePartial")
+        <div id="example" class="k-content">
+            <div>
+                <div id="tabstrip">
+                    <ul>
+                        <li class="k-state-active">Paris
+                        </li>
+                        <li>New York
+                        </li>
+                        <li>London
+                        </li>
+                        <li>Moscow
+                        </li>
+                    </ul>
+                    <div>
+                        @Html.Partial("_EditMainInfoPartial")
+                    </div>
+                    <div>
+                        @Html.Partial("_EditEducationPartial")
+                    </div>
+                    <div>
+                        @Html.Partial("_EditExperiencePartial")
+                    </div>
+                    <div>
+                        @Html.Partial("_EditPersonalPartial")
+                    </div>
                 </div>
-            </figcaption>
-        </figure>
-
-
-
-        @Html.Partial("_EditPersonalPartial")
+            </div>
+        </div>
     </div>
-    
+
 @*<input style="position:relative; top:-90px; left:450px" id="edit" class="left" type="submit" value="Запази" name="submit" />*@
 }
+
+<script>
+    $(document).ready(function () {
+        $("#tabstrip").kendoTabStrip({
+            animation: {
+                open: {
+                    effects: "fadeIn"
+                }
+            }
+        });
+    });
+</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

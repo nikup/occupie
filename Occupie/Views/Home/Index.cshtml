@@ -4,6 +4,12 @@
 }
 
 <div class="wrapper cf">
+
+    @if (Model.ShowEmailWarning)
+    {
+        @Html.Partial("ChangeEmail", Model.Student)
+    }
+
     <!-- portfolio content-->
     <div id="portfolio-content" class="cf">
         <!-- project pager -->
@@ -15,7 +21,7 @@
                 -->
         <!-- ENDS project pager -->
 
-                <!-- project box -->
+        <!-- project box -->
         <div id="project-box" class="cf">
             <!-- slider -->
             <div class="project-slider">
@@ -24,7 +30,7 @@
                         <li style="background-color: rgb(195,195,195); text-align: center">
                             <h3 style="font-weight: bold; color: #cb5432;">Последни обяви
                             </h3>
-                            <div id="filter-container" class="cf" style="margin-left: 7.5%; max-width: 85%; min-height: 350px !important; background-color:white; font-size:175% ">
+                            <div id="filter-container" class="cf" style="margin-left: 7.5%; max-width: 85%; min-height: 350px !important; background-color: white; font-size: 175%">
                                 @Html.Partial("_LatestOffersPartial", Model.Offers)
                             </div>
                         </li>

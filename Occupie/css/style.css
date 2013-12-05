@@ -19,12 +19,25 @@
     display: table;
 }
 
+div.email-warning {
+    text-align:center;
+    padding:10px;
+    width:100%;
+    border:3px solid #cb5432;
+}
+
 .cf:after {
     clear: both;
 }
 
 .cf {
     zoom: 1;
+}
+
+hr {
+    border:dashed; 
+    border-width:1px; 
+    width: 90%;
 }
 
 #grid-offers {
@@ -69,9 +82,9 @@ body {
         transition: all 0.3s ease;
     }
 
-    body p {
+    /*body p {
         margin-bottom: 21px;
-    }
+    }*/
 
 #main h1,
 #main h2,
@@ -167,22 +180,32 @@ div.aligncenter {
     text-align: center;
 }
 
-fieldset {
+fieldset{
+    margin: 10px 0;
+    border:2px dashed;
+}
+
+fieldset legend{
+    padding: 0 5px;
+    font-weight:bold;
+}
+
+fieldset.no-border {
     border: none;
     margin: 0;
     padding: 0;
 }
 
-    fieldset legend {
+    fieldset.no-border legend {
         display: none;
     }
 
-    fieldset ol {
+    fieldset.no-border ol {
         padding: 0;
         list-style: none;
     }
 
-        fieldset ol li {
+        fieldset.no-border ol li {
             padding-bottom: 5px;
         }
 

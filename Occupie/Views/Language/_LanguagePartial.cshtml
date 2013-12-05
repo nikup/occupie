@@ -30,7 +30,7 @@ else
         <p class="alignright">
             @Ajax.ActionLink("Изтрий език", "DeleteLanguage", "Language", new { langId = Model.Languages[i].LangId, listId = i }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "delLangDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openDelLangPopup()" })<br />
         </p>
-        <hr width="100%" />
+        <hr />
         <div style="clear: both"></div>
     </div>
     }
