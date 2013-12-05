@@ -10,7 +10,7 @@
     @Html.ValidationSummary(true)
     
     
-    <ul style="float: center" id="nav" class="leftNav menu2 sf-js-enabled sf-shadow">
+    @*<ul style="float: center" id="nav" class="leftNav menu2 sf-js-enabled sf-shadow">
         <li class="sfHover2" style="float: center;">
             <ul style="display: inline; visibility: visible">
                 <li><a href="#persInfo">Основна информация</a></li>
@@ -20,46 +20,37 @@
                 <input id="edit" class="left" type="submit" value="Запази" name="submit" />
             </ul>
         </li>
-    </ul>
+    </ul>*@
    
 
-
-    <div id="filter-container" class="cf isotope" style="position: relative; height: 100%">
-        @Html.HiddenFor(model => model.StudentProfileId)
-
-        @Html.HiddenFor(model => model.UserId)
-
-        <div id="example" class="k-content">
-            <div>
-                <div id="tabstrip">
-                    <ul>
-                        <li class="k-state-active">Paris
-                        </li>
-                        <li>New York
-                        </li>
-                        <li>London
-                        </li>
-                        <li>Moscow
-                        </li>
-                    </ul>
-                    <div>
-                        @Html.Partial("_EditMainInfoPartial")
-                    </div>
-                    <div>
-                        @Html.Partial("_EditEducationPartial")
-                    </div>
-                    <div>
-                        @Html.Partial("_EditExperiencePartial")
-                    </div>
-                    <div>
-                        @Html.Partial("_EditPersonalPartial")
-                    </div>
-                </div>
-            </div>
+    <div id="tabstrip">
+        <ul>
+            <li class="k-state-active">Основна информация
+            </li>
+            <li>Образование
+            </li>
+            <li>Опит
+            </li>
+            <li>Лична информация
+            </li>
+        </ul>
+        <div>
+            @Html.Partial("_EditMainInfoPartial")
+        </div>
+        <div>
+            @Html.Partial("_EditEducationPartial")
+        </div>
+        <div>
+            @Html.Partial("_EditExperiencePartial")
+        </div>
+        <div>
+            @Html.Partial("_EditPersonalPartial")
         </div>
     </div>
 
-@*<input style="position:relative; top:-90px; left:450px" id="edit" class="left" type="submit" value="Запази" name="submit" />*@
+   
+
+<input id="edit" type="submit" value="Запази" name="submit" />
 }
 
 <script>
@@ -78,4 +69,5 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 
-<script src="~/js/jquery-ui-1.10.3.custom.js"></script>
+@*<script src="~/Scripts/kendo.all.min.js"></script>*@
+@*<script src="~/js/jquery-ui-1.10.3.custom.js"></script>*@
