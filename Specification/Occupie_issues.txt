@@ -5,3 +5,4 @@ Issues and things to decide:
 - get gender from SUSI
 - upload CV?
 - export CV?
+- repeating technologies/languages

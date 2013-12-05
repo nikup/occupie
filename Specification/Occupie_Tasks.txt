@@ -1,0 +1,11 @@
+Tasks:
+
+- refactor studentcontroller: separate controllers
+
+- layout: add settings tab in menu
+
+- put authorize attr. all over Occupie
+
+- "register as emp" on 2 lines
+
+- see SA delete application and implement for delete X from student profile
