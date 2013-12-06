@@ -24,9 +24,9 @@ namespace Occupie.Controllers
         //
         // GET: /Student/Profile
 
-        public ActionResult Profile(int profileId)
+        public ActionResult Profile(int userId)
         {
-            var student = manager.GetStudentByUserId(profileId);
+            var student = manager.GetStudentByUserId(userId);
             return View(student);
         }
 
@@ -70,7 +70,7 @@ namespace Occupie.Controllers
             {
                 manager.SaveStudent(student);
 
-                return RedirectToAction("Profile", new { profileId = student.UserId });
+                return RedirectToAction("Profile", new { userId = student.UserId });
             }
             else
             {

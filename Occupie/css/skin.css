@@ -133,6 +133,25 @@ body {
   color: #f1f1f1;
   background: #cb5432;
 }
+/* PORTFOLIO EDIT ----------------------------------------------------*/#portfolio-content-edit #filter-container a {
+  color: #888;
+}
+#portfolio-content-edit #filter-container a:hover {
+  color: #cb5432;
+}
+#portfolio-content-edit .project-pager a {
+  color: #444444;
+}
+#portfolio-content-edit .project-pager a:hover {
+  color: #cb5432;
+}
+#portfolio-content-edit #project-box {
+  background: #f8f5f2;
+}
+#portfolio-content-edit #project-box .info .launch:hover {
+  color: #f1f1f1;
+  background: #cb5432;
+}
 /* RELATED PROJECTS ---------------------------------------------------*/
 .related-projects figure .heading {
   color: #444444;

@@ -4,70 +4,51 @@
     ViewBag.Title = "Редактиране";
 }
 
-@using (Html.BeginForm("Edit", "Student", new { profileId = Model.StudentProfileId }))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-    
-    
-    @*<ul style="float: center" id="nav" class="leftNav menu2 sf-js-enabled sf-shadow">
-        <li class="sfHover2" style="float: center;">
-            <ul style="display: inline; visibility: visible">
-                <li><a href="#persInfo">Основна информация</a></li>
-                <li><a href="#education">Образование</a></li>
-                <li><a href="#experience">Опит</a></li>
-                <li><a href="#personal">Лична информация</a></li>
-                <input id="edit" class="left" type="submit" value="Запази" name="submit" />
-            </ul>
-        </li>
-    </ul>*@
-   
+<!-- portfolio content-->
+<div id="portfolio-content-edit" class="cf">
+    @using (Html.BeginForm("Edit", "Student", new { profileId = Model.StudentProfileId }, FormMethod.Post, new { @class = "form-edit" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-    <div id="tabstrip">
-        <ul>
-            <li class="k-state-active">Основна информация
-            </li>
-            <li>Образование
-            </li>
-            <li>Опит
-            </li>
-            <li>Лична информация
-            </li>
+        <ul id="filter-buttons">
+            <li><a href="#" data-filter=".main" class="selected">основна информация</a></li>
+            <li><a href="#" data-filter=".edu">образование</a></li>
+            <li><a href="#" data-filter=".experience">опит</a></li>
+            <li><a href="#" data-filter=".personal">лична информация</a></li>
         </ul>
-        <div>
-            @Html.Partial("_EditMainInfoPartial")
-        </div>
-        <div>
-            @Html.Partial("_EditEducationPartial")
-        </div>
-        <div>
-            @Html.Partial("_EditExperiencePartial")
-        </div>
-        <div>
-            @Html.Partial("_EditPersonalPartial")
-        </div>
-    </div>
+        
+        @Html.HiddenFor(model=>model.UserId)
+        @Html.HiddenFor(model=>model.StudentProfileId)
 
-   
+        <!-- Filter container -->
+        <div id="filter-container" class="cf">
+            <div>
+                @Html.Partial("_EditMainInfoPartial")
+            </div>
+            <div>
+                @Html.Partial("_EditEducationPartial")
+            </div>
+            <div>
+                @Html.Partial("_EditExperiencePartial")
+            </div>
+            <div>
+                @Html.Partial("_EditPersonalPartial")
+            </div>
+        </div>
+ 
+        <!-- ENDS Filter container -->
 
-<input id="edit" type="submit" value="Запази" name="submit" />
-}
-
-<script>
-    $(document).ready(function () {
-        $("#tabstrip").kendoTabStrip({
-            animation: {
-                open: {
-                    effects: "fadeIn"
-                }
-            }
-        });
-    });
-</script>
+        <input id="edit" type="submit" value="Запази" name="submit" />
+    }
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
 
-@*<script src="~/Scripts/kendo.all.min.js"></script>*@
-@*<script src="~/js/jquery-ui-1.10.3.custom.js"></script>*@
+<script>
+    $(document).ready(function () {
+        $(".selected").trigger("click");
+    });
+</script>

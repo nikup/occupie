@@ -485,6 +485,7 @@
     <Content Include="Content\KendoUI\images\KendoUI.ttf" />
     <Content Include="Content\KendoUI\images\KendoUI.woff" />
     <Content Include="css\.DS_Store" />
+    <Content Include="happynamedaytoyou.html" />
     <Content Include="Images\company-avatar.png" />
     <Content Include="Images\default-avatar.jpg" />
     <Content Include="img\.DS_Store" />
@@ -932,6 +933,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="supersecretstyle.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1040,7 +1042,9 @@
   <ItemGroup>
     <Content Include="Views\Employer\Profile.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="supersecretimg\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
