@@ -4,8 +4,6 @@
 
 <figure class="main" id="persInfo">
     <figcaption>
-        <h4 class="heading">Основна информация</h4>
-
         <div class="info-padding">
             <div class="alignleft">
                 <div class="editor-label">
@@ -49,8 +47,6 @@
                 </div>
             </div>
 
-
-
             <div class="editor-label">
                 @Html.LabelFor(model => model.Facebook)
             </div>
@@ -92,5 +88,28 @@
             </div>
 
         </div>
+
+        @*Other fields*@
+        <div class="editor-label">
+            @Html.LabelFor(model => model.WorkTimePreference)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.WorkTimePreference, new SelectList(Occupie.Utilities.GetWorkTimePreferences(), "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.WorkTimePreference)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.WorkStatus)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.WorkStatus, new SelectList(Occupie.Utilities.GetWorkStatuses(), "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.WorkStatus)
+        </div>
+        @*Other fields*@
     </figcaption>
 </figure>
+
+<script>
+    $("#WorkTimePreference").kendoDropDownList();
+    $("#WorkStatus").kendoDropDownList();
+</script>

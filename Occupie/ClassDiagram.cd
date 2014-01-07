@@ -1,0 +1,509 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Occupie.AuthConfig" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\AuthConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.BundleConfig" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\BundleConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.FilterConfig" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\FilterConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.RouteConfig" Collapsed="true">
+    <Position X="9.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.WebApiConfig" Collapsed="true">
+    <Position X="5.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\WebApiConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.MvcApplication" Collapsed="true">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.OccupieDb" Collapsed="true">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AoIEAAAACQAQAAAAAEAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>OccupieDb.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Utilities" Collapsed="true">
+    <Position X="4" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAABAAhAAAAAAAAAAAAABEAAAQQAAAAIACA=</HashCode>
+      <FileName>Utilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Controllers.AccountController" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAASAAAQAAQAAAAAREAEgAAAFAAACAAAAARgAQAIAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Controllers.EmployerController" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAgAABAAAAAKAJAAAAAAAAA=</HashCode>
+      <FileName>Controllers\EmployerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Controllers.HomeController" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAACACAACABAAAAAIAAEAgAAAIAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Controllers.JobController" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAgAAAAEAAAAAAAAIBAAAAAAAAA=</HashCode>
+      <FileName>Controllers\JobController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Controllers.LanguageController" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAIAAAAQAAAAAAAAAAAEAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\LanguageController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Controllers.OfferController" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAEAAAAABEAASACAIIAAAAAAAA=</HashCode>
+      <FileName>Controllers\OfferController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Controllers.ProjectController" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAgAEAAEAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Controllers\ProjectController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Controllers.StudentController" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAQAACAAAAAAAgEAhAAAAACAJQAAIAgAAA=</HashCode>
+      <FileName>Controllers\StudentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Controllers.TechnologyController" Collapsed="true">
+    <Position X="11" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAQAAAAAAAABAAEAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TechnologyController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Enums.EnumTranslator" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EwAAAAAAAAAAAAgAAAAAAAAAAAgAAAAFAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\EnumTranslator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Filters.InitializeSimpleMembershipAttribute" Collapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQACgAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Filters\InitializeSimpleMembershipAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Helpers.Helpers" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\Helpers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Mailer.UserMailer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Mailer\UserMailer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Occupie.Managers.EmployerManager" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAEAQAAAAAAAAIAQAAAAAAAAAAAAACAAAgAA=</HashCode>
+      <FileName>Managers\EmployerManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Managers.OfferManager" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAQAAAAAAAAAAAAAAAAABBAAAIACAAAACA=</HashCode>
+      <FileName>Managers\OfferManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Managers.StudentManager" Collapsed="true">
+    <Position X="2.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAQACiIAAAAAAAAAAAAAAAAAAIACAAAAAA=</HashCode>
+      <FileName>Managers\StudentManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Migrations.Configuration" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Migrations\Configuration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.UsersContext" Collapsed="true">
+    <Position X="2.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.UserProfile" Collapsed="true">
+    <Position X="0.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.RegisterExternalLoginModel" Collapsed="true">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.LocalPasswordModel" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.LoginModel" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAQAAAAAgAAA=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.RegisterModelEmployer" Collapsed="true">
+    <Position X="5.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAA=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.RegisterModelStudent" Collapsed="true">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAQAAAAAAIAA=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.ExternalLogin" Collapsed="true">
+    <Position X="12.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAEAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.BlogPost" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAEAAAAAAAAAAAAAAAAABAAAAQAAAAAA=</HashCode>
+      <FileName>Models\BlogPost.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.Bachelor" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAEIAAAAAAAAAAAACAAAAAAAKAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Education\Bachelor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.Doctorate" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAEAAAAAAAAAAAAACAAAAAAQCAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Education\Doctorate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.FMIEdu" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAACAAAAAAAAAAAAAAAQEAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Education\FMIEdu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.HighSchoolEdu" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAgAAAAAAAAAAAAAAAACAAQAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Education\HighSchoolEdu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.Masters" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAEAAAAAAAAAAAAACAAAAgAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Education\Masters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.Subject" Collapsed="true">
+    <Position X="5.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAEAAAEAAAAAAAAAQAAAAAAAAAAAAAAAEACAA=</HashCode>
+      <FileName>Models\Education\Subject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.Employer" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAgAAABCAwwAAAACAABAwAAAgAAAABAAgAIAAABAA=</HashCode>
+      <FileName>Models\Employer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.Job" Collapsed="true">
+    <Position X="12.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgQAAAAAAAAQAAgAAACAEAAAAAAAAAAAAAABAAIAAA=</HashCode>
+      <FileName>Models\Experience\Job.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.Project" Collapsed="true">
+    <Position X="12.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQABAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Models\Experience\Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.Offer" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEACAAAAAhEEIAAQQAAAEAAgAAAgAAAAACAAAAIAA=</HashCode>
+      <FileName>Models\Offer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.Language" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIASAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Personal\Language.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.Technology" Collapsed="true">
+    <Position X="9.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIEQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Personal\Technology.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.Models.Student" Collapsed="true">
+    <Position X="11" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAIgEAACyIAQAABAEgAACgQAAEQECAAIQBAIAAAASg=</HashCode>
+      <FileName>Models\Student.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.RSSreader.Reader" Collapsed="true">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RSSreader\Reader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SusiParser.SusiParser" Collapsed="true">
+    <Position X="7.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgIAAAAAIAAAAAQEAEAAABAQAAAAAAAEAAQYAAAAQAM=</HashCode>
+      <FileName>SusiParser\SusiParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.ViewModels.EducationViewModel" Collapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAEAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>ViewModels\EducationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.ViewModels.EmployerAllViewModel" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACgAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\EmployerAllViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.ViewModels.EmployerProfile" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\EmployerProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.ViewModels.ExperienceViewModel" Collapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ExperienceViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.ViewModels.IndexViewModel" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAoEAAAAQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\IndexViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.ViewModels.PersonalViewModel" Collapsed="true">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACwAAAAAAAAAAACAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\PersonalViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.ViewModels.StudentAllViewModel" Collapsed="true">
+    <Position X="12.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQACAAAADQAAAIAAAAAAAIgAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>ViewModels\StudentAllViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.ViewModels.StudentProfileViewModel" Collapsed="true">
+    <Position X="4" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAIgEAAACAAQAAAAAAAAAAAAAAABCAAIABgAAAAQAg=</HashCode>
+      <FileName>ViewModels\StudentProfileViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.ViewModels.OfferViewModels.OfferAllViewModel" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAgAEAAAAAAAAAAAgAAAkAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\OfferViewModels\OfferAllViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.ViewModels.OfferViewModels.OfferFilterViewModel" Collapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgACAAAAAQAAAAAAAAAAAAIAAAgAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\OfferViewModels\OfferFilterViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Occupie.ViewModels.OfferViewModels.OfferQueryViewModel" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>ViewModels\OfferViewModels\OfferQueryViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="SusiParser.CourseInfo" Collapsed="true">
+    <Position X="12.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAGAACARCgCAAAAEAAAAAAAgEAAAAAAAAAAAAAEAiAA=</HashCode>
+      <FileName>SusiParser\CourseInfo.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="SusiParser.StudentInfo" Collapsed="true">
+    <Position X="11" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAEAABAAAAAAEAAAQAIAAAIAAAAAAAQAAAAACAAg=</HashCode>
+      <FileName>SusiParser\StudentInfo.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="Occupie.Mailer.IMailModel" Collapsed="true">
+    <Position X="7.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAQIAAAAAAAAAAAA=</HashCode>
+      <FileName>Mailer\IMailModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Occupie.Mailer.IUserMailer" Collapsed="true">
+    <Position X="9.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Mailer\IUserMailer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Occupie.Enums.EmailType" Collapsed="true">
+    <Position X="0.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\EmailType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Occupie.Enums.Level" Collapsed="true">
+    <Position X="2.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgBAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Enums\Level.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Occupie.Enums.Proficiency" Collapsed="true">
+    <Position X="5.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAACCAAQ=</HashCode>
+      <FileName>Enums\Proficiency.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Occupie.Enums.Specialty" Collapsed="true">
+    <Position X="7.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQEAAAAAAAAEAQAAAAAAAAAAQJAAAAAAAEAAAAA=</HashCode>
+      <FileName>Enums\Specialty.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Occupie.Enums.OfferType" Collapsed="true">
+    <Position X="4" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAABCAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\Type.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Occupie.Enums.WorkStatus" Collapsed="true">
+    <Position X="11" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAIAAAAAAAAAAAAAAIAAAABAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\WorkStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Occupie.Enums.WorkTime" Collapsed="true">
+    <Position X="12.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAABAAAAAAAAAAIBAAAQAA=</HashCode>
+      <FileName>Enums\WorkTime.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SusiParser.StudentType" Collapsed="true">
+    <Position X="9.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAACAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>SusiParser\StudentInfo.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

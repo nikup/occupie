@@ -2,98 +2,95 @@
 @using Occupie.Enums;
 
 <script src="~/js/jquery-ui-1.10.3.custom.js"></script>
-<figure class="main isotope-item" style="width:100%" id="experience">
+<figure class="main isotope-item" style="width: 100%">
     <figcaption>
-		<h4 class="heading">Филтър</h4>
-		<div class="editor-field">
-			@using (Html.BeginForm("FilterOffers", "Offer", FormMethod.Post, 
-                                      new { enctype = "multipart/form-data" }))
-			{
-                <table style="margin-right: auto; margin-left: auto">
-                    <tr>
-                        <td style="text-align: right">
-				            <label>Работодатели:</label>
-                        </td>
-                        <td style="text-align: left">
-				            @Html.TextBoxFor(model => model.EmployerTitles)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: right">
-				            <label>Технологии:</label>
-                        </td>
-                        <td style="text-align: left">
-				            @Html.TextBoxFor(model => model.Technologies)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: right; vertical-align: middle">
-				            <label>Работно време:</label>
-                        </td>
-                        <td style="text-align: left">
-				            @for (int i = 0; i < Model.WorkTimes.Count; i++)
-				            {
-                                if (i != 0 && i % 3 == 0)
-                                {
-                                    <br />
-                                }	
-					            @Html.CheckBoxFor(model => model.WorkTimes[i]);
-					            <label for="WorkTimes_@(i)_">@EnumTranslator.WorkTimes[(WorkTime) (i)]</label>
-				            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: right; vertical-align: middle">
-				            <label>Ниво:</label>
-                        </td>
-                        <td style="text-align: left">
-				            @for (int i = 0; i < Model.Levels.Count; i++)
-				            {
-                                if (i != 0 && i % 3 == 0)
-                                {
-                                    <br />
-                                }
-                    
-					            @Html.CheckBoxFor(model => model.Levels[i]);
-					            <label for="Levels_@(i)_">@EnumTranslator.Levels[(Level)i]</label>
-				            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: right; vertical-align: middle">
-				            <label>Тип:</label>
-                        </td>
-                        <td style="text-align: left">
-				            @for (int i = 0; i < Model.Types.Count; i++)
-				            {
+        <div class="editor-field filter-div">
 
-                                if (i != 0 && i % 3 == 0)
-                                {
+            <h2>Oбяви</h2>
+            @using (Html.BeginForm("FilterOffers", "Offer", FormMethod.Post,
+                                      new { enctype = "multipart/form-data" }))
+            {
+                    <table class="filter-table">
+                        <tr>
+                            <td class="filter-label-right">
+                                <label>Работодатели:</label>
+                            </td>
+                            <td colspan="2" class="filter-value">
+                                @Html.TextBoxFor(model => model.EmployerTitles, new { @style = "width: 100%" })
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="filter-label-right">
+                                <label>Технологии:</label>
+                            </td>
+                            <td colspan="2" class="filter-value">
+                                @Html.TextBoxFor(model => model.Technologies, new { @style = "width: 100%" })
+                            </td>
+                        </tr>
+
+                        <tr><td colspan="3" class="empty-row"></td></tr>
+
+                        <tr>
+                            <td class="filter-label">
+                                <label>Ниво:</label>
+                            </td>
+
+                            <td class="filter-label">
+                                <label>Работно време:</label>
+                            </td>                            
+
+                            <td class="filter-label">
+                                <label>Тип:</label>
+                            </td>
+
+                        </tr>
+                        <tr>
+
+                            <td class="filter-value">
+                                @for (int i = 0; i < Model.Levels.Count; i++)
+                                {                    
+                                    @Html.CheckBoxFor(model => model.Levels[i]);
+                                    <label for="Levels_@(i)_">@EnumTranslator.Levels[(Level)i]</label>
                                     <br />
                                 }
-                    
-					            @Html.CheckBoxFor(model => model.Types[i]);
-					            <label for="Types_@(i)_">@EnumTranslator.Types[(Occupie.Enums.OfferType)i]</label>
-				            }
-                        </td>
-				    </tr>
-                </table>
-				<input type="submit" value="Изпрати ме" onclick="changeDatasource()" />
-			}
-			
-		</div>
+                            </td>
+
+                            <td class="filter-value">
+                                @for (int i = 0; i < Model.WorkTimes.Count; i++)
+                                {
+                                    @Html.CheckBoxFor(model => model.WorkTimes[i]);
+                                    <label for="WorkTimes_@(i)_">@EnumTranslator.WorkTimes[(WorkTime)(i)]</label>
+                                    <br />
+                                }
+                            </td>
+
+                            <td class="filter-value">
+                                @for (int i = 0; i < Model.Types.Count; i++)
+                                {                    
+                                    @Html.CheckBoxFor(model => model.Types[i]);
+                                    <label for="Types_@(i)_">@EnumTranslator.Types[(Occupie.Enums.OfferType)i]</label>
+                                    <br />
+                                }
+                            </td>
+                        </tr>
+                    </table>
+                <input type="submit" value="Филтрирай" onclick="changeDatasource()" />
+            }
+
+        </div>
     </figcaption>
 </figure>
 
 <script>
     function changeDatasource() {
         var action = '@Url.Action("ReadOffers", "Offer", new { viewModel = Model })';
-        var dataSource = new kendo.data.DataSource({            
+        var dataSource = new kendo.data.DataSource({
             //define datasource parameters as per your requirement
-            
+
             data: action
         });
-       
+
         dataSource.read();
         var grid = $("#grid-offers").data("kendoGrid");
         grid.dataSource.data(dataSource);

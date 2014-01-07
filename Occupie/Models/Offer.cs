@@ -16,39 +16,44 @@ namespace Occupie.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int OfferId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
+        [Display(Name = "Видима ли е?")]
+        public bool IsVisible { get; set; }
+
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [Display(Name = "Име")]
         [StringLength(50)]
         public string Title { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [Display(Name = "Референтен номер")]
         [StringLength(10)]
         public string ReferenceNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [Display(Name = "Работно време")]
         public WorkTime DailyWorkTime { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [Display(Name = "Описание")]
         [DataType(DataType.Html)]
         [AllowHtml]
         public string Description { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [Display(Name = "Тип на офертата")]
         public OfferType OfferType { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [Display(Name = "Ниво на офертата")]
         public Level OfferLevel { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [Display(Name = "Основни технологии")]
         public virtual List<string> MainTechnologies { get; set; }
 
         [Display(Name = "Основни технологии, разделени със запетая")]
+        [DataType(DataType.MultilineText)]
         // TODO: add custom validation - every word < 20 chars
         public String MainTechString
         {
@@ -82,6 +87,7 @@ namespace Occupie.Models
         public virtual List<string> AdditionalTechnologies { get; set; }
 
         [Display(Name = "Допълнителни технологии, разделени със запетая")]
+        [DataType(DataType.MultilineText)]
         // TODO: add custom validation - every word < 20 chars
         public String AdditionalTechString
         {

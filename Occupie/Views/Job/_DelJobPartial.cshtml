@@ -5,8 +5,8 @@
                         {
                             HttpMethod = "POST",
                             InsertionMode = InsertionMode.Replace,
-                            UpdateTargetId = "target",
-                            OnSuccess = "deleteJob(" + Model[1] + ")"
+                            UpdateTargetId = "edit-exp",
+                            OnSuccess = "closeDelJobDialog()"
                         }))
 {
     @Html.AntiForgeryToken()
@@ -22,11 +22,6 @@
 
 
 <script>
-    function deleteJob(id) {
-        $("#job" + id).remove();
-        closeDelJobDialog();
-    }
-
     function closeDelJobDialog() {
         $(".ui-dialog:visible").find(".dialog").dialog("close");
     }

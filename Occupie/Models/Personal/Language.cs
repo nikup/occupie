@@ -12,12 +12,12 @@ namespace Occupie.Models
         [Key]
         public int LangId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [Display(Name = "Език")]
         [StringLength(20)]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [Display(Name = "Равнище")]
         public Proficiency Proficiency { get; set; }
 

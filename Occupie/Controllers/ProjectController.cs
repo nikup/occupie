@@ -9,23 +9,22 @@ using WebMatrix.WebData;
 
 namespace Occupie.Controllers
 {
-    public class ProjectController : Controller
+    public class ProjectController : BaseController
     {
-        private StudentManager manager = new StudentManager();
-        private OccupieDb db = new OccupieDb();
-
         [HttpPost]
-        public void AddProject(Project project)
+        public ActionResult AddProject(Project project)
         {
             if (ModelState.IsValid)
             {
-                var student = manager.GetStudentByUserId(WebSecurity.CurrentUserId);
+                var student = studentManager.GetStudentByUserId(WebSecurity.CurrentUserId);
 
                 db.Projects.Add(project);
                 db.Students.FirstOrDefault(x => x.UserId == WebSecurity.CurrentUserId).Projects.Add(project);
 
                 db.SaveChanges();
             }
+
+            return PartialView("../Student/_EditExperiencePartial", studentManager.GetStudentByUserId(WebSecurity.CurrentUserId));
         }
 
         [HttpGet]
@@ -35,22 +34,18 @@ namespace Occupie.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult RefreshProjects()
-        {
-            return PartialView("../Student/_EditExperiencePartial", manager.GetStudentByUserId(WebSecurity.CurrentUserId));
-        }
-
-        [HttpGet]
         public PartialViewResult DeleteProject(int projId, int listId)
         {
             return PartialView("_DelProjectPartial", new Int32[] { projId, listId });
         }
 
         [HttpPost]
-        public void DeleteProject(int projId)
+        public ActionResult DeleteProject(int projId)
         {
             db.Students.FirstOrDefault(x => x.UserId == WebSecurity.CurrentUserId).Projects.RemoveAll(x => x.ProjectId == projId);
             db.SaveChanges();
+
+            return PartialView("../Student/_EditExperiencePartial", studentManager.GetStudentByUserId(WebSecurity.CurrentUserId));
         }
     }
 }

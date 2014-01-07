@@ -24,6 +24,11 @@ namespace Occupie.Models
 		[Display(Name = "Година на завършване")]
         public int EndYear { get; set; }
 
+        [Display(Name = "Бал досега")]
+        public double CurrentAverageGrade { get; set; }
+
+        public bool IsAverageGradeVisible { get; set; }
+
         public virtual List<Subject> Subjects { get; set; }
     }
 }

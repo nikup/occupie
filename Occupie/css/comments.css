@@ -264,7 +264,8 @@ input[type="submit"],
 input[type="button"] {
   width: auto;
   color: #444;
-  font-size: 11px;
+  font-size: 15px;
+  font-family:inherit;
   background: #eaeaea;
   padding: 3px 10px;
   border: 1px solid #ccc;

@@ -21,22 +21,23 @@ namespace Occupie.Models
         [DataType(DataType.Upload)]
         public byte[] Picture { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [Display(Name = "Име")]
         [StringLength(20)]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [Display(Name = "ЕИК")]
         [StringLength(9)]
         public string EIK { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [Display(Name = "Адрес")]
         [StringLength(100)]
-        public string Adress { get; set; }
+        [DataType(DataType.MultilineText)]
+        public string Address { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [Display(Name = "Сайт")]
         [DataType(DataType.Url)]
         public string Website { get; set; }
@@ -45,12 +46,11 @@ namespace Occupie.Models
         [DataType(DataType.Url)]
         public string LinkedIn { get; set; }
 
-
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [Display(Name = "Email за връзка с администраторите на сайта")]
         [DataType(DataType.EmailAddress)]
         public string AdminEmail { get; set; }

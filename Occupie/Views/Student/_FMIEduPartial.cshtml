@@ -9,32 +9,46 @@
             <br />
             (@Model.FMIInfo.Bachelor.StartYear -  @Model.FMIInfo.Bachelor.EndYear)
             <br />
+            <br />
+
+            @if (Model.FMIInfo.Bachelor.IsAverageGradeVisible)
+            {
+                <span>успех досега: </span>
+                <span id="average-grade">@Model.FMIInfo.Bachelor.CurrentAverageGrade.ToString("F")</span>
+                <br />
+                <br />
+            }
+
+
             @if (Model.FMIInfo.Bachelor.Subjects.Any(s => s.IsVisible))
             {
-            <table style="border: 1px solid #cb5432">
-                <tr style="background-color: #cb5432; color: white">
-                    <th style="padding-left: 5px">
-                        Предмет
-                    </th>
-                    <th style="padding-right: 5px">
-                        Оценка
-                    </th>
-                </tr>
-                @foreach (var subject in @Model.FMIInfo.Bachelor.Subjects)
-                {
-                    if (subject.IsVisible)
-                    {            
-                    <tr>
-                        <td>
-                            @subject.Name
-                        </td>
-                        <td style="vertical-align: middle">
-                            @subject.Grade
-                        </td>
+                <table style="border: 1px solid #808080">
+                    <tr style="background-color: #808080; color: white">
+                        <th style="padding-left: 5px">Предмет
+                        </th>
+                        <th style="padding-right: 5px">Оценка
+                        </th>
+                        <th style="padding-right: 5px">Кредити
+                        </th>
                     </tr>
+                    @foreach (var subject in @Model.FMIInfo.Bachelor.Subjects)
+                    {
+                        if (subject.IsVisible)
+                        {            
+                        <tr>
+                            <td>
+                                @subject.Name
+                            </td>
+                            <td style="vertical-align: middle">
+                                @subject.Grade
+                            </td>
+                            <td style="vertical-align: middle">
+                                @subject.Credits
+                            </td>
+                        </tr>
+                        }
                     }
-                }
-            </table>
+                </table>
             }
         </div>
     </figcaption>

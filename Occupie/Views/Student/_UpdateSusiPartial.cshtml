@@ -1,0 +1,59 @@
+﻿@model Occupie.Models.LoginModel
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Ajax.BeginForm("UpdateSusi", new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "target",
+                            OnSuccess = "onSuccess",
+                            OnFailure = "onFailure"
+                        }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(model => model.UserName)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.Password)
+            <br />
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>       
+    
+    <div id="error"></div>
+        <p>
+            <input type="submit" value="Обнови" />
+            <input type="button" id="cancelAdd" value="Отказ" onclick="closeSusiDialog()" />
+        </p>
+}
+
+<script>
+    function onSuccess(ok,status,response) {
+        updateSusi(response.responseText);
+        closeSusiDialog();
+    }
+
+    function onFailure() {
+        $("#error").text("Паролата е невалидна.");        
+    }
+
+    function closeSusiDialog() {
+        $("#susiDialog").dialog("close");
+    }
+
+    function updateSusi(password) {
+
+        $.ajax({
+            url: '/Student/RefreshSusi',
+            dataType: 'html',
+            success: function (data) {
+                $("#edit-edu").html(data);
+            }
+        });
+    }
+</script>

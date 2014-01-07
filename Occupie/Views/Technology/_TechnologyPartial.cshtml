@@ -2,13 +2,13 @@
 
 @if (Model.Technologies == null || Model.Technologies.Count == 0)
 {
-    <p>You have not added any technologies yet!</p>
+    <p>Все още не си добавил никакви технологии!</p>
 }
 else
 {
     for (int i = 0; i < Model.Technologies.Count; i++)
     {
-    <div id="tech@(i)">
+    <div id="tech@(i)" class="tech-item">
         <div class="editor-label">
             @Html.LabelFor(model => model.Technologies[i].Name)
         </div>
@@ -28,12 +28,16 @@ else
 
         <div class="dialog" id="delTechDialog" style="display: none;"></div>
 
-        <p class="alignright">
-            @Ajax.ActionLink("Изтрий технология", "DeleteTechnology", "Technology", new { techId = Model.Technologies[i].TechId, listId = i }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "delTechDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openDelTechPopup()" })<br />
-        </p>
-        <hr />
-        <div style="clear: both"></div>
+        <div class="del-link">
+            @Ajax.ActionLink("Изтрий", "DeleteTechnology", "Technology", new { techId = Model.Technologies[i].TechId, listId = i }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "delTechDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openDelTechPopup()" })<br />
+        </div>
     </div>
+    
+    if ((i + 1) % 3 == 0)
+    {        
+        <div style="clear: both"></div>
+        <hr class="full-hr" />
+    }
     }
 }
 

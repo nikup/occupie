@@ -44,10 +44,10 @@ body {
   border-top: 3px solid #cb5432;
 }
 #nav span:hover {
-  -webkit-transform: translate(-10px, -3px);
+  /*-webkit-transform: translate(-10px, -3px);
   -moz-transform: translate(-10px, -3px);
   -o-transform: translate(-10px, -3px);
-  transform: translate(-10px, -3px);
+  transform: translate(-10px, -3px);*/
 }
 #nav > li.current-menu-item > a,
 #nav > li.current_page_item > a {
@@ -120,6 +120,21 @@ body {
 #portfolio-content #filter-container a:hover {
   color: #cb5432;
 }
+
+
+#filter-container-edit figure {
+  background: #f8f5f2;
+  position:relative;
+}
+
+/* PORTFOLIO ----------------------------------------------------*/#portfolio-content #filter-container-edit a {
+  color: #888;
+}
+#portfolio-content #filter-container-edit a:hover {
+  color: #cb5432;
+}
+
+
 #portfolio-content .project-pager a {
   color: #444444;
 }
@@ -133,10 +148,10 @@ body {
   color: #f1f1f1;
   background: #cb5432;
 }
-/* PORTFOLIO EDIT ----------------------------------------------------*/#portfolio-content-edit #filter-container a {
+/* PORTFOLIO EDIT ----------------------------------------------------*/#portfolio-content-edit #filter-container-edit a {
   color: #888;
 }
-#portfolio-content-edit #filter-container a:hover {
+#portfolio-content-edit #filter-container-edit a:hover {
   color: #cb5432;
 }
 #portfolio-content-edit .project-pager a {

@@ -18,11 +18,13 @@ namespace Occupie.ViewModels
 
 		public List<string> Technologies { get; set; }
 
-		public int Year { get; set; }
+		public string Year { get; set; }
 
 		public string Programme { get; set; }
 
 		public List<string> Languages { get; set; }
+
+        public string CurrentAverageGrade { get; set; }
 
 		// Must be a number but is actually a string to print percentage signs
 		public string Relevance { get; set; }

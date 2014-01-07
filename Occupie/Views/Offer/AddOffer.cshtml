@@ -4,12 +4,14 @@
     ViewBag.Title = "Добави обява";
 }
 
-<h2>@ViewBag.Title</h2>
+<div id="add-offer">
 
-@using (Html.BeginForm("AddOffer", "Offer"))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    <h2>@ViewBag.Title</h2>
+
+    @using (Html.BeginForm("AddOffer", "Offer"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
 
         <div class="editor-label">
@@ -82,15 +84,16 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.Salary)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Salary)
+        <div class="editor-field-salary">
+            @Html.EditorFor(model => model.Salary, new { @id = "salary" })
             @Html.ValidationMessageFor(model => model.Salary)
-        </div>
-
+        </div>    
         <p>
             <input type="submit" value="Добави" />
-        </p>
-}
+        </p>    
+    }
+
+</div>
 
 <script>
     $("#DailyWorkTime").kendoDropDownList();

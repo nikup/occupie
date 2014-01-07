@@ -19,11 +19,178 @@
     display: table;
 }
 
+div.job-item {
+    float: left;
+    margin: 0 53px;
+    text-align: center;
+}
+
+div.project-item {
+    float: left;
+    margin: 0 18px;
+    text-align: center;
+}
+
+div.lang-item {
+    float: left;
+    margin: 0 54px;
+    text-align: center;
+}
+
+div.tech-item {
+    float: left;
+    margin: 0 54px;
+    text-align: center;
+}
+
+
+div#logo {
+    text-align: center;
+}
+
+hr.full-hr {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.editor-multiline-field textarea {
+    width: 260px;
+    height: 200px;
+}
+
 div.email-warning {
     text-align: center;
     padding: 10px;
     width: 100%;
     border: 3px solid #cb5432;
+}
+
+#add-offer {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+    #add-offer table {
+        margin: 0 auto;
+    }
+
+    #add-offer form {
+        margin: 20px 0;
+    }
+
+    #add-offer .editor-field, .editor-field-salary {
+        margin-bottom:10px;
+    }
+
+    #add-offer input[type="text"], #add-offer textarea {
+        width:50%;
+    }
+
+        #add-offer .editor-field-salary input[type="text"] {
+            width:100%;
+        }
+
+#login-form {
+    width: 370px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+input#UserName, input#Password, input#login-button {
+    width: 60%;
+}
+
+div.add-link a {
+    background-image: url(../img/mono-icons/plus32.png);
+    background-position: left;
+    background-repeat: no-repeat;
+    padding-left: 35px;
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    height: 30px;
+}
+
+div.triangle {
+    background-image: url(../img/triangle.png);
+    background-position: left;
+    background-repeat: no-repeat;
+    padding-left: 17px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 18px;
+}
+
+#courses-panelbar {
+    margin-bottom: 10px;
+}
+
+div.del-link {
+    margin: 5px 0;
+}
+
+    div.del-link a {
+        background-image: url(../img/mono-icons/minus32.png);
+        background-position: left;
+        background-repeat: no-repeat;
+        padding-left: 35px;
+        height: 30px;
+        display: inline-block;
+    }
+
+table#fmi-table td label {
+    width: 100%;
+    display: block;
+}
+
+td.filter-label-left {
+    text-align: left;
+}
+
+td.filter-label-right {
+    text-align: right;
+    padding-right: 5px;
+}
+
+td.filter-value {
+    text-align: left;
+    padding-right: 10px;
+}
+
+
+#grid-offers {
+    margin-bottom: 30px;
+}
+
+.empty-row {
+    height: 20px;
+}
+
+span#average-grade {
+    background-color: #808080;
+    color: white;
+    font-size: 22px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.filter-table {
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 10px;
+    width: 70%;
+}
+
+.filter-div table tr td {
+    padding: 5px, 0;
+}
+
+#update-button {
+    padding-top: 5px;
+    text-align: right;
+    font-weight: bold;
 }
 
 .cf:after {
@@ -40,9 +207,13 @@ hr {
     width: 90%;
 }
 
-#grid-offers {
-    margin: 30px;
+.filter-div {
+    text-align: center;
 }
+
+    .filter-div form {
+        margin: 30px 0;
+    }
 
 .leftNav {
     position: fixed;
@@ -67,6 +238,7 @@ div.display-label {
     margin: 0 auto;
     width: 940px;
     position: relative;
+    /*text-align:center;*/
 }
 
 body {
@@ -289,20 +461,15 @@ div#leftNav {
     }
 
 
-.form-edit{
-    text-align:center;
-    padding-bottom:30px;
-}
-
-#filter-container figure#persInfo, #filter-container figure#education, #filter-container figure#experience, #filter-container figure#personal {
-    /*border-top: 3px solid #cb5432;*/
+.form-edit {
     text-align: center;
-    width: 940px;
+    padding-bottom: 30px;
 }
 
 div.info-padding {
     padding-left: 240px;
     padding-right: 40px;
+    margin-bottom: 20px;
 }
 
 div.exp-padding {
@@ -314,6 +481,8 @@ div.exp-padding {
 div.edu-padding {
     padding-left: 140px;
     padding-right: 40px;
+    padding-bottom: 30px;
+    height: 100%;
 }
 
 .alignleft {
@@ -508,7 +677,7 @@ body.home #main {
 
 #filter-container {
     width: 965px;
-    margin-bottom: 60px;
+    /*margin-bottom: 60px;*/
     /* Fixes shadow and margin right */
     padding-left: 5px;
     padding-top: 5px;
@@ -577,6 +746,61 @@ body #filter-container figure.figure-edit-page {
             display: block;
             margin: 10px 0px;
         }
+
+/* EDIT */
+#filter-container-edit {
+    width: 965px;
+    /* Fixes shadow and margin right */
+    padding-left: 5px;
+    padding-top: 5px;
+    margin-left: -5px;
+}
+
+body #filter-container-edit figure.figure-edit-page {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+#filter-container-edit figure {
+    text-align: center;
+    width: 940px;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 30px;
+    -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    -o-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+
+
+    #filter-container-edit figure figcaption {
+        margin: 18px 10px 20px 10px;
+        text-align: center;
+        align-content: center;
+        align-items: center;
+    }
+
+        #filter-container-edit figure figcaption ul {
+            display: inline-block;
+        }
+
+        #filter-container-edit figure figcaption .heading {
+            margin-bottom: 13px;
+            font-size: 32px;
+            line-height: 1.2em;
+            text-transform: uppercase;
+            display: block;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+        #filter-container-edit figure figcaption .readmore {
+            display: block;
+            margin: 10px 0px;
+        }
 /* PAGE ----------------------------------------------------*/ #page-content,
 #page-content-sb {
     position: relative;
@@ -622,7 +846,7 @@ body #filter-container figure.figure-edit-page {
 }
 
     #portfolio-content #filter-container {
-        margin-bottom: 60px;
+        /*margin-bottom: 60px;*/
     }
 
         #portfolio-content #filter-container .heading {
@@ -696,17 +920,17 @@ body #filter-container figure.figure-edit-page {
     margin-top: 30px;
 }
 
-    #portfolio-content-edit #filter-container {
+    #portfolio-content-edit #filter-container-edit {
         margin-bottom: -10px;
     }
 
-        #portfolio-content-edit #filter-container .heading {
+        #portfolio-content-edit #filter-container-edit .heading {
             border: none;
             margin-bottom: 10px;
             padding-bottom: 0px;
         }
 
-        #portfolio-content-edit #filter-container .portfolio-cat {
+        #portfolio-content-edit #filter-container-edit .portfolio-cat {
             font-style: italic;
         }
 
@@ -1095,10 +1319,10 @@ body.single #posts-list {
     }
 
         #social-bar li:hover {
-            -webkit-transform: translate(0px, -5px);
+            /*-webkit-transform: translate(0px, -5px);
             -moz-transform: translate(0px, -5px);
             -o-transform: translate(0px, -5px);
-            transform: translate(0px, -5px);
+            transform: translate(0px, -5px);*/
         }
 /* FOOTER ------------------------------------------------------------*/
 footer {

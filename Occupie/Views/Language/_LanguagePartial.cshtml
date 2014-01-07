@@ -2,13 +2,13 @@
 
 @if (Model.Languages == null || Model.Languages.Count == 0)
 {
-    <p>You have not added any languages yet!</p>
+    <p>Все още не си добавил никакви езици!</p>
 }
 else
 {
     for (int i = 0; i < Model.Languages.Count; i++)
     {
-    <div id="language@(i)">
+    <div id="language@(i)" class="lang-item">
         <div class="editor-label">
             @Html.LabelFor(model => model.Languages[i].Name)
         </div>
@@ -27,19 +27,23 @@ else
 
         <div class="dialog" id="delLangDialog" style="display: none;"></div>
 
-        <p class="alignright">
-            @Ajax.ActionLink("Изтрий език", "DeleteLanguage", "Language", new { langId = Model.Languages[i].LangId, listId = i }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "delLangDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openDelLangPopup()" })<br />
-        </p>
-        <hr />
-        <div style="clear: both"></div>
-    </div>
+        <div class="del-link">
+            @Ajax.ActionLink("Изтрий", "DeleteLanguage", "Language", new { langId = Model.Languages[i].LangId, listId = i }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "delLangDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openDelLangPopup()" })<br />
+        </div>
+    </div> 
+       
+        if ((i + 1) % 3 == 0)
+        {
+            <div style="clear: both"></div>
+            <hr class="full-hr" />
+        }
     }
 }
 
 <script>
     $(document).ready(function () {
         $("#delLangDialog").dialog(
-            {                
+            {
                 autoOpen: false,
                 width: 300,
                 height: 'auto',

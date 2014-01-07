@@ -16,7 +16,7 @@ namespace Occupie.Managers
         private OccupieDb db = new OccupieDb();
         private UsersContext context = new UsersContext();
 
-		private static Dictionary<string, Specialty> programmeMapping = new Dictionary<string,Specialty>()
+        private static Dictionary<string, Specialty> programmeMapping = new Dictionary<string, Specialty>()
 		{
 			{ "СИ(рб)", Specialty.Software_Engineering },
 			{ "КН(рб)", Specialty.Computer_Science },
@@ -44,7 +44,7 @@ namespace Occupie.Managers
                 db.SaveChanges();
             }
             catch (Exception e)
-            {                
+            {
                 throw;
             }
         }
@@ -88,6 +88,8 @@ namespace Occupie.Managers
                     {
                         dbEntry.FMIInfo.Bachelor.Subjects[i].IsVisible = student.FMIInfo.Bachelor.Subjects[i].IsVisible;
                     }
+
+                    dbEntry.FMIInfo.Bachelor.IsAverageGradeVisible = student.FMIInfo.Bachelor.IsAverageGradeVisible;
                 }
 
                 // Experience
@@ -114,7 +116,7 @@ namespace Occupie.Managers
                         dbEntry.Technologies[i] = student.Technologies[i];
                     }
                 }
-                
+
 
                 dbEntry.WorkTimePreference = student.WorkTimePreference;
                 dbEntry.WorkStatus = student.WorkStatus;
@@ -161,11 +163,12 @@ namespace Occupie.Managers
                 {
                     Id = st.UserId,
                     Programme = EnumTranslator.Specialities[st.FMIInfo.Bachelor.Specialty],
-                    Year = st.FMIInfo.Bachelor.CurrentCourse,
-                    CurrentJob = hasJob ? st.Jobs.FirstOrDefault(j => j.IsCurrent).Position + Utilities.GetCorrectPrepositionV(st.Jobs.FirstOrDefault(j => j.IsCurrent).Company) + st.Jobs.FirstOrDefault(j => j.IsCurrent).Company : "не работи",
+                    Year = st.FMIInfo.Bachelor.CurrentCourse.ToRoman(),
+                    CurrentJob = hasJob ? st.Jobs.FirstOrDefault(j => j.IsCurrent).Position + Utilities.GetCorrectPrepositionV(st.Jobs.FirstOrDefault(j => j.IsCurrent).Company) + st.Jobs.FirstOrDefault(j => j.IsCurrent).Company : "",
                     FullName = st.FirstName + " " + st.LastName,
                     PictureString = "data:image;base64," + System.Convert.ToBase64String(st.Picture),
-                    Technologies = st.Technologies.FindAll(t => ((int)t.Proficiency >= 2)).OrderByDescending(o=>o.Proficiency).Select(x=>x.Name).Take(10).ToList()
+                    Technologies = st.Technologies.FindAll(t => ((int)t.Proficiency >= 2)).OrderByDescending(o => o.Proficiency).Select(x => x.Name).Take(10).ToList(),
+                    CurrentAverageGrade = st.FMIInfo.Bachelor.IsAverageGradeVisible ? "("+ st.FMIInfo.Bachelor.CurrentAverageGrade.ToString("F")+")":"",
                 });
             }
 
@@ -177,14 +180,15 @@ namespace Occupie.Managers
             student.FirstName = studentInfo.FirstName;
             student.LastName = studentInfo.LastName;
 
-			Tuple<int, int> startEndYears = studentInfo.GetStartEndYear();
+            Tuple<int, int> startEndYears = studentInfo.GetStartEndYear();
             Bachelor bachelor = new Bachelor
             {
                 StartYear = startEndYears.Item1,
-				EndYear = startEndYears.Item2,
-				CurrentCourse = studentInfo.Year,
+                EndYear = startEndYears.Item2,
+                CurrentCourse = studentInfo.Year,
                 Specialty = StudentManager.programmeMapping[studentInfo.Programme],
                 Subjects = courseInfo.Select(x => x.ToSubject()).ToList(),
+                CurrentAverageGrade = courseInfo.Average(x => x.Grade)
             };
 
             FMIEdu fmiEdu = new FMIEdu
@@ -193,6 +197,8 @@ namespace Occupie.Managers
             };
 
             student.FMIInfo = fmiEdu;
+
+            db.SaveChanges();
         }
     }
 }

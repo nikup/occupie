@@ -5,8 +5,8 @@
                         {
                             HttpMethod = "POST",
                             InsertionMode = InsertionMode.Replace,
-                            UpdateTargetId = "target",
-                            OnSuccess = "deleteTech(" + Model[1] + ")"
+                            UpdateTargetId = "edit-personal",
+                            OnSuccess = "closeDelTechDialog()"
                         }))
 {
     @Html.AntiForgeryToken()
@@ -23,7 +23,6 @@
 
 <script>
     function deleteTech(id) {
-        $("#tech" + id).remove();
         closeDelTechDialog();
     }
 

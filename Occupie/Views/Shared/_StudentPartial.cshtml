@@ -1,5 +1,5 @@
 ﻿<ul>
-    <li>@Html.ActionLink("Профил", "Profile", "Student", new {profileId = WebSecurity.CurrentUserId },  new { @class = "username" })</li>
+    <li>@Html.ActionLink("Профил", "Profile", "Student", new {userId = WebSecurity.CurrentUserId },  new { @class = "username" })</li>
     <li>@Html.ActionLink("Промени", "Edit", "Student")</li>
     <li>@using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
         {

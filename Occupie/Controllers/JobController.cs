@@ -9,23 +9,22 @@ using WebMatrix.WebData;
 
 namespace Occupie.Controllers
 {
-    public class JobController : Controller
+    public class JobController : BaseController
     {
-        private StudentManager manager = new StudentManager();
-        private OccupieDb db = new OccupieDb();
-
         [HttpPost]
-        public void AddJob(Job job)
+        public ActionResult AddJob(Job job)
         {
             if (ModelState.IsValid)
             {
-                var student = manager.GetStudentByUserId(WebSecurity.CurrentUserId);
+                var student = studentManager.GetStudentByUserId(WebSecurity.CurrentUserId);
 
                 db.Jobs.Add(job);
                 db.Students.FirstOrDefault(x => x.UserId == WebSecurity.CurrentUserId).Jobs.Add(job);
 
                 db.SaveChanges();
             }
+
+            return PartialView("../Student/_EditExperiencePartial", studentManager.GetStudentByUserId(WebSecurity.CurrentUserId));
         }
 
         [HttpGet]
@@ -41,16 +40,12 @@ namespace Occupie.Controllers
         }
 
         [HttpPost]
-        public void DeleteJob(int jobId)
+        public ActionResult DeleteJob(int jobId)
         {
             db.Students.FirstOrDefault(x => x.UserId == WebSecurity.CurrentUserId).Jobs.RemoveAll(x => x.JobId == jobId);
             db.SaveChanges();
-        }
 
-        [HttpGet]
-        public PartialViewResult RefreshJobs()
-        {
-            return PartialView("../Job/_JobPartial", manager.GetStudentByUserId(WebSecurity.CurrentUserId));
+            return PartialView("../Student/_EditExperiencePartial", studentManager.GetStudentByUserId(WebSecurity.CurrentUserId));
         }
     }
 }

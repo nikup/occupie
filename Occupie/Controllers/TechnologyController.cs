@@ -9,29 +9,28 @@ using WebMatrix.WebData;
 
 namespace Occupie.Controllers
 {
-    public class TechnologyController : Controller
+    public class TechnologyController : BaseController
     {
-        private StudentManager manager = new StudentManager();
-        private OccupieDb db = new OccupieDb();
-
         [HttpPost]
-        public void AddTechnology(Technology tech)
+        public ActionResult AddTechnology(Technology tech)
         {
             if (ModelState.IsValid)
             {
-                var student = manager.GetStudentByUserId(WebSecurity.CurrentUserId);
+                var student = studentManager.GetStudentByUserId(WebSecurity.CurrentUserId);
 
                 db.Technologies.Add(tech);
                 db.Students.FirstOrDefault(x => x.UserId == WebSecurity.CurrentUserId).Technologies.Add(tech);
 
                 db.SaveChanges();
             }
+
+            return PartialView("../Student/_EditPersonalPartial", studentManager.GetStudentByUserId(WebSecurity.CurrentUserId));
         }
 
         [HttpGet]
         public PartialViewResult RefreshTechnologies()
         {
-            return PartialView("../Technology/_TechnologyPartial", manager.GetStudentByUserId(WebSecurity.CurrentUserId));
+            return PartialView("../Technology/_TechnologyPartial", studentManager.GetStudentByUserId(WebSecurity.CurrentUserId));
         }
 
         [HttpGet]
@@ -47,10 +46,12 @@ namespace Occupie.Controllers
         }
 
         [HttpPost]
-        public void DeleteTechnology(int techId)
+        public ActionResult DeleteTechnology(int techId)
         {
             db.Students.FirstOrDefault(x => x.UserId == WebSecurity.CurrentUserId).Technologies.RemoveAll(x => x.TechId == techId);
             db.SaveChanges();
+
+            return PartialView("../Student/_EditPersonalPartial", studentManager.GetStudentByUserId(WebSecurity.CurrentUserId));
         }
     }
 }

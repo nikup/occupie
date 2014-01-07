@@ -1,39 +1,40 @@
 ﻿@model Occupie.Models.Student
 
 <script src="~/js/jquery-ui-1.10.3.custom.js"></script>
+
 <figure class="personal" id="personal">
     <figcaption>
-        <h4 class="heading">Лична информация</h4>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.DateOfBirth)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.DateOfBirth)
-            @Html.ValidationMessageFor(model => model.DateOfBirth)
-        </div>
+        <h4 class="heading">Езици</h4>
+        <div>
+            @* Languages *@
+            <div id="languagePartial">
+                @Html.Partial("../Language/_LanguagePartial")
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Town)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Town)
-            @Html.ValidationMessageFor(model => model.Town)
-        </div>
+            <div class="add-link">
+                @Ajax.ActionLink("Добави", "AddLanguage", "Language", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "langDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openLangPopup" })<br />
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.InterestsString) (раздели със запетаи)
+            <div class="dialog" id="langDialog" style="display: none;"></div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.InterestsString)
-            @Html.ValidationMessageFor(model => model.InterestsString)
-        </div>
-        <div id="languagePartial">
-            @Html.Partial("../Language/_LanguagePartial")
-        </div>
+    </figcaption>
+</figure>
 
-        @Ajax.ActionLink("Добави език", "AddLanguage", "Language", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "langDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openLangPopup" })<br />
+<figure class="personal" id="personal">
+    <figcaption>
+        <h4 class="heading">Технологии</h4>
+        <div>
+            @* Technologies *@
+            <div id="techPartial">
+                @Html.Partial("../Technology/_TechnologyPartial")
+            </div>
 
-        <div class="dialog" id="langDialog" style="display: none;"></div>
+            <div class="add-link">
+                @Ajax.ActionLink("Добави", "AddTechnology", "Technology", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "techDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openTechPopup" })<br />
+            </div>
+            @* Technologies *@
+        </div>
+        <div class="dialog" id="techDialog" style="display: none;"></div>
     </figcaption>
 </figure>
 
@@ -52,25 +53,32 @@
         $("#langDialog").dialog("open");
     }
 
+    $(document).ready(function () {
+        $("#techDialog").dialog(
+            {
+                autoOpen: false,
+                width: 300,
+                height: 'auto',
+                modal: true
+            }
+        );
+    });
+    function openTechPopup() {
+        $("#techDialog").dialog("open");
+    }
+
+    function deleteTech(id) {
+        $("#tech" + id).remove();
+    }
+
 </script>
 
 <script>
-    var curYear = '@DateTime.Now.Year';
-    var curMonth = '@DateTime.Now.Month';
-    var curDay = '@DateTime.Now.Day';
-
-
-    $("#DateOfBirth").kendoDatePicker(
-        {
-            format: "dd MMMM yyyy",
-            start: "century",
-            depth: "month",
-            culture: "bg-BG",
-            value: new Date('@Model.GetDateOfBirth()'),
-            max: new Date(curYear, curMonth - 1, curDay)
-        });
-
         for (var i = 0; i < ('@Model.Languages.Count') ; i++) {
         $("#Languages_" + i + "__Proficiency").kendoDropDownList();
+    }
+
+    for (var i = 0; i < ('@Model.Technologies.Count') ; i++) {
+        $("#Technologies_" + i + "__Proficiency").kendoDropDownList();
     }
 </script>

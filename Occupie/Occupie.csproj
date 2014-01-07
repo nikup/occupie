@@ -69,6 +69,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -201,6 +202,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\EmployerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
@@ -225,6 +227,7 @@
     <Compile Include="Mailer\IMailModel.cs" />
     <Compile Include="Mailer\IUserMailer.cs" />
     <Compile Include="Mailer\UserMailer.cs" />
+    <Compile Include="Models\BlogPost.cs" />
     <Compile Include="OccupieDb.cs" />
     <Compile Include="Managers\EmployerManager.cs" />
     <Compile Include="Managers\OfferManager.cs" />
@@ -245,6 +248,7 @@
     <Compile Include="Models\Education\Subject.cs" />
     <Compile Include="Models\Personal\Technology.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RSSreader\Reader.cs" />
     <Compile Include="SusiParser\CourseInfo.cs" />
     <Compile Include="SusiParser\StudentInfo.cs" />
     <Compile Include="SusiParser\SusiParser.cs" />
@@ -499,6 +503,7 @@
     <Content Include="img\social\blogger20.png" />
     <Content Include="img\social\email16.png" />
     <Content Include="img\social\email20.png" />
+    <Content Include="img\triangle.png" />
     <Content Include="js\.DS_Store" />
     <Content Include="js\jquery-ui-1.10.3.custom.js" />
     <Content Include="js\prettyPhoto\images\.DS_Store" />
@@ -510,6 +515,8 @@
     <Content Include="App_Data\courses.json" />
     <Content Include="External Libraries\NuGet.Config" />
     <Content Include="External Libraries\NuGet.targets" />
+    <Content Include="ClassDiagram.cd" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="img\arrow-down.png" />
     <Content Include="img\arrow-left-dark.png" />
@@ -1038,13 +1045,13 @@
     <Content Include="Views\Student\_EditExp.cshtml" />
     <Content Include="Views\Mailer\_LayoutEmail.cshtml" />
     <Content Include="Views\Home\ChangeEmail.cshtml" />
+    <Content Include="Views\Student\_UpdateSusiPartial.cshtml" />
+    <Content Include="Views\Account\Empl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Employer\Profile.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="supersecretimg\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

@@ -15,15 +15,15 @@ namespace Occupie.ViewModels
         [DataType(DataType.Upload)]
         public byte[] Picture { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [StringLength(20)]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [StringLength(20)]
         public string LastName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 

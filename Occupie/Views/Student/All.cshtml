@@ -4,14 +4,10 @@
     ViewBag.Title = "Студенти";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title</h1>
-</hgroup>
 
 @Html.Partial("_FilterStudentsPartial", new StudentAllViewModel())
 
 
-<br />
 @*@(Html.Kendo()
     .Grid<Occupie.ViewModels.StudentAllViewModel>()
     .Name("grid-students")
@@ -50,7 +46,7 @@
 
 <script type="text/x-kendo-tmpl" id="template2">
 
-    <a href="/Student/Profile/?profileId=#:Id#" class="student">
+    <a href="/Student/Profile/?userId=#:Id#" class="student">
         <div id="student-container">
             <figure>
             <figcaption>
@@ -62,7 +58,7 @@
         <td class="info">
     <div>
             <p>#:CurrentJob#</p>
-            <p>#:Year# курс #:Programme#</p>
+            <p>#:Year# курс #:Programme# <span class="strong">#:CurrentAverageGrade#<span></p>
     # for (var i = 0; i < Technologies.length; i++) { #
               <div class="list-item">${ Technologies[i] }</div>
          # } #
@@ -74,7 +70,7 @@
              <h3 class="name">#:FullName#</h3> 
         </td>
     </tr>
-</table>  
+</table>  <div class="triangle"></div>
                     </figcaption>
         </figure>
         </div>                

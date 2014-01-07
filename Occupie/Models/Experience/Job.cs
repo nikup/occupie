@@ -15,12 +15,12 @@ namespace Occupie.Models
 		[Display(Name = "Текуща")]
         public bool IsCurrent { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [StringLength(30)]
 		[Display(Name = "Позиция")]
         public string Position { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [StringLength(20)]
 		[Display(Name = "Компания")]
         public string Company { get; set; }

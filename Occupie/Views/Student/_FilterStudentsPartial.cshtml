@@ -1,56 +1,65 @@
 ﻿@model Occupie.ViewModels.StudentAllViewModel
 
 <script src="~/js/jquery-ui-1.10.3.custom.js"></script>
-<figure class="main isotope-item" style="width:100%" id="experience">
+<figure class="main isotope-item" style="width: 100%" id="experience">
     <figcaption>
-		<h4 class="heading">Филтър</h4>
-		<div class="editor-field">
-			@using (Html.BeginForm("FilterStudents", "Student", FormMethod.Post, 
+        <div class="editor-field filter-div">
+            <h2>@ViewBag.Title</h2>
+            @using (Html.BeginForm("FilterStudents", "Student", FormMethod.Post,
                                       new { enctype = "multipart/form-data" }))
-			{
-                <table style="margin-left: auto; margin-right: auto;">
+            {
+                <table class="filter-table">
                     <tr>
-                        <td style="text-align: right">
-                            Технологии:
+                        <td class="filter-label-right">Технологии:
                         </td>
-                        <td style="text-align: left">
-				            @Html.TextBoxFor(model => model.Technologies)
+                        <td class="filter-value">
+                            @Html.TextBoxFor(model => model.Technologies, new { @style = "width: 100%" })
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-align: right">
-				            Езици:
+                        <td class="filter-label-right">Езици:
                         </td>
-                        <td style="text-align: left">
-				            @Html.TextBoxFor(model => model.Languages)
+                        <td class="filter-value">
+                            @Html.TextBoxFor(model => model.Languages, new { @style = "width: 100%" })
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-align: right">
-				            Курс:
+                        <td class="filter-label-right">Минимален курс:
                         </td>
-                        <td style="text-align: left">
-				            @Html.TextBoxFor(model => model.Year)
+                        <td class="filter-value">
+                            @Html.DropDownListFor(model => model.Year, new SelectList(Occupie.Utilities.GetCourseNumbers().OrderBy(x => int.Parse(x.Value)), "Value", "Text"))
+                        </td>
+                    </tr>
+
+                    <tr><td colspan="3" class="empty-row"></td></tr>
+
+                    <tr>
+                        <td colspan="2">
+                            @Html.Kendo().PanelBar().Name("courses-panelbar").Items(panelbar =>
+                    {
+                        foreach (var entry in SusiParser.CourseInfo.PartitionCoursesByCategory())
+                        {
+                            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+                            foreach (string course in entry.Value)
+                            {
+                                builder.Append(string.Format(@"<input type=""checkbox"" name=""{0}"" id=""{0}""/><label for=""{0}"">{0}</label><br>", course));
+                            }
+
+                            panelbar.Add().Text(entry.Key).Content(builder.ToString());
+                        }
+                    })
                         </td>
                     </tr>
                 </table>
-				@Html.Kendo().PanelBar().Name("courses-panelbar").Items(panelbar => 
-					{
-						foreach (var entry in  SusiParser.CourseInfo.PartitionCoursesByCategory())
-						{
-							System.Text.StringBuilder builder = new System.Text.StringBuilder();
-							foreach (string course in entry.Value)
-							{
-								builder.Append(string.Format(@"<input type=""checkbox"" name=""{0}"" id=""{0}""/><label for=""{0}"">{0}</label><br>", course));
-							}
+                
+               
+                <input type="submit" value="Филтрирай" />
+            }
 
-							panelbar.Add().Text(entry.Key).Content(builder.ToString());
-						}
-					});
-				<br />
-				<input type="submit" value="Изпрати ме" />
-			}
-			
-		</div>
+        </div>
     </figcaption>
 </figure>
+
+<script>
+    $("#Year").kendoDropDownList();
+</script>

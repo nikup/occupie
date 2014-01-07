@@ -7,7 +7,7 @@
                         {
                             HttpMethod = "POST",
                             InsertionMode = InsertionMode.Replace,
-                            UpdateTargetId = "target",
+                            UpdateTargetId = "edit-personal",
                             OnSuccess = "onSuccess"
                         }))
 {
@@ -34,25 +34,14 @@
 
 
         <p>
-            <input type="submit" value="Add" />
-            <input type="button" id="cancelAdd" value="Cancel" onclick="closeTechDialog()" />
+            <input type="submit" value="Добави" />
+            <input type="button" id="cancelAdd" value="Отказ" onclick="closeTechDialog()" />
         </p>
 }
 
 <script>
     function onSuccess(ok, status, response) {
-        addTechnology(response.responseText);
         closeTechDialog();
-    }
-
-    function addTechnology(techId) {
-        $.ajax({
-            url: '/Technology/RefreshTechnologies',
-            dataType: 'html',
-            success: function (data) {
-                $("#techPartial").html(data);
-            }
-        });
     }
 
     function closeTechDialog() {

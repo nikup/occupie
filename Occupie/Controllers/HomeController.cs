@@ -16,13 +16,9 @@ using System.Web.Security;
 
 namespace Occupie.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private const int NumberOfItemsToShow = 5;
-
-        private OccupieDb db = new OccupieDb();
-        private EmployerManager empManager = new EmployerManager();
-        private StudentManager studentManager = new StudentManager();
 
         public ActionResult Index()
         {
@@ -48,11 +44,11 @@ namespace Occupie.Controllers
 
             if (db.Employers.Count() < NumberOfItemsToShow)
             {
-                viewModel.Employers = empManager.GetEmployers();
+                viewModel.Employers = employerManager.GetEmployers();
             }
             else
             {
-                viewModel.Employers = empManager.GetEmployers().OrderBy(x => x.Id).Skip(db.Employers.Count() - NumberOfItemsToShow);
+                viewModel.Employers = employerManager.GetEmployers().OrderBy(x => x.Id).Skip(db.Employers.Count() - NumberOfItemsToShow);
             }
 
             var roles = (SimpleRoleProvider)Roles.Provider;
@@ -75,7 +71,7 @@ namespace Occupie.Controllers
 
         public ActionResult ReadEmployers([DataSourceRequest] DataSourceRequest request)
         {
-            return Json(empManager.GetEmployers().ToDataSourceResult(request));
+            return Json(employerManager.GetEmployers().ToDataSourceResult(request));
         }
 
         [HttpGet]

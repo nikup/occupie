@@ -13,11 +13,8 @@ using System.Web.Helpers;
 
 namespace Occupie.Controllers
 {
-    public class EmployerController : Controller
+    public class EmployerController : BaseController
     {
-        private EmployerManager empManager = new EmployerManager();
-        private OccupieDb db = new OccupieDb();
-
         //
         // GET: /Employer/Profile
 
@@ -26,11 +23,11 @@ namespace Occupie.Controllers
             Employer employer;
             if (id == 0)
             {
-                employer = empManager.GetEmployerByUserId(WebSecurity.CurrentUserId);
+                employer = employerManager.GetEmployerByUserId(WebSecurity.CurrentUserId);
             }
             else
             {
-                employer = empManager.GetEmployerByUserId(id);
+                employer = employerManager.GetEmployerByUserId(id);
             }
 
             return View(employer);
@@ -42,7 +39,7 @@ namespace Occupie.Controllers
 
         public ActionResult Edit()
         {
-            Employer employer = empManager.GetEmployerByUserId(WebSecurity.CurrentUserId);
+            Employer employer = employerManager.GetEmployerByUserId(WebSecurity.CurrentUserId);
             return View(employer);            
         }
 
@@ -53,7 +50,7 @@ namespace Occupie.Controllers
         {
             if (ModelState.IsValid)
             {
-                empManager.SaveEmployer(employer);
+                employerManager.SaveEmployer(employer);
                 return RedirectToAction("Profile");
             }
             else
@@ -67,12 +64,12 @@ namespace Occupie.Controllers
 
         public ActionResult All()
         {
-            return View(empManager.GetEmployers());
+            return View(employerManager.GetEmployers());
         }
 
         public ActionResult ReadEmployers([DataSourceRequest] DataSourceRequest request)
         {
-            return Json(empManager.GetEmployers().ToDataSourceResult(request));
+            return Json(employerManager.GetEmployers().ToDataSourceResult(request));
         }
 
         [HttpGet]

@@ -2,28 +2,28 @@
 
 @if (Model.Facebook != null || Model.GooglePlus != null || Model.LinkedIn != null || Model.Twitter != null || Model.Github != null)
 {
-    <figure class="personal">
+    <figure class="personal main">
         <figcaption>
             <ul id="social-bar" class="cf sb">
                 @if (Model.Facebook != null)
                 {
-                    <li><a href="@Model.Facebook" title="see my facebook" target="_blank" class="facebook"></a></li>
+                    <li><a href="@Model.Facebook" title="facebook" target="_blank" class="facebook"></a></li>
                 }
                 @if (Model.GooglePlus != null)
                 {
-                    <li><a href="@Model.GooglePlus" title="check me out on google+" target="_blank" class="plus"></a></li>
+                    <li><a href="@Model.GooglePlus" title="google+" target="_blank" class="plus"></a></li>
                 }
                 @if (Model.Twitter != null)
                 {
-                    <li><a href="@Model.Twitter" title="follow my tweets" target="_blank" class="twitter"></a></li>
+                    <li><a href="@Model.Twitter" title="twitter" target="_blank" class="twitter"></a></li>
                 }
                 @if (Model.LinkedIn != null)
                 {
-                    <li><a href="@Model.LinkedIn" title="connect with me on linkedin" target="_blank" class="linkedin"></a></li>
+                    <li><a href="@Model.LinkedIn" title="linkedin" target="_blank" class="linkedin"></a></li>
                 }
                 @if (Model.Github != null)
                 {
-                    <li><a href="@Model.Github" title="look at my code on github" target="_blank" class="github"></a></li>
+                    <li><a href="@Model.Github" title="github" target="_blank" class="github"></a></li>
                 }
             </ul>
         </figcaption>

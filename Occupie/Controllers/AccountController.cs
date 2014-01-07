@@ -17,12 +17,8 @@ using System.Diagnostics;
 namespace Occupie.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
-        private OccupieDb db = new OccupieDb();
-        private StudentManager studentManager = new StudentManager();
-        private EmployerManager employerManager = new EmployerManager();
-
         //
         // GET: /Account/Login
 
@@ -124,7 +120,7 @@ namespace Occupie.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
+            ModelState.AddModelError("", "Името или паролата са невалидни.");
             return View(model);
         }
 
@@ -215,14 +211,14 @@ namespace Occupie.Controllers
                 // Attempt to register the employer
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.CompanyName, model.Password);
-                    WebSecurity.Login(model.CompanyName, model.Password);
+                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+                    WebSecurity.Login(model.UserName, model.Password);
 
-                    int userId = int.Parse(Membership.GetUser(model.CompanyName).ProviderUserKey.ToString());
-                    employerManager.AddEmployer(userId);
+                    int userId = int.Parse(Membership.GetUser(model.UserName).ProviderUserKey.ToString());
+                    employerManager.AddEmployer(userId, model);
 
                     var roles = (SimpleRoleProvider)Roles.Provider;
-                    roles.AddUsersToRoles(new[] { model.CompanyName }, new[] { "employer" });
+                    roles.AddUsersToRoles(new[] { model.UserName }, new[] { "employer" });
 
                     if (returnUrl != null)
                     {

@@ -5,8 +5,8 @@
                         {
                             HttpMethod = "POST",
                             InsertionMode = InsertionMode.Replace,
-                            UpdateTargetId = "target",
-                            OnSuccess = "deleteProject(" + Model[1] + ")"
+                            UpdateTargetId = "edit-exp",
+                            OnSuccess = "closeDelProjectDialog()"
                         }))
 {
     @Html.AntiForgeryToken()
@@ -22,11 +22,6 @@
 
 
 <script>
-    function deleteProject(id) {
-        $("#project" + id).remove();
-        closeDelProjectDialog();
-    }
-
     function closeDelProjectDialog() {
         $(".ui-dialog:visible").find(".dialog").dialog("close");
     }

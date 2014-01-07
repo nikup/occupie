@@ -8,8 +8,36 @@ using Occupie.Models;
 
 namespace Occupie
 {
-    public class Utilities
+    public static class Utilities
     {
+        public static String ToRoman(this int course)
+        {
+            switch (course)
+            {
+                case 1: return "I";
+                case 2: return "II";
+                case 3: return "III";
+                case 4: return "IV";
+                case 5: return "V";
+                default:
+                    return "";
+            }
+        }
+
+        public static List<SelectListItem> GetCourseNumbers()
+        {
+            List<SelectListItem> years = new List<SelectListItem>();
+
+            years.Add(new SelectListItem { Value = "0", Text = "-" });
+
+            for (int i = 1; i <= 5; i++)
+            {
+                years.Add(new SelectListItem { Value = (i).ToString(), Text = (i).ToString() });
+            }
+
+            return years;
+        }
+
         public static List<SelectListItem> GetHighSchoolYears()
         {
             List<SelectListItem> years = new List<SelectListItem>();
@@ -38,7 +66,6 @@ namespace Occupie
 
             return years;
         }
-
 
         public static List<SelectListItem> GetWorkTimePreferences()
         {
@@ -122,5 +149,32 @@ namespace Occupie
 
             return " â ";
         }
+
+        //public static List<string> TechnologyNames = new List<string>()
+        //{
+        //    "C#",
+        //    "ASP .NET MVC",
+        //    ".NET",
+        //    "Javascript",
+        //    "Java",
+        //    "C++",
+        //};
+
+        //public static List<string> LanguageNames = new List<string>()
+        //{
+        //    "English",
+        //    "French",
+        //    "Russian",
+        //    "German",
+        //};
+
+        //public static List<string> InterestNames = new List<string>()
+        //{
+        //    "volleyball",
+        //    "tennis",
+        //    "blogging",
+        //    "music",
+        //};
+        
     }
 }

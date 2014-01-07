@@ -1,7 +1,7 @@
 ﻿@model Occupie.Models.Student
 <figure class="edu" id="education">
     <figcaption>
-        <h4 class="heading">Образование</h4>
+        @*<h4 class="heading">Образование</h4>*@
 
         <div class="edu-padding">
             <div class="alignleft">
@@ -36,41 +36,65 @@
                     @Html.EditorFor(model => model.HighSchoolInfo.Grade)
                     @Html.ValidationMessageFor(model => model.HighSchoolInfo.Grade)
                 </div>
+                <br />
             </div>
 
-            <table style="position: relative; left: 8em">
-                <tr style="background-color: #cb5432; color: white">
-                    <th style="padding-left: 5px">
-
+            <table id="fmi-table" style="position: relative; left: 8em">
+                <tr style="background-color: #808080; color: white">
+                    <th style="padding-left: 5px"></th>
+                    <th style="padding-left: 5px">Предмет
                     </th>
-                    <th style="padding-left: 5px">
-                        Предмет
+                    <th style="padding-left: 5px">Оценка
                     </th>
-                    <th style="padding-left: 5px">
-                        Оценка
-                    </th>
-                    <th style="padding-left: 5px; padding-right: 5px">
-                        Кредити
+                    <th style="padding-left: 5px; padding-right: 5px">Кредити
                     </th>
                 </tr>
+
                 @for (int i = 0; i < Model.FMIInfo.Bachelor.Subjects.Count; i++)
                 {    
                     <tr style="background-color: #ebe3db">
                         <td>
-                            @Html.CheckBoxFor(x => x.FMIInfo.Bachelor.Subjects[i].IsVisible)
+                            @Html.CheckBoxFor(x => x.FMIInfo.Bachelor.Subjects[i].IsVisible, new { @id = "check_" + i })
                         </td>
                         <td>
-                            <label>@Model.FMIInfo.Bachelor.Subjects[i].Name</label>
+                            <label for="check_@i">@Model.FMIInfo.Bachelor.Subjects[i].Name</label>
                         </td>
                         <td>
-                            <label>@Model.FMIInfo.Bachelor.Subjects[i].Grade</label>
+                            <label for="check_@i">@Model.FMIInfo.Bachelor.Subjects[i].Grade</label>
                         </td>
                         <td>
-                            <label>@Model.FMIInfo.Bachelor.Subjects[i].Credits</label>
+                            <label for="check_@i">@Model.FMIInfo.Bachelor.Subjects[i].Credits</label>
                         </td>
                     </tr>
+                    
+                    
                 }
+
+                @if (Model.FMIInfo.Bachelor.CurrentAverageGrade != 0)
+                {
+                    <tr style="border-top: 2px solid #808080">
+                        <td>
+                            @Html.CheckBoxFor(x => x.FMIInfo.Bachelor.IsAverageGradeVisible, new { @id = "check_average" })
+                        </td>
+                        <td>
+                             <label for="check_average">успех досега</label></td>
+                        <td>
+                            <label for="check_average">@Model.FMIInfo.Bachelor.CurrentAverageGrade.ToString("F")</label></td>
+                        <td>
+                            <label for="check_average">@Model.FMIInfo.Bachelor.Subjects.Sum(x => x.Credits)</label></td>
+                    </tr>
+                }
+
+                <tr>
+                    <td colspan="4" id="update-button">
+                        @Ajax.ActionLink("Обнови СУСИ информацията", "UpdateSusi", "Student", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "susiDialog", InsertionMode = InsertionMode.Replace, OnSuccess = "openSusiPopup" })<br />
+
+                    </td>
+                </tr>
             </table>
+
+
+            <div class="dialog" id="susiDialog" style="display: none;"></div>
 
         </div>
     </figcaption>
@@ -85,4 +109,19 @@
         max: 6.0,
         step: 0.01
     });
+
+    $(document).ready(function () {
+        $("#susiDialog").dialog(
+            {
+                autoOpen: false,
+                width: 300,
+                height: 'auto',
+                modal: true
+            }
+        );
+    });
+
+    function openSusiPopup() {
+        $("#susiDialog").dialog("open");
+    }
 </script>

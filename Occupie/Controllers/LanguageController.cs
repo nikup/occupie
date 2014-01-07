@@ -9,25 +9,22 @@ using WebMatrix.WebData;
 
 namespace Occupie.Controllers
 {
-    public class LanguageController : Controller
+    public class LanguageController : BaseController
     {
-        private StudentManager manager = new StudentManager();
-        private OccupieDb db = new OccupieDb();
-
         [HttpPost]
-        public int AddLanguage(Language lang)
+        public ActionResult AddLanguage(Language lang)
         {
             if (ModelState.IsValid)
             {
-                var student = manager.GetStudentByUserId(WebSecurity.CurrentUserId);
+                var student = studentManager.GetStudentByUserId(WebSecurity.CurrentUserId);
 
                 db.Languages.Add(lang);
                 db.Students.FirstOrDefault(x => x.UserId == WebSecurity.CurrentUserId).Languages.Add(lang);
 
                 db.SaveChanges();
-                return lang.LangId;
             }
-            return -1;
+
+            return PartialView("../Student/_EditPersonalPartial", studentManager.GetStudentByUserId(WebSecurity.CurrentUserId));
         }
 
         [HttpGet]
@@ -39,7 +36,7 @@ namespace Occupie.Controllers
         [HttpGet]
         public PartialViewResult RefreshLanguages()
         {            
-            return PartialView("../Language/_LanguagePartial", manager.GetStudentByUserId(WebSecurity.CurrentUserId));
+            return PartialView("../Student/_EditPersonalPartial", studentManager.GetStudentByUserId(WebSecurity.CurrentUserId));
         }
 
         [HttpGet]
@@ -49,10 +46,12 @@ namespace Occupie.Controllers
         }
 
         [HttpPost]
-        public void DeleteLanguage(int langId)
+        public ActionResult DeleteLanguage(int langId)
         {
             db.Students.FirstOrDefault(x => x.UserId == WebSecurity.CurrentUserId).Languages.RemoveAll(x => x.LangId == langId);
             db.SaveChanges();
+
+            return PartialView("../Student/_EditPersonalPartial", studentManager.GetStudentByUserId(WebSecurity.CurrentUserId));
         }
     }
 }

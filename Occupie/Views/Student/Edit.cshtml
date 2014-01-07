@@ -5,7 +5,7 @@
 }
 
 <!-- portfolio content-->
-<div id="portfolio-content-edit" class="cf">
+<div id="portfolio-content" class="cf">
     @using (Html.BeginForm("Edit", "Student", new { profileId = Model.StudentProfileId }, FormMethod.Post, new { @class = "form-edit" }))
     {
         @Html.AntiForgeryToken()
@@ -14,26 +14,57 @@
         <ul id="filter-buttons">
             <li><a href="#" data-filter=".main" class="selected">основна информация</a></li>
             <li><a href="#" data-filter=".edu">образование</a></li>
-            <li><a href="#" data-filter=".experience">опит</a></li>
-            <li><a href="#" data-filter=".personal">лична информация</a></li>
+            <li><a href="#" id="button-exp" data-filter=".experience">опит</a></li>
+            <li><a href="#" id="button-personal" data-filter=".personal">лична информация</a></li>
         </ul>
         
-        @Html.HiddenFor(model=>model.UserId)
-        @Html.HiddenFor(model=>model.StudentProfileId)
+        @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.StudentProfileId)
 
         <!-- Filter container -->
-        <div id="filter-container" class="cf">
-            <div>
-                @Html.Partial("_EditMainInfoPartial")
+        
+        <div id="filter-container-edit" class="cf">
+            <div id="edit-main">
+                @Html.Partial("../Student/_EditMainInfoPartial")
             </div>
-            <div>
-                @Html.Partial("_EditEducationPartial")
+            <div id="edit-edu">
+                @Html.Partial("../Student/_EditEducationPartial")
             </div>
-            <div>
-                @Html.Partial("_EditExperiencePartial")
+
+            <figure class="personal" id="personal">
+                <figcaption>
+                    @*<h4 class="heading">Лична информация</h4>*@
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.DateOfBirth)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.DateOfBirth)
+                        @Html.ValidationMessageFor(model => model.DateOfBirth)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Town)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Town)
+                        @Html.ValidationMessageFor(model => model.Town)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.InterestsString) (раздели със запетаи)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.InterestsString)
+                        @Html.ValidationMessageFor(model => model.InterestsString)
+                    </div>
+                </figcaption>
+            </figure>
+
+            <div id="edit-exp">
+                @Html.Partial("../Student/_EditExperiencePartial")
             </div>
-            <div>
-                @Html.Partial("_EditPersonalPartial")
+            <div id="edit-personal">
+                @Html.Partial("../Student/_EditPersonalPartial")
             </div>
         </div>
  
@@ -43,12 +74,43 @@
     }
 </div>
 
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
 
 <script>
+    var curYear = '@DateTime.Now.Year';
+    var curMonth = '@DateTime.Now.Month';
+    var curDay = '@DateTime.Now.Day';
+
+
+    $("#DateOfBirth").kendoDatePicker(
+        {
+            format: "dd MMMM yyyy",
+            start: "century",
+            depth: "month",
+            culture: "bg-BG",
+            value: new Date('@Model.GetDateOfBirth()'),
+            max: new Date(curYear, curMonth - 1, curDay)
+        });
+</script>
+
+<script>
     $(document).ready(function () {
+
+        $("#filter-buttons li a").click(function () {
+
+            var ourClass = $(this).attr('data-filter');
+
+            $('#filter-buttons li a').removeClass('selected');
+            $(this).addClass('selected');
+
+            $('figure').hide();
+            $('figure' + ourClass).show();
+        });
+
         $(".selected").trigger("click");
     });
+
 </script>

@@ -5,13 +5,13 @@
         <img class="alignleft" src="~/img/mono-icons/mouse32.png" />
         <h4 class="heading">Основна информация</h4>
 
-        @if(!string.IsNullOrWhiteSpace(Model.Adress))
+        @if(!string.IsNullOrWhiteSpace(Model.Address))
         {
             <div class="display-label">
-                @Html.DisplayNameFor(model => model.Adress)
+                @Html.DisplayNameFor(model => model.Address)
             </div>
             <div class="display-field">
-                @Html.DisplayFor(model => model.Adress)
+                @Html.DisplayFor(model => model.Address)
             </div>
         }
         @if(!string.IsNullOrWhiteSpace(Model.Website))

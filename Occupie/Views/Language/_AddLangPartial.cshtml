@@ -6,7 +6,7 @@
                         {
                             HttpMethod = "POST",
                             InsertionMode = InsertionMode.Replace,
-                            UpdateTargetId = "target",
+                            UpdateTargetId = "edit-personal",
                             OnSuccess = "onSuccess"
                         }))
 {
@@ -32,30 +32,18 @@
 
 
         <p>
-            <input type="submit" value="Add" />
-            <input type="button" id="cancelAdd" value="Cancel" onclick="closeLangDialog()" />
+            <input type="submit" value="Добави" />
+            <input type="button" id="cancelAdd" value="Отказ" onclick="closeLangDialog()" />
         </p>
 }
 
 <script>
     function onSuccess(ok,status,response) {
-        addLanguage(response.responseText);
         closeLangDialog();
     }
 
     function closeLangDialog() {
         $("#langDialog").dialog("close");
-    }
-
-    function addLanguage(langId) {
-
-        $.ajax({
-            url: '/Language/RefreshLanguages',
-            dataType: 'html',
-            success: function (data) {
-                $("#languagePartial").html(data);
-            }
-        });
     }
 
     $("#Proficiency").kendoDropDownList();

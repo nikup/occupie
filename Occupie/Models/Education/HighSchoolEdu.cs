@@ -23,7 +23,7 @@ namespace Occupie.Models
         [Display(Name = "Година на завършване")]
         public int? EndYear { get; set; }
 
-        [Range(2.00, 6.00)]
+        [Range(2.00, 6.00, ErrorMessage = "Оценката трябва да е между 2 и 6.")]
         [Display(Name = "Оценка")]
         public double? Grade { get; set; }
     }

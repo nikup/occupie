@@ -16,12 +16,8 @@ using Kendo.Mvc.Extensions;
 
 namespace Occupie.Controllers
 {
-    public class OfferController : Controller
+    public class OfferController : BaseController
     {
-        private OccupieDb db = new OccupieDb();
-        private EmployerManager empManager = new EmployerManager();
-        private OfferManager offerManager = new OfferManager();
-
         public ActionResult ReadOffers([DataSourceRequest] DataSourceRequest request)
         {
             return Json(offerManager.GetOffers().ToDataSourceResult(request));
@@ -103,7 +99,7 @@ namespace Occupie.Controllers
             var membership = (SimpleMembershipProvider)Membership.Provider;
             var name = WebSecurity.CurrentUserName;
 
-            ViewBag.IsEditable = roles.IsUserInRole(name, "employer") && empManager.EmployerHasOffer(id, WebSecurity.CurrentUserId);
+            ViewBag.IsEditable = roles.IsUserInRole(name, "employer") && employerManager.EmployerHasOffer(id, WebSecurity.CurrentUserId);
             return View(offer);
         }
 
@@ -140,7 +136,7 @@ namespace Occupie.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            if (empManager.EmployerHasOffer(id, WebSecurity.CurrentUserId))
+            if (employerManager.EmployerHasOffer(id, WebSecurity.CurrentUserId))
             {
                 Offer offer = db.Offers.Find(id);
                 if (offer == null)
@@ -238,8 +234,6 @@ namespace Occupie.Controllers
 
 			return View("All", transformedQuery);
 		}
-
-
 
         protected override void Dispose(bool disposing)
         {

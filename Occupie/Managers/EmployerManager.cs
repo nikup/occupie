@@ -14,7 +14,7 @@ namespace Occupie.Managers
         private OccupieDb db = new OccupieDb();
         private UsersContext context = new UsersContext();
 
-        public void AddEmployer(int userId)
+        public void AddEmployer(int userId, RegisterModelEmployer model)
         {
             Employer employer = new Employer();
             employer.UserId = userId;
@@ -24,10 +24,12 @@ namespace Occupie.Managers
 
             employer.Picture = buffer;
 
-            //TODO fill info
-            employer.Name = "Company";
-            employer.Adress = "Kaspichan";
-            employer.Website = "http://rakiya.com/";
+            employer.Name = model.Name;
+            employer.AdminEmail = model.AdminEmail;
+            employer.EIK = model.EIK;
+            employer.Email = model.Email;
+            employer.Website = model.Website;
+            employer.Address = model.Address;
 
             db.Employers.Add(employer);
 
@@ -46,7 +48,7 @@ namespace Occupie.Managers
                 }
 
                 dbEntry.Name = employer.Name;
-                dbEntry.Adress = employer.Adress;
+                dbEntry.Address = employer.Address;
 
                 dbEntry.Website = employer.Website;
                 dbEntry.LinkedIn = employer.LinkedIn;

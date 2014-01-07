@@ -7,7 +7,7 @@
                         {
                             HttpMethod = "POST",
                             InsertionMode = InsertionMode.Replace,
-                            UpdateTargetId = "target",
+                            UpdateTargetId = "edit-exp",
                             OnSuccess = "onSuccessProject"
                         }))
 {
@@ -27,7 +27,7 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.Description)
         </div>
-        <div class="editor-field">
+        <div class="editor-multiline-field">
             @Html.EditorFor(model => model.Description)
             <br />
             @Html.ValidationMessageFor(model => model.Description)
@@ -43,26 +43,16 @@
         </div>
 
         <p>
-            <input id="add" type="submit" value="Add" />
-            <input type="button" id="cancelAdd" value="Cancel" onclick="closeProjectDialog()" />
+            <input id="add" type="submit" value="Добави" />
+            <input type="button" id="cancelAdd" value="Отказ" onclick="closeProjectDialog()" />
         </p>
     
     <script>
 
         function onSuccessProject(ok, status, response) {
-            addProject();
             closeProjectDialog();
         }
 
-        function addProject() {
-            $.ajax({
-                url: '/Project/RefreshProjects',
-                dataType: 'html',
-                success: function (data) {
-                    $("#editExperience").html(data);
-                }
-            });
-        }
 
         function closeProjectDialog()
         {

@@ -12,11 +12,13 @@ namespace Occupie.Models
         [Key]
         public int TechId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
         [StringLength(20)]
+        [Display(Name="Технология")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Това поле е задължително.")]
+        [Display(Name = "Равнище")]
         public Proficiency Proficiency { get; set; }
 
         //public string StudentId { get; set; }
