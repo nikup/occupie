@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Occupie.ViewModels.EmployerAllViewModel>
 
-<script type="text/x-kendo-tmpl" id="template1">
+@*<script type="text/x-kendo-tmpl" id="template1">
     <a href="/Employer/Profile/?id=#:Id#" class="employer">
         <img src="#:Picture#" alt="#:Name#" />
         <h3>#:Name#</h3>
@@ -18,4 +18,24 @@
     })
     .Pageable()
 )
-</div>
+</div>*@
+
+@foreach (var employer in Model)
+{
+    <a href="/Employer/Profile/?id=@employer.Id" class="student">
+        <div id="student-container-latest">
+                    <table>
+                        <tr>
+                            <td style="text-align:center">
+                                <img src="@employer.Picture" alt="@employer.Name" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3 class="name">@employer.Name</h3>
+                            </td>
+                        </tr>
+                    </table>
+        </div>
+    </a>
+}

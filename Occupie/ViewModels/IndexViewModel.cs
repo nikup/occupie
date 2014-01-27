@@ -1,4 +1,5 @@
 using Occupie.Models;
+using Occupie.ViewModels.OfferViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace Occupie.ViewModels
 {
     public class IndexViewModel
     {
-        public IEnumerable<Offer> Offers { get; set; }
+        public IEnumerable<OfferAllViewModel> Offers { get; set; }
 
         public IEnumerable<StudentAllViewModel> Students { get; set; }
 
@@ -17,5 +18,7 @@ namespace Occupie.ViewModels
         public Student Student { get; set; }
 
         public bool ShowEmailWarning { get; set; }
+
+        public IEnumerable<BlogPost> BlogPosts { get; set; }
     }
 }

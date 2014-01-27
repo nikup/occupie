@@ -13,12 +13,14 @@ using Occupie.Models;
 using Occupie.Managers;
 using WebMatrix.WebData;
 using System.Web.Security;
+using Occupie.RSSreader;
 
 namespace Occupie.Controllers
 {
     public class HomeController : BaseController
     {
-        private const int NumberOfItemsToShow = 5;
+        private const int NumberOfItemsToShow = 3;
+        private Reader blogReader = new Reader();
 
         public ActionResult Index()
         {
@@ -26,11 +28,11 @@ namespace Occupie.Controllers
 
             if (db.Offers.Count() < NumberOfItemsToShow)
             {
-                viewModel.Offers = db.Offers;
+                viewModel.Offers = offerManager.GetOffers();
             }
             else
             {
-                viewModel.Offers = db.Offers.OrderBy(x => x.OfferId).Skip(db.Offers.Count() - NumberOfItemsToShow);
+                viewModel.Offers = offerManager.GetOffers().OrderBy(x => x.Id).Skip(db.Offers.Count() - NumberOfItemsToShow);
             }
 
             if (db.Students.Count() < NumberOfItemsToShow)
@@ -59,7 +61,9 @@ namespace Occupie.Controllers
             {
                 viewModel.ShowEmailWarning = studentManager.GetStudentByUserId(WebSecurity.CurrentUserId).Email.EndsWith("@uni-sofia.com");
                 viewModel.Student = studentManager.GetStudentByUserId(WebSecurity.CurrentUserId);
-            }           
+            }
+
+            viewModel.BlogPosts = blogReader.RSS(NumberOfItemsToShow);
 
             return View(viewModel);
         }

@@ -19,7 +19,7 @@
     </figure>
 }*@
 
-<script type="text/x-kendo-tmpl" id="template2">
+@*<script type="text/x-kendo-tmpl" id="template2">
     <a href="/Student/Profile/?profileId=#:Id#" class="student">
         <img src="#:PictureString#" alt="#:FullName#" />
         <h3>#:FullName#</h3>
@@ -37,4 +37,71 @@
     })
     .Pageable()
 )
-</div>
+</div>*@
+
+@foreach (var student in Model)
+{
+    <a href="/Student/Profile/?userId=@student.Id" class="student">
+        <div id="student-container-latest">
+                    <table>
+                        <tr>
+                            <td style="text-align:center">
+                                <img src="@student.PictureString" alt="@student.FullName" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3 class="name">@student.FullName</h3>
+                            </td>
+                        </tr>
+                    </table>
+        </div>
+    </a>
+}
+
+@*<script type="text/x-kendo-tmpl" id="template2">
+
+    <a href="/Student/Profile/?userId=#:Id#" class="student">
+        <div id="student-container">
+            <figure>
+            <figcaption>
+       <table>
+    <tr>
+        <td>
+            <img src="#:PictureString#" alt="#:FullName#" /> 
+        </td>
+        <td class="info">
+    <div>
+            <p>#:CurrentJob#</p>
+            <p>#:Year# курс #:Programme# <span class="strong">#:CurrentAverageGrade#<span></p>
+    # for (var i = 0; i < Technologies.length; i++) { #
+              <div class="list-item">${ Technologies[i] }</div>
+         # } #
+    </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+             <h3 class="name">#:FullName#</h3> 
+        </td>
+    </tr>
+</table>  <div class="triangle"></div>
+                    </figcaption>
+        </figure>
+        </div>                
+    </a>
+
+</script>
+
+
+<div class="demo-section-latest-students">
+    @(Html.Kendo().ListView<Occupie.ViewModels.StudentAllViewModel>(Model)
+    .Name("listView3")
+    .TagName("div")
+    .ClientTemplateId("template2")
+    .DataSource(dataSource =>
+    {
+        dataSource.Read(read => read.Action("ReadStudents", "Home"));
+    })
+)
+</div>*@

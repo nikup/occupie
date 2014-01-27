@@ -14,5 +14,7 @@ namespace Occupie.Models
         public string Date { get; set; }
 
         public string Link { get; set; }
+
+        public string Author { get; set; }
     }
 }

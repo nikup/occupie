@@ -121,6 +121,28 @@ body {
   color: #cb5432;
 }
 
+/* BLOG ----------------------------------------------------*/
+
+#filter-container-blog figure {
+  background: #f8f5f2;
+  position:relative;
+}
+
+#filter-container-blog a {
+  color: #888;
+}
+#filter-container-blog a:hover {
+  color: #cb5432;
+}
+
+/* BLOG ----------------------------------------------------*/
+
+/* LATEST STUDENTS ----------------------------------------------------*/
+#latest-students-container figure {
+  background: #f8f5f2;
+  position:relative;
+}
+/* LATEST STUDENTS ----------------------------------------------------*/
 
 #filter-container-edit figure {
   background: #f8f5f2;

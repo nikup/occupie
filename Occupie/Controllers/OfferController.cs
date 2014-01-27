@@ -21,7 +21,14 @@ namespace Occupie.Controllers
         public ActionResult ReadOffers([DataSourceRequest] DataSourceRequest request)
         {
             return Json(offerManager.GetOffers().ToDataSourceResult(request));
-        }        
+        }
+
+        public ActionResult ReadLatestOffers([DataSourceRequest] DataSourceRequest request)
+        {
+            int NumberOfItemsToShow = 5;
+
+            return Json(offerManager.GetOffers().OrderByDescending(x=>x.Id).Take(NumberOfItemsToShow).ToDataSourceResult(request));
+        }  
 
         // GET: /Offer/All
         public ActionResult All(OfferQueryViewModel query)
