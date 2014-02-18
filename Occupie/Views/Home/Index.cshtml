@@ -10,9 +10,15 @@
         @Html.Partial("ChangeEmail", Model.Student)
     }
 
-    @(Html.Kendo()
+    <!-- portfolio content-->
+    <div id="home-content">
+        <div id="filter-container-offers" class="cf">
+            <figure>
+                <figcaption>
+                    <h6 class="heading">Последни обяви</h6>
+                    @(Html.Kendo()
     .Grid<Occupie.ViewModels.OfferViewModels.OfferAllViewModel>().EnableCustomBinding(true)
-    .Name("grid-offers")
+    .Name("offers")
     .BindTo(Model.Offers)
     .Columns(columns =>
     {
@@ -21,15 +27,15 @@
         columns.Bound(model => model.DailyWorkTime).Sortable(true).Title("Работно време");
         columns.Bound(model => model.OfferLevel).Sortable(true).Title("Ниво");
         columns.Bound(model => model.Id).ClientTemplate(@Html.ActionLink("Детайли", "Details", "Offer", new { id = "#=Id#" }, null).ToHtmlString()).Title("Детайли");
-	   })    
+    })
 
     .Sortable(
     sort =>
-        {
-            sort.Enabled(true);
-            sort.AllowUnsort(true);
-            sort.SortMode(GridSortMode.SingleColumn);
-        })
+    {
+        sort.Enabled(true);
+        sort.AllowUnsort(true);
+        sort.SortMode(GridSortMode.SingleColumn);
+    })
     .Resizable(resize => resize.Columns(false))
     .Navigatable()
             .DataSource(data =>
@@ -38,11 +44,8 @@
             }
             )
     )
-
-    <!-- portfolio content-->
-    <div id="home-content">
-        <div  id="filter-container-blog" class="cf">
-         
+                </figcaption>
+            </figure>
         </div>
         <div id="filter-container-blog" class="cf">
             <figure>

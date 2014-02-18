@@ -6,7 +6,7 @@
 <div id="login-form">
     <h2>@ViewBag.Title</h2>
     <section id="loginForm">
-        <div>
+        <div style="padding: 10px">
             @using (Html.BeginForm("LoginAsStudent", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
             {
                 @Html.AntiForgeryToken()

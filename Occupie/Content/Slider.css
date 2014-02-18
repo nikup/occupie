@@ -1,0 +1,38 @@
+﻿#content{    
+    text-align: center;
+}
+
+#slides {
+    margin-bottom: 30px;
+    margin-top:15px;
+}
+
+#slides p{
+    font-family: Verdana;
+}
+
+#slides hr{
+    color: #cb5432; 
+    border-width: 2px;
+    width: 100%
+}
+
+#right_arrow {
+    float: right;    
+    right: 30px;
+}
+
+#left_arrow{
+    left: 30px;
+}
+
+#left_arrow, #right_arrow {
+    position: fixed;
+    cursor: pointer;
+    top: 50%;
+}
+
+.current {
+    display: block;
+    visibility: visible;
+}

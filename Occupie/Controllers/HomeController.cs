@@ -83,12 +83,12 @@ namespace Occupie.Controllers
         {
             return PartialView("_LatestOffersPartial");
         }
-        
-        //[HttpGet]
-        //public ActionResult ChangeEmail()
-        //{
-        //    return View(studentManager.GetStudentByUserId(WebSecurity.CurrentUserId));
-        //}
+
+        [HttpGet]
+        public ActionResult About()
+        {
+            return View();
+        }
 
         [HttpPost]
         public ActionResult ChangeEmail(Student student)

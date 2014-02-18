@@ -121,6 +121,22 @@ body {
   color: #cb5432;
 }
 
+/* LATEST OFFERS ----------------------------------------------------*/
+
+#filter-container-offers figure {
+  background: #f8f5f2;
+  position:relative;
+}
+
+#filter-container-offers a {
+  color: #888;
+}
+#filter-container-offers a:hover {
+  color: #cb5432;
+}
+
+/* LATEST OFFERS ----------------------------------------------------*/
+
 /* BLOG ----------------------------------------------------*/
 
 #filter-container-blog figure {

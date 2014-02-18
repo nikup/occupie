@@ -490,6 +490,19 @@
     <Content Include="Content\KendoUI\images\KendoUI.woff" />
     <Content Include="css\.DS_Store" />
     <Content Include="happynamedaytoyou.html" />
+    <Content Include="Images\About\add-offer.png" />
+    <Content Include="Images\About\edit-education.png" />
+    <Content Include="Images\About\edit-experience.png" />
+    <Content Include="Images\About\edit-main.png" />
+    <Content Include="Images\About\edit-personal.png" />
+    <Content Include="Images\About\employers.png" />
+    <Content Include="Images\About\left-arrow.png" />
+    <Content Include="Images\About\login-as-employer.png" />
+    <Content Include="Images\About\login-as-student.png" />
+    <Content Include="Images\About\offers.png" />
+    <Content Include="Images\About\right-arrow.png" />
+    <Content Include="Images\About\student-profile.png" />
+    <Content Include="Images\About\students.png" />
     <Content Include="Images\company-avatar.png" />
     <Content Include="Images\default-avatar.jpg" />
     <Content Include="img\.DS_Store" />
@@ -940,6 +953,8 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Content\Slider.css" />
+    <Content Include="Scripts\Slider.js" />
     <Content Include="supersecretstyle.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1047,6 +1062,7 @@
     <Content Include="Views\Home\ChangeEmail.cshtml" />
     <Content Include="Views\Student\_UpdateSusiPartial.cshtml" />
     <Content Include="Views\Account\Empl.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Employer\Profile.cshtml" />

@@ -10,6 +10,7 @@ using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Occupie.ViewModels;
 using System.Web.Helpers;
+using System.IO;
 
 namespace Occupie.Controllers
 {
@@ -92,6 +93,19 @@ namespace Occupie.Controllers
                 {
                     img.Resize(img.Width, 178);
                 }
+
+
+                //string path = "C:\\Users\\dzlatkova\\Desktop\\Images";
+
+                //if (!Directory.Exists(path))
+                //{
+                //    DirectoryInfo di = Directory.CreateDirectory(path);
+                //    di.Attributes &= ~FileAttributes.ReadOnly;
+                //}
+
+                //string filePath = Path.Combine(path, Path.GetFileName(file.FileName));
+
+                //file.SaveAs(path);
 
                 db.Employers.FirstOrDefault(x => x.UserId == WebSecurity.CurrentUserId).Picture = img.GetBytes();
                 db.SaveChanges();

@@ -813,6 +813,60 @@ body #filter-container-edit figure.figure-edit-page {
     margin-bottom:20px;
 }
 
+/* LATEST OFFERS */
+#filter-container-offers {
+    width: 730px;
+    float:left;
+}
+
+body #filter-container-offers figure.figure-edit-page {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+#filter-container-offers figure {
+    width: 720px;
+    float: left;
+    margin-bottom: 10px;  
+    -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    -o-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+
+
+    #filter-container-offers figure figcaption {
+        margin: 0px 10px 10px 10px;
+    }
+
+        #filter-container-offers figure figcaption ul {
+            display: inline-block;
+        }
+
+        #filter-container-offers figure figcaption .heading {
+            margin-bottom: 13px;
+            font-size: 26px;
+            line-height: 1.2em;
+            text-transform: uppercase;
+            display: block;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            text-align:center;
+        }
+
+        #filter-container-offers figure figcaption .readmore {
+            display: block;
+            margin: 10px 0px;
+        }
+
+        #filter-container-offers h2, #filter-container-offers h6{
+            margin-left:0;
+        }
+
+/* LATEST OFFERS */
+
 /* BLOG */
 #filter-container-blog {
     width: 730px;
@@ -847,7 +901,7 @@ body #filter-container-blog figure.figure-edit-page {
 
         #filter-container-blog figure figcaption .heading {
             margin-bottom: 13px;
-            font-size: 32px;
+            font-size: 26px;
             line-height: 1.2em;
             text-transform: uppercase;
             display: block;
